@@ -1,0 +1,277 @@
+ 
+ 
+ 
+ 
+ECHO is off.
+========================================== 
+Comprehensive Network Reset Script 
+========================================== 
+This step will flush the DNS cache, which can help resolve DNS-related issues. 
+Flushing DNS cache... 
+
+Windows IP Configuration
+
+Successfully flushed the DNS Resolver Cache.
+This step will reset Winsock, which can fix network connectivity issues caused by corrupted Winsock settings. 
+Resetting Winsock... 
+The requested operation requires elevation (Run as administrator).
+
+This step will reset the IPv4 TCP/IP stack, which can resolve issues with IPv4 connectivity. 
+Resetting IPv4 TCP/IP stack... 
+Resetting Compartment Forwarding, OK!
+Resetting Compartment, OK!
+Resetting Control Protocol, OK!
+Resetting Echo Sequence Request, OK!
+Resetting Global, OK!
+Resetting Interface, OK!
+Resetting Anycast Address, OK!
+Resetting Multicast Address, OK!
+Resetting Unicast Address, OK!
+Resetting Neighbor, OK!
+Resetting Path, OK!
+Resetting Potential, OK!
+Resetting Prefix Policy, OK!
+Resetting Proxy Neighbor, OK!
+Resetting Route, OK!
+Resetting Site Prefix, OK!
+Resetting Subinterface, OK!
+Resetting Wakeup Pattern, OK!
+Resetting Resolve Neighbor, OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , failed.
+The requested operation requires elevation (Run as administrator).
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Restart the computer to complete this action.
+
+This step will reset the IPv6 TCP/IP stack, which can resolve issues with IPv6 connectivity. 
+Resetting IPv6 TCP/IP stack... 
+Resetting Compartment Forwarding, OK!
+Resetting Compartment, OK!
+Resetting Control Protocol, OK!
+Resetting Echo Sequence Request, OK!
+Resetting Global, OK!
+Resetting Interface, OK!
+Resetting Anycast Address, OK!
+Resetting Multicast Address, OK!
+Resetting Unicast Address, OK!
+Resetting Neighbor, OK!
+Resetting Path, OK!
+Resetting Potential, OK!
+Resetting Prefix Policy, OK!
+Resetting Proxy Neighbor, OK!
+Resetting Route, OK!
+Resetting Site Prefix, OK!
+Resetting Subinterface, OK!
+Resetting Wakeup Pattern, OK!
+Resetting Resolve Neighbor, OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , failed.
+The requested operation requires elevation (Run as administrator).
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Restart the computer to complete this action.
+
+This step will clear the ARP cache, which can resolve issues with outdated or incorrect ARP entries. 
+Clearing ARP cache... 
+This step will restart the DHCP Client and DNS Client services, which can resolve issues with obtaining IP addresses and DNS resolution. 
+Restarting DHCP Client and DNS Client services... 
+The following services are dependent on the DHCP Client service.
+Stopping the DHCP Client service will also stop these services.
+
+   WinHTTP Web Proxy Auto-Discovery Service
+   Network List Service
+   Network Location Awareness
+
+Do you want to continue this operation? (Y/N) [N]: This step will ensure the Cloudflare WARP service is running, which can provide additional security and privacy. 
+Ensuring Cloudflare WARP service is running... 
+Cloudflare WARP service failed to start or is already running. 
+This step will restart the network adapters, which can resolve issues with network connectivity. 
+Restarting network adapters... 
+Disabling adapter: Enabled        Connected      Dedicated        Ethernet 
+No more data is available.
+
+
+Enabling adapter: Enabled        Connected      Dedicated        Ethernet 
+No more data is available.
+
+
+Disabling adapter: Enabled        Connected      Dedicated        vEthernet (Ethernet) 
+No more data is available.
+
+
+Enabling adapter: Enabled        Connected      Dedicated        vEthernet (Ethernet) 
+No more data is available.
+
+
+Disabling adapter: Enabled        Connected      Dedicated        vEthernet (Default Switch) 
+No more data is available.
+
+
+Enabling adapter: Enabled        Connected      Dedicated        vEthernet (Default Switch) 
+No more data is available.
+
+
+Please enter the Minecraft server IP: 
+This step will test connectivity to the Minecraft server by pinging the server. 
+Testing connection to Minecraft server... 
+
+Pinging stolicija.mcpro.io [198.49.103.76] with 32 bytes of data:
+Reply from 198.49.103.76: bytes=32 time=134ms TTL=50
+Reply from 198.49.103.76: bytes=32 time=134ms TTL=50
+Reply from 198.49.103.76: bytes=32 time=133ms TTL=50
+Reply from 198.49.103.76: bytes=32 time=134ms TTL=50
+
+Ping statistics for 198.49.103.76:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 133ms, Maximum = 134ms, Average = 133ms
+Network Reset Complete. Please Restart PC if issues persist. 
+If problems continue, test the server using a VPN or contact server support. 
+========================================== 
+Flushing DNS cache... 
+
+Windows IP Configuration
+
+Successfully flushed the DNS Resolver Cache.
+Resetting Winsock... 
+The requested operation requires elevation (Run as administrator).
+
+Resetting IPv4 TCP/IP stack... 
+Resetting Compartment Forwarding, OK!
+Resetting Compartment, OK!
+Resetting Control Protocol, OK!
+Resetting Echo Sequence Request, OK!
+Resetting Global, OK!
+Resetting Interface, OK!
+Resetting Anycast Address, OK!
+Resetting Multicast Address, OK!
+Resetting Unicast Address, OK!
+Resetting Neighbor, OK!
+Resetting Path, OK!
+Resetting Potential, OK!
+Resetting Prefix Policy, OK!
+Resetting Proxy Neighbor, OK!
+Resetting Route, OK!
+Resetting Site Prefix, OK!
+Resetting Subinterface, OK!
+Resetting Wakeup Pattern, OK!
+Resetting Resolve Neighbor, OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , failed.
+The requested operation requires elevation (Run as administrator).
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Restart the computer to complete this action.
+
+Resetting IPv6 TCP/IP stack... 
+Resetting Compartment Forwarding, OK!
+Resetting Compartment, OK!
+Resetting Control Protocol, OK!
+Resetting Echo Sequence Request, OK!
+Resetting Global, OK!
+Resetting Interface, OK!
+Resetting Anycast Address, OK!
+Resetting Multicast Address, OK!
+Resetting Unicast Address, OK!
+Resetting Neighbor, OK!
+Resetting Path, OK!
+Resetting Potential, OK!
+Resetting Prefix Policy, OK!
+Resetting Proxy Neighbor, OK!
+Resetting Route, OK!
+Resetting Site Prefix, OK!
+Resetting Subinterface, OK!
+Resetting Wakeup Pattern, OK!
+Resetting Resolve Neighbor, OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , failed.
+The requested operation requires elevation (Run as administrator).
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Restart the computer to complete this action.
+
+Clearing ARP cache... 
+Restarting DHCP and DNS Client services... 
+The following services are dependent on the DHCP Client service.
+Stopping the DHCP Client service will also stop these services.
+
+   WinHTTP Web Proxy Auto-Discovery Service
+   Network List Service
+   Network Location Awareness
+
+Do you want to continue this operation? (Y/N) [N]: Ensuring Cloudflare WARP service is running... 
+Cloudflare WARP service failed to start or is already running. 
+Restarting network adapters... 
+Disabling adapter: Enabled        Connected      Dedicated        Ethernet 
+No more data is available.
+
+
+Enabling adapter: Enabled        Connected      Dedicated        Ethernet 
+No more data is available.
+
+
+Disabling adapter: Enabled        Connected      Dedicated        vEthernet (Ethernet) 
+No more data is available.
+
+
+Enabling adapter: Enabled        Connected      Dedicated        vEthernet (Ethernet) 
+No more data is available.
+
+
+Disabling adapter: Enabled        Connected      Dedicated        vEthernet (Default Switch) 
+No more data is available.
+
+
+Enabling adapter: Enabled        Connected      Dedicated        vEthernet (Default Switch) 
+No more data is available.
+
+
+Testing connectivity to Minecraft server: stolicija.mcpro.io 
+
+Pinging stolicija.mcpro.io [198.49.103.76] with 32 bytes of data:
+Request timed out.
+Reply from 198.49.103.76: bytes=32 time=138ms TTL=50
+Reply from 198.49.103.76: bytes=32 time=133ms TTL=50
+Request timed out.
+
+Ping statistics for 198.49.103.76:
+    Packets: Sent = 4, Received = 2, Lost = 2 (50% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 133ms, Maximum = 138ms, Average = 135ms
