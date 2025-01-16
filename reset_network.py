@@ -19,8 +19,8 @@ logging.basicConfig(
 )
 
 
-# Function to execute a command and show the output
 def execute_command(command, success_message, clear_log=False):
+    """Execute a command and show the output."""
     log_output("=" * 80)  # Add thick horizontal line separator before command execution
     logging.debug(f"Executing command: {command}")
     log_output(f"Executing command: {command}")
@@ -53,15 +53,15 @@ def execute_command(command, success_message, clear_log=False):
     log_output("=" * 80)  # Add thick horizontal line separator after command execution
 
 
-# Function to log output to the text box and file
 def log_output(output):
+    """Log output to the text box and file."""
     log_text.insert(tk.END, output + "\n")
     log_text.see(tk.END)
     logging.info(output)
 
 
-# Function to handle user input in the text box
 def on_enter(event):
+    """Handle user input in the text box."""
     user_input = log_text.get("end-2c linestart", "end-1c").strip()
     log_text.insert(tk.END, "\n")
     log_text.see(tk.END)
@@ -79,19 +79,23 @@ def on_enter(event):
         execute_command(user_input, "", clear_log=False)
 
 
-# Function to show command description and execution button
 def show_command_description(description, command, success_message, long_description):
+    """Show command description and execution button."""
     logging.debug(
         f"Showing command: {description}, {command}, {success_message}, {long_description}"
     )
-    description_label.config(text=f"{description}\n\n{long_description}")
+    description_label.config(
+        text=f"{description}\n\n{command}\n\n{long_description}",
+        anchor="w",
+        justify="left",
+    )
     logging.debug(f"Updated description_label: {description}")
     execute_button.config(command=lambda: execute_command(command, success_message))
     logging.debug(f"Updated execute_button with command: {command}")
 
 
-# Function to show a submenu
 def show_submenu(submenu_name):
+    """Show a submenu."""
     logging.debug(f"Showing submenu: {submenu_name}")
     clear_buttons()
     log_text.delete(1.0, tk.END)  # Clear the screen
@@ -99,18 +103,18 @@ def show_submenu(submenu_name):
     add_buttons(getattr(menu_items, submenu_name))
 
 
-# Function to increase font size
 def increase_font_size(event):
+    """Increase font size."""
     update_font_size(2)
 
 
-# Function to decrease font size
 def decrease_font_size(event):
+    """Decrease font size."""
     update_font_size(-2)
 
 
-# Function to update font size
 def update_font_size(delta):
+    """Update font size."""
     current_size = int(log_text.cget("font").split()[1])
     new_size = current_size + delta
     log_text.config(font=("Arial", new_size))
@@ -118,8 +122,8 @@ def update_font_size(delta):
     update_button_fonts(new_size)
 
 
-# Function to update button fonts
 def update_button_fonts(size):
+    """Update button fonts."""
     for widget in buttons_frame.winfo_children():
         if isinstance(widget, tk.Button):
             widget.config(font=("Arial", size))
@@ -150,15 +154,16 @@ paned_window.add(sidebar_frame)
 sidebar_canvas = tk.Canvas(sidebar_frame, bg="#2e2e2e")
 sidebar_canvas.pack(side=tk.LEFT, fill=tk.Y, expand=True)
 
+# Scrollbar for sidebar
+sidebar_scrollbar = tk.Scrollbar(
+    sidebar_frame, orient=tk.VERTICAL, command=sidebar_canvas.yview
+)
+sidebar_scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+sidebar_canvas.configure(yscrollcommand=sidebar_scrollbar.set)
+
 # Frame for buttons inside the canvas
 buttons_frame = tk.Frame(sidebar_canvas, bg="#2e2e2e")
 sidebar_canvas.create_window((0, 0), window=buttons_frame, anchor="nw")
-
-# Configure scrollbar
-sidebar_canvas.bind_all(
-    "<MouseWheel>",
-    lambda event: sidebar_canvas.yview_scroll(int(-1 * (event.delta / 120)), "units"),
-)
 
 
 # Update scroll region
@@ -183,12 +188,18 @@ log_text.bind("<Return>", on_enter)
 
 # Bottom frame for command description and execution button
 bottom_frame = tk.Frame(root, bg="#2e2e2e", padx=10, pady=10)
-bottom_frame.pack(fill=tk.X, side=tk.BOTTOM)
+bottom_frame.pack(fill=tk.X, side=tk.BOTTOM, anchor="w")
 
 description_label = tk.Label(
-    bottom_frame, text="", font=("Arial", 12), bg="#2e2e2e", fg="#ffffff"
+    bottom_frame,
+    text="",
+    font=("Arial", 12),
+    bg="#2e2e2e",
+    fg="#ffffff",
+    anchor="w",
+    justify="left",
 )
-description_label.pack(side=tk.LEFT, padx=10, pady=10)
+description_label.pack(side=tk.LEFT, padx=10, pady=10, fill=tk.BOTH, expand=True)
 
 execute_button = tk.Button(
     bottom_frame, text="Execute", font=("Arial", 12), bg="#1e1e1e", fg="#ffffff"
@@ -200,31 +211,35 @@ menu_title = tk.Label(buttons_frame, text="Main Menu", font=("Arial", 16), **sty
 menu_title.pack(pady=10)
 
 
-# Function to switch to the main menu
 def show_main_menu():
+    """Switch to the main menu."""
     logging.debug("Showing main menu")
     show_submenu("main_menu")
 
 
-# Function to clear all buttons except the menu title
 def clear_buttons():
+    """Clear all buttons except the menu title."""
     logging.debug("Clearing buttons")
     for widget in buttons_frame.winfo_children():
         if widget != menu_title:
             widget.destroy()
 
 
-# Function to add buttons to the sidebar
 def add_buttons(buttons):
+    """Add buttons to the sidebar."""
     logging.debug(f"Adding buttons: {buttons}")
     for item in buttons:
         logging.debug(f"Adding button: {item['text']}")
         btn = tk.Button(
             buttons_frame,
             text=item["text"],
-            width=25,
             wraplength=200,
             **style,
+        )
+        btn.pack(pady=5, fill=tk.X, expand=True)
+        btn.bind(
+            "<Configure>",
+            lambda event, btn=btn: btn.config(wraplength=btn.winfo_width() - 10),
         )
         if "submenu" in item:
             btn.config(command=lambda submenu=item["submenu"]: show_submenu(submenu))
@@ -241,15 +256,14 @@ def add_buttons(buttons):
                     item.get("long_description", ""),
                 )
             )
-        btn.pack(pady=5, fill=tk.X, expand=True)
         btn.bind(
             "<Button-1>",
             lambda event, item=item: logging.debug(f"Button clicked: {item['text']}"),
         )
 
 
-# Function to execute a sequence of commands
 def execute_sequence(commands):
+    """Execute a sequence of commands."""
     for command in commands:
         logging.debug(f"Executing sequence command: {command['command']}")
         execute_command(command["command"], command["success_message"])
