@@ -106,3 +106,2341 @@
 2025-01-16 22:57:41,599 - INFO - Executing command: arp -d
 2025-01-16 22:57:41,675 - INFO - ARP cache cleared successfully.
 2025-01-16 22:57:41,676 - INFO - ================================================================================
+2025-01-16 23:01:30,801 - DEBUG - Button clicked: Back to Main Menu
+2025-01-16 23:01:30,888 - DEBUG - Showing submenu: main_menu
+2025-01-16 23:01:30,888 - DEBUG - Clearing buttons
+2025-01-16 23:01:30,891 - DEBUG - Adding buttons: [{'text': 'Flush DNS Cache', 'description': 'Flushes the DNS cache to resolve DNS-related issues.', 'command': 'ipconfig /flushdns', 'success_message': 'DNS cache flushed successfully.', 'long_description': 'Use this command to flush the DNS cache when you are experiencing DNS-related issues such as not being able to resolve domain names.'}, {'text': 'Clear ARP Cache', 'description': 'Clears the ARP cache to resolve ARP-related issues.', 'command': 'arp -d', 'success_message': 'ARP cache cleared successfully.', 'long_description': 'Use this command to clear the ARP cache when you are experiencing ARP-related issues such as incorrect IP address to MAC address mappings.'}, {'text': 'Test Connectivity', 'description': 'Tests network connectivity by pinging common DNS servers.', 'submenu': 'test_connectivity', 'long_description': 'Use this submenu to test network connectivity by pinging common DNS servers like Google DNS, Cloudflare DNS, and OpenDNS.'}, {'text': 'Display DNS Cache', 'description': 'Displays the current DNS cache entries.', 'command': 'ipconfig /displaydns', 'success_message': 'DNS cache displayed.', 'long_description': 'Use this command to display the current DNS cache entries to troubleshoot DNS resolution issues.'}, {'text': 'Reset Network Settings', 'description': 'Resets network settings to default.', 'command': 'netsh int ip reset', 'success_message': 'Network settings reset successfully.', 'long_description': 'Use this command to reset network settings to their default values when you are experiencing network configuration issues.'}, {'text': 'Release and Renew IP Address', 'description': 'Releases and renews the IP address.', 'command': 'ipconfig /release && ipconfig /renew', 'success_message': 'IP address released and renewed.', 'long_description': 'Use this command to release and renew the IP address when you are experiencing IP address conflicts or connectivity issues.'}, {'text': 'Check Network Adapter Status', 'description': 'Displays the status of network adapters.', 'command': 'netsh interface show interface', 'success_message': 'Network adapter status displayed.', 'long_description': 'Use this command to display the status of network adapters to troubleshoot connectivity issues.'}, {'text': 'Reset Winsock', 'description': 'Resets Winsock settings. Requires a restart.', 'command': 'netsh winsock reset', 'success_message': 'Winsock reset successfully. Please restart your computer for changes to take effect.', 'long_description': 'Use this command to reset Winsock settings when you are experiencing network socket-related issues. A restart is required for changes to take effect.'}, {'text': 'Reset TCP/IP Stack (IPv4)', 'description': 'Resets the IPv4 TCP/IP stack. Requires a restart.', 'command': 'netsh int ip reset', 'success_message': 'IPv4 TCP/IP stack reset successfully. Please restart your computer for changes to take effect.', 'long_description': 'Use this command to reset the IPv4 TCP/IP stack when you are experiencing IPv4-related connectivity issues. A restart is required for changes to take effect.'}, {'text': 'Reset TCP/IP Stack (IPv6)', 'description': 'Resets the IPv6 TCP/IP stack. Requires a restart.', 'command': 'netsh int ipv6 reset', 'success_message': 'IPv6 TCP/IP stack reset successfully. Please restart your computer for changes to take effect.', 'long_description': 'Use this command to reset the IPv6 TCP/IP stack when you are experiencing IPv6-related connectivity issues. A restart is required for changes to take effect.'}, {'text': 'Restart DHCP and DNS Client Services', 'description': 'Restarts DHCP and DNS Client services.', 'command': 'net stop dhcp && net start dhcp && net stop dnscache && net start dnscache', 'success_message': 'DHCP and DNS Client services restarted.', 'long_description': 'Use this command to restart DHCP and DNS Client services when you are experiencing issues with obtaining an IP address or DNS resolution.'}, {'text': 'Restart Network Adapters', 'description': 'Restarts network adapters.', 'command': 'for /f "tokens=*" %%A in (\'netsh interface show interface ^| findstr /C:"Enabled"\') do (netsh interface set interface name="%%A" admin=disable && timeout /t 2 >nul && netsh interface set interface name="%%A" admin=enable)', 'success_message': 'Network adapters restarted.', 'long_description': 'Use this command to restart network adapters when you are experiencing connectivity issues.'}, {'text': 'Display Network Configuration', 'description': 'Displays the current network configuration.', 'command': 'ipconfig /all', 'success_message': 'Network configuration displayed.', 'long_description': 'Use this command to display the current network configuration to troubleshoot network settings and connectivity issues.'}, {'text': 'Check for Network Driver Updates', 'description': 'Checks for updates to network drivers.', 'command': 'wmic path win32_pnpentity where "DeviceID like \'%%PCI%%\'" get DeviceID, Name, Manufacturer, DriverVersion', 'success_message': 'Network driver updates check completed.', 'long_description': 'Use this command to check for updates to network drivers when you are experiencing driver-related issues.'}, {'text': 'Help', 'submenu': 'help_menu'}, {'text': 'Flush DNS, Clear ARP, and Test Connectivity', 'description': 'Flushes DNS, clears ARP, and tests connectivity.', 'commands': [{'command': 'ipconfig /flushdns', 'success_message': 'DNS cache flushed successfully.', 'long_description': 'Use this command to flush the DNS cache when you are experiencing DNS-related issues such as not being able to resolve domain names.'}, {'command': 'arp -d', 'success_message': 'ARP cache cleared successfully.', 'long_description': 'Use this command to clear the ARP cache when you are experiencing ARP-related issues such as incorrect IP address to MAC address mappings.'}, {'command': 'ping 8.8.8.8 -n 4', 'success_message': 'Ping to Google DNS complete.', 'long_description': 'Use this command to test network connectivity by pinging Google DNS.'}]}]
+2025-01-16 23:01:30,891 - DEBUG - Adding button: Flush DNS Cache
+2025-01-16 23:01:30,891 - DEBUG - Adding button: Clear ARP Cache
+2025-01-16 23:01:30,892 - DEBUG - Adding button: Test Connectivity
+2025-01-16 23:01:30,892 - DEBUG - Adding button: Display DNS Cache
+2025-01-16 23:01:30,892 - DEBUG - Adding button: Reset Network Settings
+2025-01-16 23:01:30,892 - DEBUG - Adding button: Release and Renew IP Address
+2025-01-16 23:01:30,892 - DEBUG - Adding button: Check Network Adapter Status
+2025-01-16 23:01:30,893 - DEBUG - Adding button: Reset Winsock
+2025-01-16 23:01:30,893 - DEBUG - Adding button: Reset TCP/IP Stack (IPv4)
+2025-01-16 23:01:30,893 - DEBUG - Adding button: Reset TCP/IP Stack (IPv6)
+2025-01-16 23:01:30,893 - DEBUG - Adding button: Restart DHCP and DNS Client Services
+2025-01-16 23:01:30,894 - DEBUG - Adding button: Restart Network Adapters
+2025-01-16 23:01:30,894 - DEBUG - Adding button: Display Network Configuration
+2025-01-16 23:01:30,894 - DEBUG - Adding button: Check for Network Driver Updates
+2025-01-16 23:01:30,894 - DEBUG - Adding button: Help
+2025-01-16 23:01:30,894 - DEBUG - Adding button: Flush DNS, Clear ARP, and Test Connectivity
+2025-01-16 23:01:32,368 - DEBUG - Button clicked: Display DNS Cache
+2025-01-16 23:01:32,472 - DEBUG - Showing command: Displays the current DNS cache entries., ipconfig /displaydns, DNS cache displayed., Use this command to display the current DNS cache entries to troubleshoot DNS resolution issues.
+2025-01-16 23:01:32,472 - DEBUG - Updated description_label: Displays the current DNS cache entries.
+2025-01-16 23:01:32,472 - DEBUG - Updated execute_button with command: ipconfig /displaydns
+2025-01-16 23:01:33,887 - INFO - ================================================================================
+2025-01-16 23:01:33,888 - DEBUG - Executing command: ipconfig /displaydns
+2025-01-16 23:01:33,888 - INFO - Executing command: ipconfig /displaydns
+2025-01-16 23:01:33,967 - INFO - 
+
+2025-01-16 23:01:33,967 - INFO - Windows IP Configuration
+
+2025-01-16 23:01:33,968 - INFO - 
+
+2025-01-16 23:01:33,969 - INFO -     blockmania.com
+
+2025-01-16 23:01:33,969 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:33,969 - INFO -     Record Name . . . . . : blockmania.com
+
+2025-01-16 23:01:33,969 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:33,970 - INFO -     Time To Live  . . . . : 47
+
+2025-01-16 23:01:33,970 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:33,970 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:33,970 - INFO -     A (Host) Record . . . : 15.235.14.112
+
+2025-01-16 23:01:33,970 - INFO - 
+
+2025-01-16 23:01:33,970 - INFO - 
+
+2025-01-16 23:01:33,970 - INFO -     69.111.69.172.in-addr.arpa
+
+2025-01-16 23:01:33,970 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:33,970 - INFO -     Name does not exist.
+
+2025-01-16 23:01:33,970 - INFO - 
+
+2025-01-16 23:01:33,970 - INFO - 
+
+2025-01-16 23:01:33,970 - INFO -     91.111.69.172.in-addr.arpa
+
+2025-01-16 23:01:33,970 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:33,971 - INFO -     Name does not exist.
+
+2025-01-16 23:01:33,971 - INFO - 
+
+2025-01-16 23:01:33,971 - INFO - 
+
+2025-01-16 23:01:33,971 - INFO -     events.7tv.io
+
+2025-01-16 23:01:33,971 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:33,971 - INFO -     Record Name . . . . . : events.7tv.io
+
+2025-01-16 23:01:33,972 - INFO -     Record Type . . . . . : 28
+
+2025-01-16 23:01:33,972 - INFO -     Time To Live  . . . . : 242
+
+2025-01-16 23:01:33,973 - INFO -     Data Length . . . . . : 16
+
+2025-01-16 23:01:33,973 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:33,974 - INFO -     AAAA Record . . . . . : 2606:4700::6812:1187
+
+2025-01-16 23:01:33,974 - INFO - 
+
+2025-01-16 23:01:33,975 - INFO - 
+
+2025-01-16 23:01:33,976 - INFO -     Record Name . . . . . : events.7tv.io
+
+2025-01-16 23:01:33,977 - INFO -     Record Type . . . . . : 28
+
+2025-01-16 23:01:33,977 - INFO -     Time To Live  . . . . : 242
+
+2025-01-16 23:01:33,978 - INFO -     Data Length . . . . . : 16
+
+2025-01-16 23:01:33,978 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:33,979 - INFO -     AAAA Record . . . . . : 2606:4700::6812:1087
+
+2025-01-16 23:01:33,979 - INFO - 
+
+2025-01-16 23:01:33,980 - INFO - 
+
+2025-01-16 23:01:33,980 - INFO -     events.7tv.io
+
+2025-01-16 23:01:33,981 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:33,981 - INFO -     Record Name . . . . . : events.7tv.io
+
+2025-01-16 23:01:33,982 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:33,982 - INFO -     Time To Live  . . . . : 165
+
+2025-01-16 23:01:33,983 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:33,983 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:33,984 - INFO -     A (Host) Record . . . : 104.18.16.135
+
+2025-01-16 23:01:33,985 - INFO - 
+
+2025-01-16 23:01:33,985 - INFO - 
+
+2025-01-16 23:01:33,986 - INFO -     Record Name . . . . . : events.7tv.io
+
+2025-01-16 23:01:33,987 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:33,987 - INFO -     Time To Live  . . . . : 165
+
+2025-01-16 23:01:33,988 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:33,988 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:33,988 - INFO -     A (Host) Record . . . : 104.18.17.135
+
+2025-01-16 23:01:33,989 - INFO - 
+
+2025-01-16 23:01:33,989 - INFO - 
+
+2025-01-16 23:01:33,990 - INFO -     94.111.69.172.in-addr.arpa
+
+2025-01-16 23:01:33,990 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:33,991 - INFO -     Name does not exist.
+
+2025-01-16 23:01:33,992 - INFO - 
+
+2025-01-16 23:01:33,992 - INFO - 
+
+2025-01-16 23:01:33,993 - INFO -     client.wns.windows.com
+
+2025-01-16 23:01:33,993 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:33,994 - INFO -     Record Name . . . . . : client.wns.windows.com
+
+2025-01-16 23:01:33,994 - INFO -     Record Type . . . . . : 5
+
+2025-01-16 23:01:33,995 - INFO -     Time To Live  . . . . : 142
+
+2025-01-16 23:01:33,995 - INFO -     Data Length . . . . . : 8
+
+2025-01-16 23:01:33,996 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:33,996 - INFO -     CNAME Record  . . . . : wns.notify.trafficmanager.net
+
+2025-01-16 23:01:33,997 - INFO - 
+
+2025-01-16 23:01:33,997 - INFO - 
+
+2025-01-16 23:01:33,998 - INFO -     Record Name . . . . . : wns.notify.trafficmanager.net
+
+2025-01-16 23:01:33,998 - INFO -     Record Type . . . . . : 28
+
+2025-01-16 23:01:33,999 - INFO -     Time To Live  . . . . : 142
+
+2025-01-16 23:01:34,000 - INFO -     Data Length . . . . . : 16
+
+2025-01-16 23:01:34,002 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,003 - INFO -     AAAA Record . . . . . : 2603:1040:a06:6::1
+
+2025-01-16 23:01:34,003 - INFO - 
+
+2025-01-16 23:01:34,004 - INFO - 
+
+2025-01-16 23:01:34,004 - INFO -     client.wns.windows.com
+
+2025-01-16 23:01:34,005 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:34,005 - INFO -     Record Name . . . . . : client.wns.windows.com
+
+2025-01-16 23:01:34,006 - INFO -     Record Type . . . . . : 5
+
+2025-01-16 23:01:34,006 - INFO -     Time To Live  . . . . : 185
+
+2025-01-16 23:01:34,007 - INFO -     Data Length . . . . . : 8
+
+2025-01-16 23:01:34,008 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,008 - INFO -     CNAME Record  . . . . : wns.notify.trafficmanager.net
+
+2025-01-16 23:01:34,009 - INFO - 
+
+2025-01-16 23:01:34,009 - INFO - 
+
+2025-01-16 23:01:34,010 - INFO -     Record Name . . . . . : wns.notify.trafficmanager.net
+
+2025-01-16 23:01:34,010 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,011 - INFO -     Time To Live  . . . . : 185
+
+2025-01-16 23:01:34,012 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,012 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,012 - INFO -     A (Host) Record . . . : 20.198.119.84
+
+2025-01-16 23:01:34,013 - INFO - 
+
+2025-01-16 23:01:34,013 - INFO - 
+
+2025-01-16 23:01:34,014 - INFO -     100.111.69.172.in-addr.arpa
+
+2025-01-16 23:01:34,015 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:34,016 - INFO -     Name does not exist.
+
+2025-01-16 23:01:34,016 - INFO - 
+
+2025-01-16 23:01:34,018 - INFO - 
+
+2025-01-16 23:01:34,019 - INFO -     68.111.69.172.in-addr.arpa
+
+2025-01-16 23:01:34,019 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:34,020 - INFO -     Name does not exist.
+
+2025-01-16 23:01:34,020 - INFO - 
+
+2025-01-16 23:01:34,020 - INFO - 
+
+2025-01-16 23:01:34,021 - INFO -     mc.hypixel.net
+
+2025-01-16 23:01:34,021 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:34,022 - INFO -     Record Name . . . . . : mc.hypixel.net
+
+2025-01-16 23:01:34,022 - INFO -     Record Type . . . . . : 5
+
+2025-01-16 23:01:34,023 - INFO -     Time To Live  . . . . : 40
+
+2025-01-16 23:01:34,024 - INFO -     Data Length . . . . . : 8
+
+2025-01-16 23:01:34,024 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,024 - INFO -     CNAME Record  . . . . : mt.mc.production.hypixel.io
+
+2025-01-16 23:01:34,025 - INFO - 
+
+2025-01-16 23:01:34,025 - INFO - 
+
+2025-01-16 23:01:34,026 - INFO -     Record Name . . . . . : mt.mc.production.hypixel.io
+
+2025-01-16 23:01:34,026 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,027 - INFO -     Time To Live  . . . . : 40
+
+2025-01-16 23:01:34,027 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,028 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,028 - INFO -     A (Host) Record . . . : 209.222.115.71
+
+2025-01-16 23:01:34,029 - INFO - 
+
+2025-01-16 23:01:34,029 - INFO - 
+
+2025-01-16 23:01:34,029 - INFO -     Record Name . . . . . : mt.mc.production.hypixel.io
+
+2025-01-16 23:01:34,030 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,032 - INFO -     Time To Live  . . . . : 40
+
+2025-01-16 23:01:34,033 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,036 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,037 - INFO -     A (Host) Record . . . : 209.222.115.76
+
+2025-01-16 23:01:34,037 - INFO - 
+
+2025-01-16 23:01:34,038 - INFO - 
+
+2025-01-16 23:01:34,038 - INFO -     Record Name . . . . . : mt.mc.production.hypixel.io
+
+2025-01-16 23:01:34,039 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,040 - INFO -     Time To Live  . . . . : 40
+
+2025-01-16 23:01:34,041 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,041 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,042 - INFO -     A (Host) Record . . . : 209.222.115.77
+
+2025-01-16 23:01:34,042 - INFO - 
+
+2025-01-16 23:01:34,043 - INFO - 
+
+2025-01-16 23:01:34,043 - INFO -     Record Name . . . . . : mt.mc.production.hypixel.io
+
+2025-01-16 23:01:34,043 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,044 - INFO -     Time To Live  . . . . : 40
+
+2025-01-16 23:01:34,044 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,045 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,046 - INFO -     A (Host) Record . . . : 209.222.115.78
+
+2025-01-16 23:01:34,046 - INFO - 
+
+2025-01-16 23:01:34,047 - INFO - 
+
+2025-01-16 23:01:34,048 - INFO -     Record Name . . . . . : mt.mc.production.hypixel.io
+
+2025-01-16 23:01:34,048 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,049 - INFO -     Time To Live  . . . . : 40
+
+2025-01-16 23:01:34,049 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,050 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,050 - INFO -     A (Host) Record . . . : 209.222.115.79
+
+2025-01-16 23:01:34,051 - INFO - 
+
+2025-01-16 23:01:34,051 - INFO - 
+
+2025-01-16 23:01:34,051 - INFO -     Record Name . . . . . : mt.mc.production.hypixel.io
+
+2025-01-16 23:01:34,052 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,052 - INFO -     Time To Live  . . . . : 40
+
+2025-01-16 23:01:34,053 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,053 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,054 - INFO -     A (Host) Record . . . : 209.222.115.89
+
+2025-01-16 23:01:34,055 - INFO - 
+
+2025-01-16 23:01:34,055 - INFO - 
+
+2025-01-16 23:01:34,056 - INFO -     Record Name . . . . . : mt.mc.production.hypixel.io
+
+2025-01-16 23:01:34,056 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,057 - INFO -     Time To Live  . . . . : 40
+
+2025-01-16 23:01:34,057 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,058 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,058 - INFO -     A (Host) Record . . . : 209.222.115.94
+
+2025-01-16 23:01:34,059 - INFO - 
+
+2025-01-16 23:01:34,059 - INFO - 
+
+2025-01-16 23:01:34,060 - INFO -     Record Name . . . . . : mt.mc.production.hypixel.io
+
+2025-01-16 23:01:34,060 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,061 - INFO -     Time To Live  . . . . : 40
+
+2025-01-16 23:01:34,061 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,062 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,063 - INFO -     A (Host) Record . . . : 209.222.115.128
+
+2025-01-16 23:01:34,064 - INFO - 
+
+2025-01-16 23:01:34,065 - INFO - 
+
+2025-01-16 23:01:34,065 - INFO -     Record Name . . . . . : mt.mc.production.hypixel.io
+
+2025-01-16 23:01:34,066 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,066 - INFO -     Time To Live  . . . . : 40
+
+2025-01-16 23:01:34,067 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,067 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,068 - INFO -     A (Host) Record . . . : 209.222.115.98
+
+2025-01-16 23:01:34,068 - INFO - 
+
+2025-01-16 23:01:34,069 - INFO - 
+
+2025-01-16 23:01:34,069 - INFO -     Record Name . . . . . : mt.mc.production.hypixel.io
+
+2025-01-16 23:01:34,070 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,070 - INFO -     Time To Live  . . . . : 40
+
+2025-01-16 23:01:34,071 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,071 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,072 - INFO -     A (Host) Record . . . : 209.222.115.102
+
+2025-01-16 23:01:34,072 - INFO - 
+
+2025-01-16 23:01:34,073 - INFO - 
+
+2025-01-16 23:01:34,073 - INFO -     Record Name . . . . . : mt.mc.production.hypixel.io
+
+2025-01-16 23:01:34,074 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,074 - INFO -     Time To Live  . . . . : 40
+
+2025-01-16 23:01:34,075 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,075 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,076 - INFO -     A (Host) Record . . . : 209.222.115.104
+
+2025-01-16 23:01:34,076 - INFO - 
+
+2025-01-16 23:01:34,077 - INFO - 
+
+2025-01-16 23:01:34,077 - INFO -     Record Name . . . . . : mt.mc.production.hypixel.io
+
+2025-01-16 23:01:34,078 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,079 - INFO -     Time To Live  . . . . : 40
+
+2025-01-16 23:01:34,080 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,080 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,081 - INFO -     A (Host) Record . . . : 209.222.115.105
+
+2025-01-16 23:01:34,082 - INFO - 
+
+2025-01-16 23:01:34,082 - INFO - 
+
+2025-01-16 23:01:34,082 - INFO -     Record Name . . . . . : mt.mc.production.hypixel.io
+
+2025-01-16 23:01:34,083 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,085 - INFO -     Time To Live  . . . . : 40
+
+2025-01-16 23:01:34,086 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,087 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,088 - INFO -     A (Host) Record . . . : 209.222.115.106
+
+2025-01-16 23:01:34,088 - INFO - 
+
+2025-01-16 23:01:34,089 - INFO - 
+
+2025-01-16 23:01:34,089 - INFO -     Record Name . . . . . : mt.mc.production.hypixel.io
+
+2025-01-16 23:01:34,090 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,090 - INFO -     Time To Live  . . . . : 40
+
+2025-01-16 23:01:34,091 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,091 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,092 - INFO -     A (Host) Record . . . : 209.222.115.107
+
+2025-01-16 23:01:34,093 - INFO - 
+
+2025-01-16 23:01:34,093 - INFO - 
+
+2025-01-16 23:01:34,094 - INFO -     Record Name . . . . . : mt.mc.production.hypixel.io
+
+2025-01-16 23:01:34,095 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,096 - INFO -     Time To Live  . . . . : 40
+
+2025-01-16 23:01:34,097 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,098 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,098 - INFO -     A (Host) Record . . . : 209.222.115.109
+
+2025-01-16 23:01:34,099 - INFO - 
+
+2025-01-16 23:01:34,099 - INFO - 
+
+2025-01-16 23:01:34,099 - INFO -     Record Name . . . . . : mt.mc.production.hypixel.io
+
+2025-01-16 23:01:34,100 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,100 - INFO -     Time To Live  . . . . : 40
+
+2025-01-16 23:01:34,101 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,101 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,102 - INFO -     A (Host) Record . . . : 209.222.115.110
+
+2025-01-16 23:01:34,102 - INFO - 
+
+2025-01-16 23:01:34,104 - INFO - 
+
+2025-01-16 23:01:34,104 - INFO -     Record Name . . . . . : mt.mc.production.hypixel.io
+
+2025-01-16 23:01:34,105 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,105 - INFO -     Time To Live  . . . . : 40
+
+2025-01-16 23:01:34,106 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,106 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,107 - INFO -     A (Host) Record . . . : 209.222.115.116
+
+2025-01-16 23:01:34,107 - INFO - 
+
+2025-01-16 23:01:34,108 - INFO - 
+
+2025-01-16 23:01:34,109 - INFO -     Record Name . . . . . : mt.mc.production.hypixel.io
+
+2025-01-16 23:01:34,109 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,110 - INFO -     Time To Live  . . . . : 40
+
+2025-01-16 23:01:34,111 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,113 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,114 - INFO -     A (Host) Record . . . : 209.222.115.126
+
+2025-01-16 23:01:34,115 - INFO - 
+
+2025-01-16 23:01:34,116 - INFO - 
+
+2025-01-16 23:01:34,116 - INFO -     Record Name . . . . . : mt.mc.production.hypixel.io
+
+2025-01-16 23:01:34,117 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,117 - INFO -     Time To Live  . . . . : 40
+
+2025-01-16 23:01:34,118 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,119 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,120 - INFO -     A (Host) Record . . . : 209.222.115.122
+
+2025-01-16 23:01:34,120 - INFO - 
+
+2025-01-16 23:01:34,121 - INFO - 
+
+2025-01-16 23:01:34,121 - INFO -     Record Name . . . . . : mt.mc.production.hypixel.io
+
+2025-01-16 23:01:34,122 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,122 - INFO -     Time To Live  . . . . : 40
+
+2025-01-16 23:01:34,123 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,123 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,124 - INFO -     A (Host) Record . . . : 209.222.115.95
+
+2025-01-16 23:01:34,124 - INFO - 
+
+2025-01-16 23:01:34,125 - INFO - 
+
+2025-01-16 23:01:34,126 - INFO -     1.80.28.172.in-addr.arpa
+
+2025-01-16 23:01:34,127 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:34,128 - INFO -     Record Name . . . . . : 1.80.28.172.in-addr.arpa.
+
+2025-01-16 23:01:34,128 - INFO -     Record Type . . . . . : 12
+
+2025-01-16 23:01:34,129 - INFO -     Time To Live  . . . . : 482136
+
+2025-01-16 23:01:34,129 - INFO -     Data Length . . . . . : 8
+
+2025-01-16 23:01:34,129 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,130 - INFO -     PTR Record  . . . . . : DESKTOP-NRVEPHN.mshome.net
+
+2025-01-16 23:01:34,130 - INFO - 
+
+2025-01-16 23:01:34,131 - INFO - 
+
+2025-01-16 23:01:34,131 - INFO -     video-edge-cedad4.sin01.no-abs.hls.ttvnw.net
+
+2025-01-16 23:01:34,132 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:34,132 - INFO -     Record Name . . . . . : video-edge-cedad4.sin01.no-abs.hls.ttvnw.net
+
+2025-01-16 23:01:34,133 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,133 - INFO -     Time To Live  . . . . : 155
+
+2025-01-16 23:01:34,134 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,134 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,135 - INFO -     A (Host) Record . . . : 45.113.128.70
+
+2025-01-16 23:01:34,136 - INFO - 
+
+2025-01-16 23:01:34,136 - INFO - 
+
+2025-01-16 23:01:34,137 - INFO -     106.111.69.172.in-addr.arpa
+
+2025-01-16 23:01:34,137 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:34,138 - INFO -     Name does not exist.
+
+2025-01-16 23:01:34,138 - INFO - 
+
+2025-01-16 23:01:34,138 - INFO - 
+
+2025-01-16 23:01:34,139 - INFO -     87.111.69.172.in-addr.arpa
+
+2025-01-16 23:01:34,139 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:34,140 - INFO -     Name does not exist.
+
+2025-01-16 23:01:34,140 - INFO - 
+
+2025-01-16 23:01:34,141 - INFO - 
+
+2025-01-16 23:01:34,142 - INFO -     time.cloudflare.com
+
+2025-01-16 23:01:34,145 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:34,146 - INFO -     Record Name . . . . . : time.cloudflare.com
+
+2025-01-16 23:01:34,147 - INFO -     Record Type . . . . . : 28
+
+2025-01-16 23:01:34,148 - INFO -     Time To Live  . . . . : 21
+
+2025-01-16 23:01:34,148 - INFO -     Data Length . . . . . : 16
+
+2025-01-16 23:01:34,149 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,150 - INFO -     AAAA Record . . . . . : 2606:4700:f1::123
+
+2025-01-16 23:01:34,151 - INFO - 
+
+2025-01-16 23:01:34,151 - INFO - 
+
+2025-01-16 23:01:34,152 - INFO -     Record Name . . . . . : time.cloudflare.com
+
+2025-01-16 23:01:34,152 - INFO -     Record Type . . . . . : 28
+
+2025-01-16 23:01:34,153 - INFO -     Time To Live  . . . . : 21
+
+2025-01-16 23:01:34,153 - INFO -     Data Length . . . . . : 16
+
+2025-01-16 23:01:34,154 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,154 - INFO -     AAAA Record . . . . . : 2606:4700:f1::1
+
+2025-01-16 23:01:34,155 - INFO - 
+
+2025-01-16 23:01:34,155 - INFO - 
+
+2025-01-16 23:01:34,156 - INFO -     github.com
+
+2025-01-16 23:01:34,156 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:34,157 - INFO -     Record Name . . . . . : github.com
+
+2025-01-16 23:01:34,157 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,158 - INFO -     Time To Live  . . . . : 18
+
+2025-01-16 23:01:34,158 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,160 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,161 - INFO -     A (Host) Record . . . : 20.207.73.82
+
+2025-01-16 23:01:34,161 - INFO - 
+
+2025-01-16 23:01:34,162 - INFO - 
+
+2025-01-16 23:01:34,162 - INFO -     95.111.69.172.in-addr.arpa
+
+2025-01-16 23:01:34,163 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:34,164 - INFO -     Name does not exist.
+
+2025-01-16 23:01:34,165 - INFO - 
+
+2025-01-16 23:01:34,165 - INFO - 
+
+2025-01-16 23:01:34,166 - INFO -     stolicija.mcpro.io
+
+2025-01-16 23:01:34,166 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:34,167 - INFO -     No records of type AAAA
+
+2025-01-16 23:01:34,168 - INFO - 
+
+2025-01-16 23:01:34,168 - INFO - 
+
+2025-01-16 23:01:34,169 - INFO -     stolicija.mcpro.io
+
+2025-01-16 23:01:34,169 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:34,170 - INFO -     Record Name . . . . . : stolicija.mcpro.io
+
+2025-01-16 23:01:34,170 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,170 - INFO -     Time To Live  . . . . : 4
+
+2025-01-16 23:01:34,171 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,171 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,172 - INFO -     A (Host) Record . . . : 198.49.103.76
+
+2025-01-16 23:01:34,172 - INFO - 
+
+2025-01-16 23:01:34,173 - INFO - 
+
+2025-01-16 23:01:34,174 - INFO -     www.twitch.tv
+
+2025-01-16 23:01:34,177 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:34,178 - INFO -     Record Name . . . . . : www.twitch.tv
+
+2025-01-16 23:01:34,178 - INFO -     Record Type . . . . . : 5
+
+2025-01-16 23:01:34,178 - INFO -     Time To Live  . . . . : 35
+
+2025-01-16 23:01:34,179 - INFO -     Data Length . . . . . : 8
+
+2025-01-16 23:01:34,180 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,180 - INFO -     CNAME Record  . . . . : h2.twitch.map.fastly.net
+
+2025-01-16 23:01:34,181 - INFO - 
+
+2025-01-16 23:01:34,182 - INFO - 
+
+2025-01-16 23:01:34,183 - INFO -     Record Name . . . . . : h2.twitch.map.fastly.net
+
+2025-01-16 23:01:34,183 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,184 - INFO -     Time To Live  . . . . : 35
+
+2025-01-16 23:01:34,184 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,185 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,186 - INFO -     A (Host) Record . . . : 151.101.2.214
+
+2025-01-16 23:01:34,186 - INFO - 
+
+2025-01-16 23:01:34,187 - INFO - 
+
+2025-01-16 23:01:34,187 - INFO -     Record Name . . . . . : h2.twitch.map.fastly.net
+
+2025-01-16 23:01:34,188 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,188 - INFO -     Time To Live  . . . . : 35
+
+2025-01-16 23:01:34,189 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,189 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,190 - INFO -     A (Host) Record . . . : 151.101.194.214
+
+2025-01-16 23:01:34,190 - INFO - 
+
+2025-01-16 23:01:34,191 - INFO - 
+
+2025-01-16 23:01:34,191 - INFO -     Record Name . . . . . : h2.twitch.map.fastly.net
+
+2025-01-16 23:01:34,192 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,192 - INFO -     Time To Live  . . . . : 35
+
+2025-01-16 23:01:34,193 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,193 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,194 - INFO -     A (Host) Record . . . : 151.101.130.214
+
+2025-01-16 23:01:34,194 - INFO - 
+
+2025-01-16 23:01:34,195 - INFO - 
+
+2025-01-16 23:01:34,195 - INFO -     Record Name . . . . . : h2.twitch.map.fastly.net
+
+2025-01-16 23:01:34,196 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,196 - INFO -     Time To Live  . . . . : 35
+
+2025-01-16 23:01:34,197 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,198 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,198 - INFO -     A (Host) Record . . . : 151.101.66.214
+
+2025-01-16 23:01:34,199 - INFO - 
+
+2025-01-16 23:01:34,200 - INFO - 
+
+2025-01-16 23:01:34,200 - INFO -     youtube.com
+
+2025-01-16 23:01:34,200 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:34,201 - INFO -     Record Name . . . . . : youtube.com
+
+2025-01-16 23:01:34,202 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,202 - INFO -     Time To Live  . . . . : 204
+
+2025-01-16 23:01:34,203 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,203 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,204 - INFO -     A (Host) Record . . . : 142.251.42.78
+
+2025-01-16 23:01:34,205 - INFO - 
+
+2025-01-16 23:01:34,205 - INFO - 
+
+2025-01-16 23:01:34,208 - INFO -     shotbow.net
+
+2025-01-16 23:01:34,210 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:34,210 - INFO -     Record Name . . . . . : shotbow.net
+
+2025-01-16 23:01:34,211 - INFO -     Record Type . . . . . : 28
+
+2025-01-16 23:01:34,211 - INFO -     Time To Live  . . . . : 287
+
+2025-01-16 23:01:34,212 - INFO -     Data Length . . . . . : 16
+
+2025-01-16 23:01:34,212 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,213 - INFO -     AAAA Record . . . . . : 2606:4700:20::ac43:44ce
+
+2025-01-16 23:01:34,213 - INFO - 
+
+2025-01-16 23:01:34,214 - INFO - 
+
+2025-01-16 23:01:34,215 - INFO -     Record Name . . . . . : shotbow.net
+
+2025-01-16 23:01:34,216 - INFO -     Record Type . . . . . : 28
+
+2025-01-16 23:01:34,216 - INFO -     Time To Live  . . . . : 287
+
+2025-01-16 23:01:34,217 - INFO -     Data Length . . . . . : 16
+
+2025-01-16 23:01:34,217 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,218 - INFO -     AAAA Record . . . . . : 2606:4700:20::681a:e51
+
+2025-01-16 23:01:34,218 - INFO - 
+
+2025-01-16 23:01:34,219 - INFO - 
+
+2025-01-16 23:01:34,219 - INFO -     Record Name . . . . . : shotbow.net
+
+2025-01-16 23:01:34,220 - INFO -     Record Type . . . . . : 28
+
+2025-01-16 23:01:34,220 - INFO -     Time To Live  . . . . : 287
+
+2025-01-16 23:01:34,221 - INFO -     Data Length . . . . . : 16
+
+2025-01-16 23:01:34,223 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,224 - INFO -     AAAA Record . . . . . : 2606:4700:20::681a:f51
+
+2025-01-16 23:01:34,225 - INFO - 
+
+2025-01-16 23:01:34,225 - INFO - 
+
+2025-01-16 23:01:34,225 - INFO -     shotbow.net
+
+2025-01-16 23:01:34,226 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:34,226 - INFO -     Record Name . . . . . : shotbow.net
+
+2025-01-16 23:01:34,227 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,227 - INFO -     Time To Live  . . . . : 287
+
+2025-01-16 23:01:34,228 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,228 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,229 - INFO -     A (Host) Record . . . : 104.26.14.81
+
+2025-01-16 23:01:34,229 - INFO - 
+
+2025-01-16 23:01:34,230 - INFO - 
+
+2025-01-16 23:01:34,231 - INFO -     Record Name . . . . . : shotbow.net
+
+2025-01-16 23:01:34,231 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,232 - INFO -     Time To Live  . . . . : 287
+
+2025-01-16 23:01:34,232 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,233 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,233 - INFO -     A (Host) Record . . . : 104.26.15.81
+
+2025-01-16 23:01:34,234 - INFO - 
+
+2025-01-16 23:01:34,234 - INFO - 
+
+2025-01-16 23:01:34,235 - INFO -     Record Name . . . . . : shotbow.net
+
+2025-01-16 23:01:34,236 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,236 - INFO -     Time To Live  . . . . : 287
+
+2025-01-16 23:01:34,237 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,237 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,238 - INFO -     A (Host) Record . . . : 172.67.68.206
+
+2025-01-16 23:01:34,238 - INFO - 
+
+2025-01-16 23:01:34,239 - INFO - 
+
+2025-01-16 23:01:34,239 - INFO -     h2.twitch.map.fastly.net
+
+2025-01-16 23:01:34,240 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:34,240 - INFO -     Record Name . . . . . : h2.twitch.map.fastly.net
+
+2025-01-16 23:01:34,241 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,241 - INFO -     Time To Live  . . . . : 40
+
+2025-01-16 23:01:34,242 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,242 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,243 - INFO -     A (Host) Record . . . : 151.101.130.214
+
+2025-01-16 23:01:34,243 - INFO - 
+
+2025-01-16 23:01:34,244 - INFO - 
+
+2025-01-16 23:01:34,244 - INFO -     Record Name . . . . . : h2.twitch.map.fastly.net
+
+2025-01-16 23:01:34,245 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,245 - INFO -     Time To Live  . . . . : 40
+
+2025-01-16 23:01:34,246 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,246 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,247 - INFO -     A (Host) Record . . . : 151.101.194.214
+
+2025-01-16 23:01:34,247 - INFO - 
+
+2025-01-16 23:01:34,248 - INFO - 
+
+2025-01-16 23:01:34,248 - INFO -     Record Name . . . . . : h2.twitch.map.fastly.net
+
+2025-01-16 23:01:34,249 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,249 - INFO -     Time To Live  . . . . : 40
+
+2025-01-16 23:01:34,250 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,250 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,251 - INFO -     A (Host) Record . . . : 151.101.2.214
+
+2025-01-16 23:01:34,252 - INFO - 
+
+2025-01-16 23:01:34,253 - INFO - 
+
+2025-01-16 23:01:34,254 - INFO -     Record Name . . . . . : h2.twitch.map.fastly.net
+
+2025-01-16 23:01:34,255 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,255 - INFO -     Time To Live  . . . . : 40
+
+2025-01-16 23:01:34,256 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,256 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,257 - INFO -     A (Host) Record . . . : 151.101.66.214
+
+2025-01-16 23:01:34,257 - INFO - 
+
+2025-01-16 23:01:34,258 - INFO - 
+
+2025-01-16 23:01:34,258 - INFO -     discord.com
+
+2025-01-16 23:01:34,258 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:34,259 - INFO -     Record Name . . . . . : discord.com
+
+2025-01-16 23:01:34,259 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,260 - INFO -     Time To Live  . . . . : 171
+
+2025-01-16 23:01:34,260 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,261 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,261 - INFO -     A (Host) Record . . . : 162.159.137.232
+
+2025-01-16 23:01:34,262 - INFO - 
+
+2025-01-16 23:01:34,263 - INFO - 
+
+2025-01-16 23:01:34,263 - INFO -     Record Name . . . . . : discord.com
+
+2025-01-16 23:01:34,264 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,264 - INFO -     Time To Live  . . . . : 171
+
+2025-01-16 23:01:34,265 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,265 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,266 - INFO -     A (Host) Record . . . : 162.159.136.232
+
+2025-01-16 23:01:34,266 - INFO - 
+
+2025-01-16 23:01:34,266 - INFO - 
+
+2025-01-16 23:01:34,267 - INFO -     Record Name . . . . . : discord.com
+
+2025-01-16 23:01:34,268 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,268 - INFO -     Time To Live  . . . . : 171
+
+2025-01-16 23:01:34,269 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,269 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,270 - INFO -     A (Host) Record . . . : 162.159.138.232
+
+2025-01-16 23:01:34,270 - INFO - 
+
+2025-01-16 23:01:34,271 - INFO - 
+
+2025-01-16 23:01:34,273 - INFO -     Record Name . . . . . : discord.com
+
+2025-01-16 23:01:34,274 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,275 - INFO -     Time To Live  . . . . : 171
+
+2025-01-16 23:01:34,275 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,276 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,276 - INFO -     A (Host) Record . . . : 162.159.128.233
+
+2025-01-16 23:01:34,277 - INFO - 
+
+2025-01-16 23:01:34,278 - INFO - 
+
+2025-01-16 23:01:34,278 - INFO -     Record Name . . . . . : discord.com
+
+2025-01-16 23:01:34,279 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,279 - INFO -     Time To Live  . . . . : 171
+
+2025-01-16 23:01:34,280 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,280 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,281 - INFO -     A (Host) Record . . . : 162.159.135.232
+
+2025-01-16 23:01:34,281 - INFO - 
+
+2025-01-16 23:01:34,282 - INFO - 
+
+2025-01-16 23:01:34,283 - INFO -     c.pki.goog
+
+2025-01-16 23:01:34,283 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:34,284 - INFO -     Record Name . . . . . : c.pki.goog
+
+2025-01-16 23:01:34,285 - INFO -     Record Type . . . . . : 5
+
+2025-01-16 23:01:34,286 - INFO -     Time To Live  . . . . : 120
+
+2025-01-16 23:01:34,286 - INFO -     Data Length . . . . . : 8
+
+2025-01-16 23:01:34,287 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,287 - INFO -     CNAME Record  . . . . : pki-goog.l.google.com
+
+2025-01-16 23:01:34,288 - INFO - 
+
+2025-01-16 23:01:34,288 - INFO - 
+
+2025-01-16 23:01:34,289 - INFO -     Record Name . . . . . : pki-goog.l.google.com
+
+2025-01-16 23:01:34,289 - INFO -     Record Type . . . . . : 28
+
+2025-01-16 23:01:34,290 - INFO -     Time To Live  . . . . : 120
+
+2025-01-16 23:01:34,290 - INFO -     Data Length . . . . . : 16
+
+2025-01-16 23:01:34,291 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,291 - INFO -     AAAA Record . . . . . : 2404:6800:4009:831::2003
+
+2025-01-16 23:01:34,292 - INFO - 
+
+2025-01-16 23:01:34,292 - INFO - 
+
+2025-01-16 23:01:34,293 - INFO -     105.111.69.172.in-addr.arpa
+
+2025-01-16 23:01:34,293 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:34,294 - INFO -     Name does not exist.
+
+2025-01-16 23:01:34,294 - INFO - 
+
+2025-01-16 23:01:34,295 - INFO - 
+
+2025-01-16 23:01:34,295 - INFO -     1.48.20.172.in-addr.arpa
+
+2025-01-16 23:01:34,296 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:34,297 - INFO -     Record Name . . . . . : 1.48.20.172.in-addr.arpa.
+
+2025-01-16 23:01:34,298 - INFO -     Record Type . . . . . : 12
+
+2025-01-16 23:01:34,299 - INFO -     Time To Live  . . . . : 482136
+
+2025-01-16 23:01:34,299 - INFO -     Data Length . . . . . : 8
+
+2025-01-16 23:01:34,300 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,301 - INFO -     PTR Record  . . . . . : DESKTOP-NRVEPHN.mshome.net
+
+2025-01-16 23:01:34,301 - INFO - 
+
+2025-01-16 23:01:34,302 - INFO - 
+
+2025-01-16 23:01:34,303 - INFO -     desktop-nrvephn.mshome.net
+
+2025-01-16 23:01:34,304 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:34,304 - INFO -     No records of type AAAA
+
+2025-01-16 23:01:34,305 - INFO - 
+
+2025-01-16 23:01:34,305 - INFO - 
+
+2025-01-16 23:01:34,306 - INFO -     desktop-nrvephn.mshome.net
+
+2025-01-16 23:01:34,306 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:34,307 - INFO -     Record Name . . . . . : DESKTOP-NRVEPHN.mshome.net
+
+2025-01-16 23:01:34,308 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,309 - INFO -     Time To Live  . . . . : 482136
+
+2025-01-16 23:01:34,309 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,310 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,310 - INFO -     A (Host) Record . . . : 172.28.80.1
+
+2025-01-16 23:01:34,311 - INFO - 
+
+2025-01-16 23:01:34,312 - INFO - 
+
+2025-01-16 23:01:34,313 - INFO -     Record Name . . . . . : DESKTOP-NRVEPHN.mshome.net
+
+2025-01-16 23:01:34,314 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,315 - INFO -     Time To Live  . . . . : 482136
+
+2025-01-16 23:01:34,316 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,316 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,317 - INFO -     A (Host) Record . . . : 172.20.48.1
+
+2025-01-16 23:01:34,317 - INFO - 
+
+2025-01-16 23:01:34,318 - INFO - 
+
+2025-01-16 23:01:34,319 - INFO -     contile.services.mozilla.com
+
+2025-01-16 23:01:34,320 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:34,320 - INFO -     Record Name . . . . . : contile.services.mozilla.com
+
+2025-01-16 23:01:34,321 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,322 - INFO -     Time To Live  . . . . : 245
+
+2025-01-16 23:01:34,323 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,323 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,324 - INFO -     A (Host) Record . . . : 34.117.188.166
+
+2025-01-16 23:01:34,324 - INFO - 
+
+2025-01-16 23:01:34,325 - INFO - 
+
+2025-01-16 23:01:34,325 - INFO -     75.111.69.172.in-addr.arpa
+
+2025-01-16 23:01:34,326 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:34,327 - INFO -     Name does not exist.
+
+2025-01-16 23:01:34,328 - INFO - 
+
+2025-01-16 23:01:34,328 - INFO - 
+
+2025-01-16 23:01:34,329 - INFO -     wns2-pn1p.wns.windows.com
+
+2025-01-16 23:01:34,329 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:34,330 - INFO -     Record Name . . . . . : wns2-pn1p.wns.windows.com
+
+2025-01-16 23:01:34,331 - INFO -     Record Type . . . . . : 5
+
+2025-01-16 23:01:34,331 - INFO -     Time To Live  . . . . : 114
+
+2025-01-16 23:01:34,332 - INFO -     Data Length . . . . . : 8
+
+2025-01-16 23:01:34,333 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,333 - INFO -     CNAME Record  . . . . : wns2-pn1p.wns.notify.trafficmanager.net
+
+2025-01-16 23:01:34,334 - INFO - 
+
+2025-01-16 23:01:34,334 - INFO - 
+
+2025-01-16 23:01:34,335 - INFO -     Record Name . . . . . : wns2-pn1p.wns.notify.trafficmanager.net
+
+2025-01-16 23:01:34,336 - INFO -     Record Type . . . . . : 28
+
+2025-01-16 23:01:34,336 - INFO -     Time To Live  . . . . : 114
+
+2025-01-16 23:01:34,337 - INFO -     Data Length . . . . . : 16
+
+2025-01-16 23:01:34,337 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,338 - INFO -     AAAA Record . . . . . : 2603:1040:a06:6::
+
+2025-01-16 23:01:34,339 - INFO - 
+
+2025-01-16 23:01:34,340 - INFO - 
+
+2025-01-16 23:01:34,340 - INFO -     wns2-pn1p.wns.windows.com
+
+2025-01-16 23:01:34,341 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:34,341 - INFO -     Record Name . . . . . : wns2-pn1p.wns.windows.com
+
+2025-01-16 23:01:34,342 - INFO -     Record Type . . . . . : 5
+
+2025-01-16 23:01:34,343 - INFO -     Time To Live  . . . . : 178
+
+2025-01-16 23:01:34,344 - INFO -     Data Length . . . . . : 8
+
+2025-01-16 23:01:34,345 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,345 - INFO -     CNAME Record  . . . . : wns2-pn1p.wns.notify.trafficmanager.net
+
+2025-01-16 23:01:34,346 - INFO - 
+
+2025-01-16 23:01:34,347 - INFO - 
+
+2025-01-16 23:01:34,348 - INFO -     Record Name . . . . . : wns2-pn1p.wns.notify.trafficmanager.net
+
+2025-01-16 23:01:34,348 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,349 - INFO -     Time To Live  . . . . : 178
+
+2025-01-16 23:01:34,349 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,350 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,350 - INFO -     A (Host) Record . . . : 20.198.119.84
+
+2025-01-16 23:01:34,351 - INFO - 
+
+2025-01-16 23:01:34,352 - INFO - 
+
+2025-01-16 23:01:34,352 - INFO -     98.111.69.172.in-addr.arpa
+
+2025-01-16 23:01:34,353 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:34,353 - INFO -     Name does not exist.
+
+2025-01-16 23:01:34,354 - INFO - 
+
+2025-01-16 23:01:34,354 - INFO - 
+
+2025-01-16 23:01:34,355 - INFO -     google.com
+
+2025-01-16 23:01:34,355 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:34,355 - INFO -     Record Name . . . . . : google.com
+
+2025-01-16 23:01:34,356 - INFO -     Record Type . . . . . : 28
+
+2025-01-16 23:01:34,356 - INFO -     Time To Live  . . . . : 185
+
+2025-01-16 23:01:34,357 - INFO -     Data Length . . . . . : 16
+
+2025-01-16 23:01:34,357 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,358 - INFO -     AAAA Record . . . . . : 2404:6800:4009:827::200e
+
+2025-01-16 23:01:34,359 - INFO - 
+
+2025-01-16 23:01:34,360 - INFO - 
+
+2025-01-16 23:01:34,361 - INFO -     google.com
+
+2025-01-16 23:01:34,362 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:34,362 - INFO -     Record Name . . . . . : google.com
+
+2025-01-16 23:01:34,363 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 23:01:34,364 - INFO -     Time To Live  . . . . : 261
+
+2025-01-16 23:01:34,365 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 23:01:34,366 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 23:01:34,367 - INFO -     A (Host) Record . . . : 142.250.67.206
+
+2025-01-16 23:01:34,368 - INFO - 
+
+2025-01-16 23:01:34,368 - INFO - 
+
+2025-01-16 23:01:34,369 - INFO -     85.111.69.172.in-addr.arpa
+
+2025-01-16 23:01:34,370 - INFO -     ----------------------------------------
+
+2025-01-16 23:01:34,371 - INFO -     Name does not exist.
+
+2025-01-16 23:01:34,371 - INFO - 
+
+2025-01-16 23:01:34,372 - INFO - 
+
+2025-01-16 23:01:34,372 - INFO - DNS cache displayed.
+2025-01-16 23:01:34,372 - INFO - ================================================================================
+2025-01-16 23:01:35,999 - DEBUG - Button clicked: Reset Network Settings
+2025-01-16 23:01:36,072 - DEBUG - Showing command: Resets network settings to default., netsh int ip reset, Network settings reset successfully., Use this command to reset network settings to their default values when you are experiencing network configuration issues.
+2025-01-16 23:01:36,072 - DEBUG - Updated description_label: Resets network settings to default.
+2025-01-16 23:01:36,072 - DEBUG - Updated execute_button with command: netsh int ip reset
+2025-01-16 23:01:36,888 - INFO - ================================================================================
+2025-01-16 23:01:36,888 - DEBUG - Executing command: netsh int ip reset
+2025-01-16 23:01:36,889 - INFO - Executing command: netsh int ip reset
+2025-01-16 23:01:37,037 - INFO - Resetting Compartment Forwarding, OK!
+
+2025-01-16 23:01:37,038 - INFO - Resetting Compartment, OK!
+
+2025-01-16 23:01:37,039 - INFO - Resetting Control Protocol, OK!
+
+2025-01-16 23:01:37,040 - INFO - Resetting Echo Sequence Request, OK!
+
+2025-01-16 23:01:37,041 - INFO - Resetting Global, OK!
+
+2025-01-16 23:01:37,041 - INFO - Resetting Interface, failed.
+
+2025-01-16 23:01:37,042 - INFO - The requested operation requires elevation (Run as administrator).
+
+2025-01-16 23:01:37,043 - INFO - Resetting Anycast Address, OK!
+
+2025-01-16 23:01:37,044 - INFO - Resetting Multicast Address, OK!
+
+2025-01-16 23:01:37,044 - INFO - Resetting Unicast Address, OK!
+
+2025-01-16 23:01:37,045 - INFO - Resetting Neighbor, OK!
+
+2025-01-16 23:01:37,045 - INFO - Resetting Path, OK!
+
+2025-01-16 23:01:37,046 - INFO - Resetting Potential, OK!
+
+2025-01-16 23:01:37,047 - INFO - Resetting Prefix Policy, OK!
+
+2025-01-16 23:01:37,052 - INFO - Resetting Proxy Neighbor, OK!
+
+2025-01-16 23:01:37,053 - INFO - Resetting Route, OK!
+
+2025-01-16 23:01:37,054 - INFO - Resetting Site Prefix, OK!
+
+2025-01-16 23:01:37,057 - INFO - Resetting Subinterface, OK!
+
+2025-01-16 23:01:37,058 - INFO - Resetting Wakeup Pattern, OK!
+
+2025-01-16 23:01:37,058 - INFO - Resetting Resolve Neighbor, OK!
+
+2025-01-16 23:01:37,059 - INFO - Resetting , OK!
+
+2025-01-16 23:01:37,060 - INFO - Resetting , OK!
+
+2025-01-16 23:01:37,060 - INFO - Resetting , OK!
+
+2025-01-16 23:01:37,061 - INFO - Resetting , OK!
+
+2025-01-16 23:01:37,062 - INFO - Resetting , failed.
+
+2025-01-16 23:01:37,062 - INFO - The requested operation requires elevation (Run as administrator).
+
+2025-01-16 23:01:37,063 - INFO - Resetting , OK!
+
+2025-01-16 23:01:37,064 - INFO - Resetting , OK!
+
+2025-01-16 23:01:37,065 - INFO - Resetting , OK!
+
+2025-01-16 23:01:37,065 - INFO - Resetting , failed.
+
+2025-01-16 23:01:37,066 - INFO - The requested operation requires elevation (Run as administrator).
+
+2025-01-16 23:01:37,067 - INFO - Resetting , OK!
+
+2025-01-16 23:01:37,067 - INFO - Resetting , OK!
+
+2025-01-16 23:01:37,068 - INFO - Resetting , OK!
+
+2025-01-16 23:01:37,068 - INFO - Resetting , OK!
+
+2025-01-16 23:01:37,069 - INFO - Restart the computer to complete this action.
+
+2025-01-16 23:01:37,070 - INFO - 
+
+2025-01-16 23:01:37,070 - INFO - Command failed with error:
+
+2025-01-16 23:01:37,070 - ERROR - Command failed with error:
+
+2025-01-16 23:01:37,071 - INFO - ================================================================================
+2025-01-16 23:01:38,945 - DEBUG - Button clicked: Release and Renew IP Address
+2025-01-16 23:01:39,024 - DEBUG - Showing command: Releases and renews the IP address., ipconfig /release && ipconfig /renew, IP address released and renewed., Use this command to release and renew the IP address when you are experiencing IP address conflicts or connectivity issues.
+2025-01-16 23:01:39,024 - DEBUG - Updated description_label: Releases and renews the IP address.
+2025-01-16 23:01:39,024 - DEBUG - Updated execute_button with command: ipconfig /release && ipconfig /renew
+2025-01-16 23:01:39,984 - INFO - ================================================================================
+2025-01-16 23:01:39,984 - DEBUG - Executing command: ipconfig /release && ipconfig /renew
+2025-01-16 23:01:39,985 - INFO - Executing command: ipconfig /release && ipconfig /renew
+2025-01-16 23:01:40,070 - INFO - 
+
+2025-01-16 23:01:40,071 - INFO - Windows IP Configuration
+
+2025-01-16 23:01:40,072 - INFO - 
+
+2025-01-16 23:01:40,191 - INFO - 
+
+2025-01-16 23:01:40,193 - INFO - Ethernet adapter vEthernet (Ethernet):
+
+2025-01-16 23:01:40,194 - INFO - 
+
+2025-01-16 23:01:40,196 - INFO -    Connection-specific DNS Suffix  . : 
+
+2025-01-16 23:01:40,197 - INFO -    Link-local IPv6 Address . . . . . : fe80::a412:8cbc:57bb:5b81%17
+
+2025-01-16 23:01:40,200 - INFO -    Autoconfiguration IPv4 Address. . : 169.254.72.108
+
+2025-01-16 23:01:40,202 - INFO -    Subnet Mask . . . . . . . . . . . : 255.255.0.0
+
+2025-01-16 23:01:40,204 - INFO -    Default Gateway . . . . . . . . . : 
+
+2025-01-16 23:01:40,206 - INFO - 
+
+2025-01-16 23:01:40,207 - INFO - Ethernet adapter vEthernet (Default Switch):
+
+2025-01-16 23:01:40,209 - INFO - 
+
+2025-01-16 23:01:40,210 - INFO -    Connection-specific DNS Suffix  . : 
+
+2025-01-16 23:01:40,214 - INFO -    Link-local IPv6 Address . . . . . : fe80::fe95:3ddc:244:faf0%25
+
+2025-01-16 23:01:40,216 - INFO -    Autoconfiguration IPv4 Address. . : 169.254.248.171
+
+2025-01-16 23:01:40,218 - INFO -    Subnet Mask . . . . . . . . . . . : 255.255.0.0
+
+2025-01-16 23:01:40,220 - INFO -    Default Gateway . . . . . . . . . : 
+
+2025-01-16 23:01:40,222 - INFO - 
+
+2025-01-16 23:01:40,224 - INFO - Ethernet adapter Ethernet:
+
+2025-01-16 23:01:40,225 - INFO - 
+
+2025-01-16 23:01:40,226 - INFO -    Connection-specific DNS Suffix  . : 
+
+2025-01-16 23:01:40,227 - INFO -    IPv6 Address. . . . . . . . . . . : 2407:d000:b:aef1:eee9:529:26e3:4f14
+
+2025-01-16 23:01:40,228 - INFO -    Temporary IPv6 Address. . . . . . : 2407:d000:b:aef1:559a:7ed5:1ce9:1f6d
+
+2025-01-16 23:01:40,231 - INFO -    Temporary IPv6 Address. . . . . . : 2407:d000:b:aef1:e456:56c9:2f2f:3621
+
+2025-01-16 23:01:40,238 - INFO -    Link-local IPv6 Address . . . . . : fe80::3e26:40a:1668:a2b1%11
+
+2025-01-16 23:01:40,240 - INFO -    Default Gateway . . . . . . . . . : fe80::1%11
+
+2025-01-16 23:01:40,241 - INFO - 
+
+2025-01-16 23:01:40,243 - INFO - Windows IP Configuration
+
+2025-01-16 23:01:40,244 - INFO - 
+
+2025-01-16 23:01:40,258 - INFO - An error occurred while renewing interface Ethernet : The operation was canceled by the user.
+
+2025-01-16 23:01:40,259 - INFO -  
+
+2025-01-16 23:01:40,358 - INFO - IP address released and renewed.
+2025-01-16 23:01:40,359 - INFO - ================================================================================
+2025-01-16 23:02:20,833 - DEBUG - Button clicked: Check Network Adapter Status
+2025-01-16 23:02:20,936 - DEBUG - Showing command: Displays the status of network adapters., netsh interface show interface, Network adapter status displayed., Use this command to display the status of network adapters to troubleshoot connectivity issues.
+2025-01-16 23:02:20,936 - DEBUG - Updated description_label: Displays the status of network adapters.
+2025-01-16 23:02:20,936 - DEBUG - Updated execute_button with command: netsh interface show interface
+2025-01-16 23:02:22,160 - INFO - ================================================================================
+2025-01-16 23:02:22,160 - DEBUG - Executing command: netsh interface show interface
+2025-01-16 23:02:22,161 - INFO - Executing command: netsh interface show interface
+2025-01-16 23:02:22,256 - INFO - 
+
+2025-01-16 23:02:22,257 - INFO - Admin State    State          Type             Interface Name
+
+2025-01-16 23:02:22,257 - INFO - -------------------------------------------------------------------------
+
+2025-01-16 23:02:22,272 - INFO - Disabled       Disconnected   Dedicated        VMware Network Adapter VMnet1
+
+2025-01-16 23:02:22,273 - INFO - Disabled       Disconnected   Dedicated        VMware Network Adapter VMnet8
+
+2025-01-16 23:02:22,273 - INFO - Enabled        Connected      Dedicated        Ethernet
+
+2025-01-16 23:02:22,274 - INFO - Disabled       Disconnected   Dedicated        Wi-Fi
+
+2025-01-16 23:02:22,275 - INFO - Enabled        Connected      Dedicated        vEthernet (Ethernet)
+
+2025-01-16 23:02:22,275 - INFO - Enabled        Connected      Dedicated        vEthernet (Default Switch)
+
+2025-01-16 23:02:22,276 - INFO - 
+
+2025-01-16 23:02:22,283 - INFO - Network adapter status displayed.
+2025-01-16 23:02:22,284 - INFO - ================================================================================
+2025-01-16 23:02:28,063 - DEBUG - Button clicked: Reset Winsock
+2025-01-16 23:02:28,152 - DEBUG - Showing command: Resets Winsock settings. Requires a restart., netsh winsock reset, Winsock reset successfully. Please restart your computer for changes to take effect., Use this command to reset Winsock settings when you are experiencing network socket-related issues. A restart is required for changes to take effect.
+2025-01-16 23:02:28,152 - DEBUG - Updated description_label: Resets Winsock settings. Requires a restart.
+2025-01-16 23:02:28,152 - DEBUG - Updated execute_button with command: netsh winsock reset
+2025-01-16 23:02:29,881 - INFO - ================================================================================
+2025-01-16 23:02:29,881 - DEBUG - Executing command: netsh winsock reset
+2025-01-16 23:02:29,881 - INFO - Executing command: netsh winsock reset
+2025-01-16 23:02:29,990 - INFO - The requested operation requires elevation (Run as administrator).
+
+2025-01-16 23:02:29,991 - INFO - 
+
+2025-01-16 23:02:30,002 - INFO - Command failed with error:
+
+2025-01-16 23:02:30,002 - ERROR - Command failed with error:
+
+2025-01-16 23:02:30,002 - INFO - ================================================================================
+2025-01-16 23:02:34,047 - DEBUG - Button clicked: Reset TCP/IP Stack (IPv4)
+2025-01-16 23:02:34,135 - DEBUG - Showing command: Resets the IPv4 TCP/IP stack. Requires a restart., netsh int ip reset, IPv4 TCP/IP stack reset successfully. Please restart your computer for changes to take effect., Use this command to reset the IPv4 TCP/IP stack when you are experiencing IPv4-related connectivity issues. A restart is required for changes to take effect.
+2025-01-16 23:02:34,135 - DEBUG - Updated description_label: Resets the IPv4 TCP/IP stack. Requires a restart.
+2025-01-16 23:02:34,135 - DEBUG - Updated execute_button with command: netsh int ip reset
+2025-01-16 23:02:35,352 - INFO - ================================================================================
+2025-01-16 23:02:35,352 - DEBUG - Executing command: netsh int ip reset
+2025-01-16 23:02:35,352 - INFO - Executing command: netsh int ip reset
+2025-01-16 23:02:35,495 - INFO - Resetting Compartment Forwarding, OK!
+
+2025-01-16 23:02:35,496 - INFO - Resetting Compartment, OK!
+
+2025-01-16 23:02:35,498 - INFO - Resetting Control Protocol, OK!
+
+2025-01-16 23:02:35,499 - INFO - Resetting Echo Sequence Request, OK!
+
+2025-01-16 23:02:35,500 - INFO - Resetting Global, OK!
+
+2025-01-16 23:02:35,504 - INFO - Resetting Interface, failed.
+
+2025-01-16 23:02:35,505 - INFO - The requested operation requires elevation (Run as administrator).
+
+2025-01-16 23:02:35,506 - INFO - Resetting Anycast Address, OK!
+
+2025-01-16 23:02:35,507 - INFO - Resetting Multicast Address, OK!
+
+2025-01-16 23:02:35,508 - INFO - Resetting Unicast Address, OK!
+
+2025-01-16 23:02:35,509 - INFO - Resetting Neighbor, OK!
+
+2025-01-16 23:02:35,512 - INFO - Resetting Path, OK!
+
+2025-01-16 23:02:35,513 - INFO - Resetting Potential, OK!
+
+2025-01-16 23:02:35,514 - INFO - Resetting Prefix Policy, OK!
+
+2025-01-16 23:02:35,515 - INFO - Resetting Proxy Neighbor, OK!
+
+2025-01-16 23:02:35,518 - INFO - Resetting Route, OK!
+
+2025-01-16 23:02:35,519 - INFO - Resetting Site Prefix, OK!
+
+2025-01-16 23:02:35,519 - INFO - Resetting Subinterface, OK!
+
+2025-01-16 23:02:35,520 - INFO - Resetting Wakeup Pattern, OK!
+
+2025-01-16 23:02:35,521 - INFO - Resetting Resolve Neighbor, OK!
+
+2025-01-16 23:02:35,522 - INFO - Resetting , OK!
+
+2025-01-16 23:02:35,522 - INFO - Resetting , OK!
+
+2025-01-16 23:02:35,523 - INFO - Resetting , OK!
+
+2025-01-16 23:02:35,524 - INFO - Resetting , OK!
+
+2025-01-16 23:02:35,524 - INFO - Resetting , failed.
+
+2025-01-16 23:02:35,525 - INFO - The requested operation requires elevation (Run as administrator).
+
+2025-01-16 23:02:35,525 - INFO - Resetting , OK!
+
+2025-01-16 23:02:35,526 - INFO - Resetting , OK!
+
+2025-01-16 23:02:35,527 - INFO - Resetting , OK!
+
+2025-01-16 23:02:35,528 - INFO - Resetting , failed.
+
+2025-01-16 23:02:35,528 - INFO - The requested operation requires elevation (Run as administrator).
+
+2025-01-16 23:02:35,529 - INFO - Resetting , OK!
+
+2025-01-16 23:02:35,529 - INFO - Resetting , OK!
+
+2025-01-16 23:02:35,530 - INFO - Resetting , OK!
+
+2025-01-16 23:02:35,531 - INFO - Resetting , OK!
+
+2025-01-16 23:02:35,533 - INFO - Restart the computer to complete this action.
+
+2025-01-16 23:02:35,535 - INFO - 
+
+2025-01-16 23:02:35,536 - INFO - Command failed with error:
+
+2025-01-16 23:02:35,536 - ERROR - Command failed with error:
+
+2025-01-16 23:02:35,537 - INFO - ================================================================================
+2025-01-16 23:02:38,623 - DEBUG - Button clicked: Reset TCP/IP Stack (IPv6)
+2025-01-16 23:02:38,728 - DEBUG - Showing command: Resets the IPv6 TCP/IP stack. Requires a restart., netsh int ipv6 reset, IPv6 TCP/IP stack reset successfully. Please restart your computer for changes to take effect., Use this command to reset the IPv6 TCP/IP stack when you are experiencing IPv6-related connectivity issues. A restart is required for changes to take effect.
+2025-01-16 23:02:38,728 - DEBUG - Updated description_label: Resets the IPv6 TCP/IP stack. Requires a restart.
+2025-01-16 23:02:38,728 - DEBUG - Updated execute_button with command: netsh int ipv6 reset
+2025-01-16 23:03:29,592 - DEBUG - Button clicked: Reset TCP/IP Stack (IPv6)
+2025-01-16 23:03:29,680 - DEBUG - Showing command: Resets the IPv6 TCP/IP stack. Requires a restart., netsh int ipv6 reset, IPv6 TCP/IP stack reset successfully. Please restart your computer for changes to take effect., Use this command to reset the IPv6 TCP/IP stack when you are experiencing IPv6-related connectivity issues. A restart is required for changes to take effect.
+2025-01-16 23:03:29,680 - DEBUG - Updated description_label: Resets the IPv6 TCP/IP stack. Requires a restart.
+2025-01-16 23:03:29,680 - DEBUG - Updated execute_button with command: netsh int ipv6 reset
+2025-01-16 23:03:32,199 - DEBUG - Button clicked: Reset TCP/IP Stack (IPv4)
+2025-01-16 23:03:32,288 - DEBUG - Showing command: Resets the IPv4 TCP/IP stack. Requires a restart., netsh int ip reset, IPv4 TCP/IP stack reset successfully. Please restart your computer for changes to take effect., Use this command to reset the IPv4 TCP/IP stack when you are experiencing IPv4-related connectivity issues. A restart is required for changes to take effect.
+2025-01-16 23:03:32,288 - DEBUG - Updated description_label: Resets the IPv4 TCP/IP stack. Requires a restart.
+2025-01-16 23:03:32,288 - DEBUG - Updated execute_button with command: netsh int ip reset
+2025-01-16 23:03:33,336 - INFO - ================================================================================
+2025-01-16 23:03:33,336 - DEBUG - Executing command: netsh int ip reset
+2025-01-16 23:03:33,337 - INFO - Executing command: netsh int ip reset
+2025-01-16 23:03:33,429 - INFO - Resetting Compartment Forwarding, OK!
+
+2025-01-16 23:03:33,431 - INFO - Resetting Compartment, OK!
+
+2025-01-16 23:03:33,432 - INFO - Resetting Control Protocol, OK!
+
+2025-01-16 23:03:33,433 - INFO - Resetting Echo Sequence Request, OK!
+
+2025-01-16 23:03:33,434 - INFO - Resetting Global, OK!
+
+2025-01-16 23:03:33,435 - INFO - Resetting Interface, failed.
+
+2025-01-16 23:03:33,436 - INFO - The requested operation requires elevation (Run as administrator).
+
+2025-01-16 23:03:33,437 - INFO - Resetting Anycast Address, OK!
+
+2025-01-16 23:03:33,437 - INFO - Resetting Multicast Address, OK!
+
+2025-01-16 23:03:33,438 - INFO - Resetting Unicast Address, OK!
+
+2025-01-16 23:03:33,439 - INFO - Resetting Neighbor, OK!
+
+2025-01-16 23:03:33,442 - INFO - Resetting Path, OK!
+
+2025-01-16 23:03:33,443 - INFO - Resetting Potential, OK!
+
+2025-01-16 23:03:33,443 - INFO - Resetting Prefix Policy, OK!
+
+2025-01-16 23:03:33,446 - INFO - Resetting Proxy Neighbor, OK!
+
+2025-01-16 23:03:33,447 - INFO - Resetting Route, OK!
+
+2025-01-16 23:03:33,448 - INFO - Resetting Site Prefix, OK!
+
+2025-01-16 23:03:33,449 - INFO - Resetting Subinterface, OK!
+
+2025-01-16 23:03:33,450 - INFO - Resetting Wakeup Pattern, OK!
+
+2025-01-16 23:03:33,451 - INFO - Resetting Resolve Neighbor, OK!
+
+2025-01-16 23:03:33,451 - INFO - Resetting , OK!
+
+2025-01-16 23:03:33,452 - INFO - Resetting , OK!
+
+2025-01-16 23:03:33,453 - INFO - Resetting , OK!
+
+2025-01-16 23:03:33,454 - INFO - Resetting , OK!
+
+2025-01-16 23:03:33,454 - INFO - Resetting , failed.
+
+2025-01-16 23:03:33,455 - INFO - The requested operation requires elevation (Run as administrator).
+
+2025-01-16 23:03:33,456 - INFO - Resetting , OK!
+
+2025-01-16 23:03:33,457 - INFO - Resetting , OK!
+
+2025-01-16 23:03:33,457 - INFO - Resetting , OK!
+
+2025-01-16 23:03:33,458 - INFO - Resetting , failed.
+
+2025-01-16 23:03:33,459 - INFO - The requested operation requires elevation (Run as administrator).
+
+2025-01-16 23:03:33,459 - INFO - Resetting , OK!
+
+2025-01-16 23:03:33,460 - INFO - Resetting , OK!
+
+2025-01-16 23:03:33,461 - INFO - Resetting , OK!
+
+2025-01-16 23:03:33,461 - INFO - Resetting , OK!
+
+2025-01-16 23:03:33,462 - INFO - Restart the computer to complete this action.
+
+2025-01-16 23:03:33,463 - INFO - 
+
+2025-01-16 23:03:33,464 - INFO - Command failed with error:
+
+2025-01-16 23:03:33,464 - ERROR - Command failed with error:
+
+2025-01-16 23:03:33,465 - INFO - ================================================================================
+2025-01-16 23:03:34,263 - INFO - ================================================================================
+2025-01-16 23:03:34,263 - DEBUG - Executing command: netsh int ip reset
+2025-01-16 23:03:34,264 - INFO - Executing command: netsh int ip reset
+2025-01-16 23:03:34,357 - INFO - Resetting Compartment Forwarding, OK!
+
+2025-01-16 23:03:34,357 - INFO - Resetting Compartment, OK!
+
+2025-01-16 23:03:34,358 - INFO - Resetting Control Protocol, OK!
+
+2025-01-16 23:03:34,359 - INFO - Resetting Echo Sequence Request, OK!
+
+2025-01-16 23:03:34,360 - INFO - Resetting Global, OK!
+
+2025-01-16 23:03:34,360 - INFO - Resetting Interface, failed.
+
+2025-01-16 23:03:34,361 - INFO - The requested operation requires elevation (Run as administrator).
+
+2025-01-16 23:03:34,362 - INFO - Resetting Anycast Address, OK!
+
+2025-01-16 23:03:34,363 - INFO - Resetting Multicast Address, OK!
+
+2025-01-16 23:03:34,364 - INFO - Resetting Unicast Address, OK!
+
+2025-01-16 23:03:34,365 - INFO - Resetting Neighbor, OK!
+
+2025-01-16 23:03:34,368 - INFO - Resetting Path, OK!
+
+2025-01-16 23:03:34,369 - INFO - Resetting Potential, OK!
+
+2025-01-16 23:03:34,370 - INFO - Resetting Prefix Policy, OK!
+
+2025-01-16 23:03:34,373 - INFO - Resetting Proxy Neighbor, OK!
+
+2025-01-16 23:03:34,374 - INFO - Resetting Route, OK!
+
+2025-01-16 23:03:34,374 - INFO - Resetting Site Prefix, OK!
+
+2025-01-16 23:03:34,375 - INFO - Resetting Subinterface, OK!
+
+2025-01-16 23:03:34,376 - INFO - Resetting Wakeup Pattern, OK!
+
+2025-01-16 23:03:34,377 - INFO - Resetting Resolve Neighbor, OK!
+
+2025-01-16 23:03:34,377 - INFO - Resetting , OK!
+
+2025-01-16 23:03:34,378 - INFO - Resetting , OK!
+
+2025-01-16 23:03:34,379 - INFO - Resetting , OK!
+
+2025-01-16 23:03:34,379 - INFO - Resetting , OK!
+
+2025-01-16 23:03:34,380 - INFO - Resetting , failed.
+
+2025-01-16 23:03:34,381 - INFO - The requested operation requires elevation (Run as administrator).
+
+2025-01-16 23:03:34,381 - INFO - Resetting , OK!
+
+2025-01-16 23:03:34,382 - INFO - Resetting , OK!
+
+2025-01-16 23:03:34,383 - INFO - Resetting , OK!
+
+2025-01-16 23:03:34,384 - INFO - Resetting , failed.
+
+2025-01-16 23:03:34,384 - INFO - The requested operation requires elevation (Run as administrator).
+
+2025-01-16 23:03:34,385 - INFO - Resetting , OK!
+
+2025-01-16 23:03:34,386 - INFO - Resetting , OK!
+
+2025-01-16 23:03:34,386 - INFO - Resetting , OK!
+
+2025-01-16 23:03:34,387 - INFO - Resetting , OK!
+
+2025-01-16 23:03:34,387 - INFO - Restart the computer to complete this action.
+
+2025-01-16 23:03:34,388 - INFO - 
+
+2025-01-16 23:03:34,389 - INFO - Command failed with error:
+
+2025-01-16 23:03:34,389 - ERROR - Command failed with error:
+
+2025-01-16 23:03:34,389 - INFO - ================================================================================
+2025-01-16 23:03:36,887 - DEBUG - Button clicked: Reset TCP/IP Stack (IPv6)
+2025-01-16 23:03:36,976 - DEBUG - Showing command: Resets the IPv6 TCP/IP stack. Requires a restart., netsh int ipv6 reset, IPv6 TCP/IP stack reset successfully. Please restart your computer for changes to take effect., Use this command to reset the IPv6 TCP/IP stack when you are experiencing IPv6-related connectivity issues. A restart is required for changes to take effect.
+2025-01-16 23:03:36,976 - DEBUG - Updated description_label: Resets the IPv6 TCP/IP stack. Requires a restart.
+2025-01-16 23:03:36,976 - DEBUG - Updated execute_button with command: netsh int ipv6 reset
+2025-01-16 23:03:38,080 - INFO - ================================================================================
+2025-01-16 23:03:38,080 - DEBUG - Executing command: netsh int ipv6 reset
+2025-01-16 23:03:38,081 - INFO - Executing command: netsh int ipv6 reset
+2025-01-16 23:03:38,205 - INFO - Resetting Compartment Forwarding, OK!
+
+2025-01-16 23:03:38,206 - INFO - Resetting Compartment, OK!
+
+2025-01-16 23:03:38,207 - INFO - Resetting Control Protocol, OK!
+
+2025-01-16 23:03:38,208 - INFO - Resetting Echo Sequence Request, OK!
+
+2025-01-16 23:03:38,209 - INFO - Resetting Global, OK!
+
+2025-01-16 23:03:38,210 - INFO - Resetting Interface, OK!
+
+2025-01-16 23:03:38,210 - INFO - Resetting Anycast Address, OK!
+
+2025-01-16 23:03:38,212 - INFO - Resetting Multicast Address, OK!
+
+2025-01-16 23:03:38,213 - INFO - Resetting Unicast Address, OK!
+
+2025-01-16 23:03:38,216 - INFO - Resetting Neighbor, OK!
+
+2025-01-16 23:03:38,217 - INFO - Resetting Path, OK!
+
+2025-01-16 23:03:38,218 - INFO - Resetting Potential, OK!
+
+2025-01-16 23:03:38,219 - INFO - Resetting Prefix Policy, OK!
+
+2025-01-16 23:03:38,222 - INFO - Resetting Proxy Neighbor, OK!
+
+2025-01-16 23:03:38,223 - INFO - Resetting Route, OK!
+
+2025-01-16 23:03:38,226 - INFO - Resetting Site Prefix, OK!
+
+2025-01-16 23:03:38,227 - INFO - Resetting Subinterface, OK!
+
+2025-01-16 23:03:38,228 - INFO - Resetting Wakeup Pattern, OK!
+
+2025-01-16 23:03:38,228 - INFO - Resetting Resolve Neighbor, OK!
+
+2025-01-16 23:03:38,231 - INFO - Resetting , OK!
+
+2025-01-16 23:03:38,231 - INFO - Resetting , OK!
+
+2025-01-16 23:03:38,232 - INFO - Resetting , OK!
+
+2025-01-16 23:03:38,233 - INFO - Resetting , OK!
+
+2025-01-16 23:03:38,234 - INFO - Resetting , failed.
+
+2025-01-16 23:03:38,234 - INFO - The requested operation requires elevation (Run as administrator).
+
+2025-01-16 23:03:38,235 - INFO - Resetting , OK!
+
+2025-01-16 23:03:38,235 - INFO - Resetting , failed.
+
+2025-01-16 23:03:38,236 - INFO - The requested operation requires elevation (Run as administrator).
+
+2025-01-16 23:03:38,236 - INFO - Resetting , OK!
+
+2025-01-16 23:03:38,237 - INFO - Resetting , failed.
+
+2025-01-16 23:03:38,238 - INFO - The requested operation requires elevation (Run as administrator).
+
+2025-01-16 23:03:38,238 - INFO - Resetting , OK!
+
+2025-01-16 23:03:38,239 - INFO - Resetting , OK!
+
+2025-01-16 23:03:38,240 - INFO - Resetting , OK!
+
+2025-01-16 23:03:38,241 - INFO - Resetting , OK!
+
+2025-01-16 23:03:38,241 - INFO - Restart the computer to complete this action.
+
+2025-01-16 23:03:38,242 - INFO - 
+
+2025-01-16 23:03:38,243 - INFO - Command failed with error:
+
+2025-01-16 23:03:38,243 - ERROR - Command failed with error:
+
+2025-01-16 23:03:38,243 - INFO - ================================================================================
+2025-01-16 23:03:40,016 - DEBUG - Button clicked: Restart DHCP and DNS Client Services
+2025-01-16 23:03:40,111 - DEBUG - Showing command: Restarts DHCP and DNS Client services., net stop dhcp && net start dhcp && net stop dnscache && net start dnscache, DHCP and DNS Client services restarted., Use this command to restart DHCP and DNS Client services when you are experiencing issues with obtaining an IP address or DNS resolution.
+2025-01-16 23:03:40,111 - DEBUG - Updated description_label: Restarts DHCP and DNS Client services.
+2025-01-16 23:03:40,111 - DEBUG - Updated execute_button with command: net stop dhcp && net start dhcp && net stop dnscache && net start dnscache
+2025-01-16 23:03:42,152 - INFO - ================================================================================
+2025-01-16 23:03:42,152 - DEBUG - Executing command: net stop dhcp && net start dhcp && net stop dnscache && net start dnscache
+2025-01-16 23:03:42,152 - INFO - Executing command: net stop dhcp && net start dhcp && net stop dnscache && net start dnscache
+2025-01-16 23:03:42,233 - INFO - The following services are dependent on the DHCP Client service.
+
+2025-01-16 23:03:42,234 - INFO - Stopping the DHCP Client service will also stop these services.
+
+2025-01-16 23:03:42,235 - INFO - 
+
+2025-01-16 23:03:42,236 - INFO -    WinHTTP Web Proxy Auto-Discovery Service
+
+2025-01-16 23:03:42,239 - INFO -    Network List Service
+
+2025-01-16 23:03:42,239 - INFO -    Network Location Awareness
+
+2025-01-16 23:03:42,240 - INFO - 
+
+2025-01-16 23:03:42,241 - INFO - Do you want to continue this operation? (Y/N) [N]: 
+
+2025-01-16 23:03:42,241 - INFO - Command failed with error:
+No valid response was provided.
+
+2025-01-16 23:03:42,241 - ERROR - Command failed with error:
+No valid response was provided.
+
+2025-01-16 23:03:42,242 - INFO - ================================================================================
+2025-01-16 23:04:44,039 - DEBUG - Button clicked: Restart Network Adapters
+2025-01-16 23:04:44,127 - DEBUG - Showing command: Restarts network adapters., for /f "tokens=*" %%A in ('netsh interface show interface ^| findstr /C:"Enabled"') do (netsh interface set interface name="%%A" admin=disable && timeout /t 2 >nul && netsh interface set interface name="%%A" admin=enable), Network adapters restarted., Use this command to restart network adapters when you are experiencing connectivity issues.
+2025-01-16 23:04:44,127 - DEBUG - Updated description_label: Restarts network adapters.
+2025-01-16 23:04:44,127 - DEBUG - Updated execute_button with command: for /f "tokens=*" %%A in ('netsh interface show interface ^| findstr /C:"Enabled"') do (netsh interface set interface name="%%A" admin=disable && timeout /t 2 >nul && netsh interface set interface name="%%A" admin=enable)
+2025-01-16 23:04:47,616 - INFO - ================================================================================
+2025-01-16 23:04:47,616 - DEBUG - Executing command: for /f "tokens=*" %%A in ('netsh interface show interface ^| findstr /C:"Enabled"') do (netsh interface set interface name="%%A" admin=disable && timeout /t 2 >nul && netsh interface set interface name="%%A" admin=enable)
+2025-01-16 23:04:47,617 - INFO - Executing command: for /f "tokens=*" %%A in ('netsh interface show interface ^| findstr /C:"Enabled"') do (netsh interface set interface name="%%A" admin=disable && timeout /t 2 >nul && netsh interface set interface name="%%A" admin=enable)
+2025-01-16 23:04:47,668 - INFO - Command failed with error:
+%%A was unexpected at this time.
+
+2025-01-16 23:04:47,668 - ERROR - Command failed with error:
+%%A was unexpected at this time.
+
+2025-01-16 23:04:47,668 - INFO - ================================================================================
+2025-01-16 23:05:00,415 - DEBUG - Button clicked: Display Network Configuration
+2025-01-16 23:05:00,511 - DEBUG - Showing command: Displays the current network configuration., ipconfig /all, Network configuration displayed., Use this command to display the current network configuration to troubleshoot network settings and connectivity issues.
+2025-01-16 23:05:00,511 - DEBUG - Updated description_label: Displays the current network configuration.
+2025-01-16 23:05:00,512 - DEBUG - Updated execute_button with command: ipconfig /all
+2025-01-16 23:05:01,623 - INFO - ================================================================================
+2025-01-16 23:05:01,624 - DEBUG - Executing command: ipconfig /all
+2025-01-16 23:05:01,624 - INFO - Executing command: ipconfig /all
+2025-01-16 23:05:01,695 - INFO - 
+
+2025-01-16 23:05:01,695 - INFO - Windows IP Configuration
+
+2025-01-16 23:05:01,696 - INFO - 
+
+2025-01-16 23:05:01,697 - INFO -    Host Name . . . . . . . . . . . . : DESKTOP-NRVEPHN
+
+2025-01-16 23:05:01,697 - INFO -    Primary Dns Suffix  . . . . . . . : 
+
+2025-01-16 23:05:01,701 - INFO -    Node Type . . . . . . . . . . . . : Hybrid
+
+2025-01-16 23:05:01,701 - INFO -    IP Routing Enabled. . . . . . . . : No
+
+2025-01-16 23:05:01,702 - INFO -    WINS Proxy Enabled. . . . . . . . : No
+
+2025-01-16 23:05:01,704 - INFO - 
+
+2025-01-16 23:05:01,705 - INFO - Ethernet adapter vEthernet (Ethernet):
+
+2025-01-16 23:05:01,706 - INFO - 
+
+2025-01-16 23:05:01,709 - INFO -    Connection-specific DNS Suffix  . : 
+
+2025-01-16 23:05:01,710 - INFO -    Description . . . . . . . . . . . : Hyper-V Virtual Ethernet Adapter
+
+2025-01-16 23:05:01,711 - INFO -    Physical Address. . . . . . . . . : 00-15-5D-FD-B1-66
+
+2025-01-16 23:05:01,712 - INFO -    DHCP Enabled. . . . . . . . . . . : No
+
+2025-01-16 23:05:01,713 - INFO -    Autoconfiguration Enabled . . . . : Yes
+
+2025-01-16 23:05:01,714 - INFO -    Link-local IPv6 Address . . . . . : fe80::a412:8cbc:57bb:5b81%17(Preferred) 
+
+2025-01-16 23:05:01,714 - INFO -    Autoconfiguration IPv4 Address. . : 169.254.72.108(Preferred) 
+
+2025-01-16 23:05:01,715 - INFO -    Subnet Mask . . . . . . . . . . . : 255.255.0.0
+
+2025-01-16 23:05:01,715 - INFO -    Default Gateway . . . . . . . . . : 
+
+2025-01-16 23:05:01,716 - INFO -    DHCPv6 IAID . . . . . . . . . . . : 285218141
+
+2025-01-16 23:05:01,717 - INFO -    DHCPv6 Client DUID. . . . . . . . : 00-01-00-01-2B-C0-74-8D-08-8F-C3-03-BE-8A
+
+2025-01-16 23:05:01,717 - INFO -    DNS Servers . . . . . . . . . . . : fec0:0:0:ffff::1%1
+
+2025-01-16 23:05:01,719 - INFO -                                        fec0:0:0:ffff::2%1
+
+2025-01-16 23:05:01,720 - INFO -                                        fec0:0:0:ffff::3%1
+
+2025-01-16 23:05:01,720 - INFO -    NetBIOS over Tcpip. . . . . . . . : Enabled
+
+2025-01-16 23:05:01,721 - INFO - 
+
+2025-01-16 23:05:01,721 - INFO - Ethernet adapter vEthernet (Default Switch):
+
+2025-01-16 23:05:01,722 - INFO - 
+
+2025-01-16 23:05:01,722 - INFO -    Connection-specific DNS Suffix  . : 
+
+2025-01-16 23:05:01,723 - INFO -    Description . . . . . . . . . . . : Hyper-V Virtual Ethernet Adapter #2
+
+2025-01-16 23:05:01,724 - INFO -    Physical Address. . . . . . . . . : 00-15-5D-9E-7F-C6
+
+2025-01-16 23:05:01,724 - INFO -    DHCP Enabled. . . . . . . . . . . : No
+
+2025-01-16 23:05:01,725 - INFO -    Autoconfiguration Enabled . . . . : Yes
+
+2025-01-16 23:05:01,725 - INFO -    Link-local IPv6 Address . . . . . : fe80::fe95:3ddc:244:faf0%25(Preferred) 
+
+2025-01-16 23:05:01,726 - INFO -    Autoconfiguration IPv4 Address. . : 169.254.248.171(Preferred) 
+
+2025-01-16 23:05:01,727 - INFO -    Subnet Mask . . . . . . . . . . . : 255.255.0.0
+
+2025-01-16 23:05:01,727 - INFO -    Default Gateway . . . . . . . . . : 
+
+2025-01-16 23:05:01,728 - INFO -    DHCPv6 IAID . . . . . . . . . . . : 419435869
+
+2025-01-16 23:05:01,729 - INFO -    DHCPv6 Client DUID. . . . . . . . : 00-01-00-01-2B-C0-74-8D-08-8F-C3-03-BE-8A
+
+2025-01-16 23:05:01,729 - INFO -    DNS Servers . . . . . . . . . . . : fec0:0:0:ffff::1%1
+
+2025-01-16 23:05:01,730 - INFO -                                        fec0:0:0:ffff::2%1
+
+2025-01-16 23:05:01,730 - INFO -                                        fec0:0:0:ffff::3%1
+
+2025-01-16 23:05:01,731 - INFO -    NetBIOS over Tcpip. . . . . . . . : Enabled
+
+2025-01-16 23:05:01,732 - INFO - 
+
+2025-01-16 23:05:01,732 - INFO - Ethernet adapter Ethernet:
+
+2025-01-16 23:05:01,733 - INFO - 
+
+2025-01-16 23:05:01,733 - INFO -    Connection-specific DNS Suffix  . : 
+
+2025-01-16 23:05:01,734 - INFO -    Description . . . . . . . . . . . : Killer E2600 Gigabit Ethernet Controller
+
+2025-01-16 23:05:01,735 - INFO -    Physical Address. . . . . . . . . : 08-8F-C3-03-BE-8A
+
+2025-01-16 23:05:01,735 - INFO -    DHCP Enabled. . . . . . . . . . . : Yes
+
+2025-01-16 23:05:01,736 - INFO -    Autoconfiguration Enabled . . . . : Yes
+
+2025-01-16 23:05:01,737 - INFO -    IPv6 Address. . . . . . . . . . . : 2407:d000:b:aef1:eee9:529:26e3:4f14(Preferred) 
+
+2025-01-16 23:05:01,737 - INFO -    Temporary IPv6 Address. . . . . . : 2407:d000:b:aef1:559a:7ed5:1ce9:1f6d(Deprecated) 
+
+2025-01-16 23:05:01,738 - INFO -    Temporary IPv6 Address. . . . . . : 2407:d000:b:aef1:e456:56c9:2f2f:3621(Preferred) 
+
+2025-01-16 23:05:01,739 - INFO -    Link-local IPv6 Address . . . . . : fe80::3e26:40a:1668:a2b1%11(Preferred) 
+
+2025-01-16 23:05:01,739 - INFO -    IPv4 Address. . . . . . . . . . . : 192.168.18.232(Preferred) 
+
+2025-01-16 23:05:01,740 - INFO -    Subnet Mask . . . . . . . . . . . : 255.255.255.0
+
+2025-01-16 23:05:01,740 - INFO -    Lease Obtained. . . . . . . . . . : Thursday, January 16, 2025 11:01:42 PM
+
+2025-01-16 23:05:01,741 - INFO -    Lease Expires . . . . . . . . . . : Friday, January 17, 2025 12:01:45 AM
+
+2025-01-16 23:05:01,742 - INFO -    Default Gateway . . . . . . . . . : fe80::1%11
+
+2025-01-16 23:05:01,743 - INFO -                                        192.168.18.1
+
+2025-01-16 23:05:01,743 - INFO -    DHCP Server . . . . . . . . . . . : 192.168.18.1
+
+2025-01-16 23:05:01,744 - INFO -    DHCPv6 IAID . . . . . . . . . . . : 252219331
+
+2025-01-16 23:05:01,744 - INFO -    DHCPv6 Client DUID. . . . . . . . : 00-01-00-01-2B-C0-74-8D-08-8F-C3-03-BE-8A
+
+2025-01-16 23:05:01,745 - INFO -    DNS Servers . . . . . . . . . . . : ::ffff:127.0.2.2
+
+2025-01-16 23:05:01,746 - INFO -                                        ::ffff:127.0.2.3
+
+2025-01-16 23:05:01,746 - INFO -                                        127.0.2.2
+
+2025-01-16 23:05:01,747 - INFO -                                        127.0.2.3
+
+2025-01-16 23:05:01,747 - INFO -    NetBIOS over Tcpip. . . . . . . . : Enabled
+
+2025-01-16 23:05:01,748 - INFO - Network configuration displayed.
+2025-01-16 23:05:01,749 - INFO - ================================================================================
+2025-01-16 23:05:03,831 - DEBUG - Button clicked: Check for Network Driver Updates
+2025-01-16 23:05:03,927 - DEBUG - Showing command: Checks for updates to network drivers., wmic path win32_pnpentity where "DeviceID like '%%PCI%%'" get DeviceID, Name, Manufacturer, DriverVersion, Network driver updates check completed., Use this command to check for updates to network drivers when you are experiencing driver-related issues.
+2025-01-16 23:05:03,927 - DEBUG - Updated description_label: Checks for updates to network drivers.
+2025-01-16 23:05:03,927 - DEBUG - Updated execute_button with command: wmic path win32_pnpentity where "DeviceID like '%%PCI%%'" get DeviceID, Name, Manufacturer, DriverVersion
+2025-01-16 23:05:04,959 - INFO - ================================================================================
+2025-01-16 23:05:04,959 - DEBUG - Executing command: wmic path win32_pnpentity where "DeviceID like '%%PCI%%'" get DeviceID, Name, Manufacturer, DriverVersion
+2025-01-16 23:05:04,960 - INFO - Executing command: wmic path win32_pnpentity where "DeviceID like '%%PCI%%'" get DeviceID, Name, Manufacturer, DriverVersion
+2025-01-16 23:05:05,079 - INFO - 
+
+2025-01-16 23:05:05,080 - INFO - 
+
+2025-01-16 23:05:05,080 - INFO - 
+
+2025-01-16 23:05:05,081 - INFO - 
+
+2025-01-16 23:05:05,086 - INFO - Command failed with error:
+Node - DESKTOP-NRVEPHN
+
+ERROR:
+
+Description = Invalid query
+
+
+2025-01-16 23:05:05,086 - ERROR - Command failed with error:
+Node - DESKTOP-NRVEPHN
+
+ERROR:
+
+Description = Invalid query
+
+
+2025-01-16 23:05:05,087 - INFO - ================================================================================
+2025-01-16 23:05:16,727 - DEBUG - Button clicked: Help
+2025-01-16 23:05:16,815 - DEBUG - Showing submenu: help_menu
+2025-01-16 23:05:16,815 - DEBUG - Clearing buttons
+2025-01-16 23:05:16,820 - DEBUG - Adding buttons: [{'text': 'Flush DNS', 'description': 'Flush DNS Cache', 'command': 'ipconfig /flushdns /?', 'long_description': 'Use this command to get help on flushing the DNS cache.'}, {'text': 'Clear ARP', 'description': 'Clear ARP Cache', 'command': 'arp -d /?', 'long_description': 'Use this command to get help on clearing the ARP cache.'}, {'text': 'Ping', 'description': 'Test Connectivity', 'command': 'ping /?', 'long_description': 'Use this command to get help on testing connectivity using ping.'}, {'text': 'Display DNS', 'description': 'Display DNS Cache', 'command': 'ipconfig /displaydns /?', 'long_description': 'Use this command to get help on displaying the DNS cache.'}, {'text': 'Reset Network', 'description': 'Reset Network Settings', 'command': 'netsh int ip reset /?', 'long_description': 'Use this command to get help on resetting network settings.'}, {'text': 'Release/Renew IP', 'description': 'Release and Renew IP Address', 'command': 'ipconfig /release && ipconfig /renew /?', 'long_description': 'Use this command to get help on releasing and renewing the IP address.'}, {'text': 'Check Adapter', 'description': 'Check Network Adapter Status', 'command': 'netsh interface show interface /?', 'long_description': 'Use this command to get help on checking the network adapter status.'}, {'text': 'Reset Winsock', 'description': 'Reset Winsock', 'command': 'netsh winsock reset /?', 'long_description': 'Use this command to get help on resetting Winsock.'}, {'text': 'Reset IPv4', 'description': 'Reset TCP/IP Stack (IPv4)', 'command': 'netsh int ip reset /?', 'long_description': 'Use this command to get help on resetting the IPv4 TCP/IP stack.'}, {'text': 'Reset IPv6', 'description': 'Reset TCP/IP Stack (IPv6)', 'command': 'netsh int ipv6 reset /?', 'long_description': 'Use this command to get help on resetting the IPv6 TCP/IP stack.'}, {'text': 'Restart Services', 'description': 'Restart DHCP and DNS Client Services', 'command': 'net stop dhcp && net start dhcp && net stop dnscache && net start dnscache /?', 'long_description': 'Use this command to get help on restarting DHCP and DNS Client services.'}, {'text': 'Restart Adapters', 'description': 'Restart Network Adapters', 'command': 'netsh interface set interface name="[Adapter Name]" admin=disable && netsh interface set interface name="[Adapter Name]" admin=enable /?', 'long_description': 'Use this command to get help on restarting network adapters.'}, {'text': 'Check Internet', 'description': 'Check Internet Connectivity', 'command': 'ping www.google.com /?', 'long_description': 'Use this command to get help on checking internet connectivity.'}, {'text': 'Display Config', 'description': 'Display Network Configuration', 'command': 'ipconfig /all /?', 'long_description': 'Use this command to get help on displaying the network configuration.'}, {'text': 'Check Drivers', 'description': 'Check for Network Driver Updates', 'command': 'wmic path win32_pnpentity where "DeviceID like \'%%PCI%%\'" get DeviceID, Name, Manufacturer, DriverVersion /?', 'long_description': 'Use this command to get help on checking for network driver updates.'}, {'text': 'Back to Main Menu', 'submenu': 'main_menu'}]
+2025-01-16 23:05:16,821 - DEBUG - Adding button: Flush DNS
+2025-01-16 23:05:16,821 - DEBUG - Adding button: Clear ARP
+2025-01-16 23:05:16,821 - DEBUG - Adding button: Ping
+2025-01-16 23:05:16,822 - DEBUG - Adding button: Display DNS
+2025-01-16 23:05:16,822 - DEBUG - Adding button: Reset Network
+2025-01-16 23:05:16,822 - DEBUG - Adding button: Release/Renew IP
+2025-01-16 23:05:16,822 - DEBUG - Adding button: Check Adapter
+2025-01-16 23:05:16,822 - DEBUG - Adding button: Reset Winsock
+2025-01-16 23:05:16,822 - DEBUG - Adding button: Reset IPv4
+2025-01-16 23:05:16,823 - DEBUG - Adding button: Reset IPv6
+2025-01-16 23:05:16,823 - DEBUG - Adding button: Restart Services
+2025-01-16 23:05:16,823 - DEBUG - Adding button: Restart Adapters
+2025-01-16 23:05:16,823 - DEBUG - Adding button: Check Internet
+2025-01-16 23:05:16,823 - DEBUG - Adding button: Display Config
+2025-01-16 23:05:16,824 - DEBUG - Adding button: Check Drivers
+2025-01-16 23:05:16,824 - DEBUG - Adding button: Back to Main Menu
+2025-01-16 23:05:17,640 - DEBUG - Button clicked: Flush DNS
+2025-01-16 23:05:18,912 - INFO - ================================================================================
+2025-01-16 23:05:18,912 - DEBUG - Executing command: wmic path win32_pnpentity where "DeviceID like '%%PCI%%'" get DeviceID, Name, Manufacturer, DriverVersion
+2025-01-16 23:05:18,912 - INFO - Executing command: wmic path win32_pnpentity where "DeviceID like '%%PCI%%'" get DeviceID, Name, Manufacturer, DriverVersion
+2025-01-16 23:05:19,023 - INFO - 
+
+2025-01-16 23:05:19,024 - INFO - 
+
+2025-01-16 23:05:19,024 - INFO - 
+
+2025-01-16 23:05:19,024 - INFO - 
+
+2025-01-16 23:05:19,032 - INFO - Command failed with error:
+Node - DESKTOP-NRVEPHN
+
+ERROR:
+
+Description = Invalid query
+
+
+2025-01-16 23:05:19,032 - ERROR - Command failed with error:
+Node - DESKTOP-NRVEPHN
+
+ERROR:
+
+Description = Invalid query
+
+
+2025-01-16 23:05:19,032 - INFO - ================================================================================
+2025-01-16 23:05:20,279 - DEBUG - Button clicked: Clear ARP
+2025-01-16 23:05:21,783 - INFO - ================================================================================
+2025-01-16 23:05:21,783 - DEBUG - Executing command: wmic path win32_pnpentity where "DeviceID like '%%PCI%%'" get DeviceID, Name, Manufacturer, DriverVersion
+2025-01-16 23:05:21,783 - INFO - Executing command: wmic path win32_pnpentity where "DeviceID like '%%PCI%%'" get DeviceID, Name, Manufacturer, DriverVersion
+2025-01-16 23:05:21,897 - INFO - 
+
+2025-01-16 23:05:21,898 - INFO - 
+
+2025-01-16 23:05:21,898 - INFO - 
+
+2025-01-16 23:05:21,898 - INFO - 
+
+2025-01-16 23:05:21,904 - INFO - Command failed with error:
+Node - DESKTOP-NRVEPHN
+
+ERROR:
+
+Description = Invalid query
+
+
+2025-01-16 23:05:21,904 - ERROR - Command failed with error:
+Node - DESKTOP-NRVEPHN
+
+ERROR:
+
+Description = Invalid query
+
+
+2025-01-16 23:05:21,904 - INFO - ================================================================================
+2025-01-16 23:05:28,079 - DEBUG - Button clicked: Flush DNS
+2025-01-16 23:05:28,263 - DEBUG - Button clicked: Flush DNS
+2025-01-16 23:05:28,407 - DEBUG - Button clicked: Flush DNS
+2025-01-16 23:05:28,551 - DEBUG - Button clicked: Flush DNS
+2025-01-16 23:05:29,568 - DEBUG - Button clicked: Clear ARP
+2025-01-16 23:05:29,743 - DEBUG - Button clicked: Clear ARP
+2025-01-16 23:05:29,910 - DEBUG - Button clicked: Clear ARP
+2025-01-16 23:05:30,183 - DEBUG - Button clicked: Ping
+2025-01-16 23:05:30,374 - DEBUG - Button clicked: Ping
+2025-01-16 23:05:30,702 - DEBUG - Button clicked: Display DNS
+2025-01-16 23:05:30,870 - DEBUG - Button clicked: Display DNS
+2025-01-16 23:05:31,183 - DEBUG - Button clicked: Reset Network
+2025-01-16 23:05:31,359 - DEBUG - Button clicked: Reset Network
+2025-01-16 23:05:31,824 - DEBUG - Button clicked: Release/Renew IP
+2025-01-16 23:05:31,975 - DEBUG - Button clicked: Release/Renew IP
+2025-01-16 23:05:32,343 - DEBUG - Button clicked: Check Adapter
+2025-01-16 23:05:32,519 - DEBUG - Button clicked: Check Adapter
+2025-01-16 23:05:33,031 - DEBUG - Button clicked: Reset Winsock
+2025-01-16 23:05:33,183 - DEBUG - Button clicked: Reset Winsock
+2025-01-16 23:05:33,487 - DEBUG - Button clicked: Reset IPv4
+2025-01-16 23:05:33,623 - DEBUG - Button clicked: Reset IPv4
+2025-01-16 23:05:33,999 - DEBUG - Button clicked: Reset IPv6
+2025-01-16 23:05:34,191 - DEBUG - Button clicked: Reset IPv6
+2025-01-16 23:05:34,624 - DEBUG - Button clicked: Restart Services
+2025-01-16 23:05:34,767 - DEBUG - Button clicked: Restart Services
+2025-01-16 23:05:35,087 - DEBUG - Button clicked: Restart Adapters
+2025-01-16 23:05:35,247 - DEBUG - Button clicked: Restart Adapters
+2025-01-16 23:05:35,695 - DEBUG - Button clicked: Check Internet
+2025-01-16 23:05:35,847 - DEBUG - Button clicked: Check Internet
+2025-01-16 23:05:36,127 - DEBUG - Button clicked: Display Config
+2025-01-16 23:05:36,263 - DEBUG - Button clicked: Display Config
+2025-01-16 23:05:36,583 - DEBUG - Button clicked: Check Drivers
+2025-01-16 23:05:36,711 - DEBUG - Button clicked: Check Drivers
+2025-01-16 23:05:37,223 - DEBUG - Button clicked: Back to Main Menu
+2025-01-16 23:05:37,319 - DEBUG - Showing submenu: main_menu
+2025-01-16 23:05:37,319 - DEBUG - Clearing buttons
+2025-01-16 23:05:37,327 - DEBUG - Adding buttons: [{'text': 'Flush DNS Cache', 'description': 'Flushes the DNS cache to resolve DNS-related issues.', 'command': 'ipconfig /flushdns', 'success_message': 'DNS cache flushed successfully.', 'long_description': 'Use this command to flush the DNS cache when you are experiencing DNS-related issues such as not being able to resolve domain names.'}, {'text': 'Clear ARP Cache', 'description': 'Clears the ARP cache to resolve ARP-related issues.', 'command': 'arp -d', 'success_message': 'ARP cache cleared successfully.', 'long_description': 'Use this command to clear the ARP cache when you are experiencing ARP-related issues such as incorrect IP address to MAC address mappings.'}, {'text': 'Test Connectivity', 'description': 'Tests network connectivity by pinging common DNS servers.', 'submenu': 'test_connectivity', 'long_description': 'Use this submenu to test network connectivity by pinging common DNS servers like Google DNS, Cloudflare DNS, and OpenDNS.'}, {'text': 'Display DNS Cache', 'description': 'Displays the current DNS cache entries.', 'command': 'ipconfig /displaydns', 'success_message': 'DNS cache displayed.', 'long_description': 'Use this command to display the current DNS cache entries to troubleshoot DNS resolution issues.'}, {'text': 'Reset Network Settings', 'description': 'Resets network settings to default.', 'command': 'netsh int ip reset', 'success_message': 'Network settings reset successfully.', 'long_description': 'Use this command to reset network settings to their default values when you are experiencing network configuration issues.'}, {'text': 'Release and Renew IP Address', 'description': 'Releases and renews the IP address.', 'command': 'ipconfig /release && ipconfig /renew', 'success_message': 'IP address released and renewed.', 'long_description': 'Use this command to release and renew the IP address when you are experiencing IP address conflicts or connectivity issues.'}, {'text': 'Check Network Adapter Status', 'description': 'Displays the status of network adapters.', 'command': 'netsh interface show interface', 'success_message': 'Network adapter status displayed.', 'long_description': 'Use this command to display the status of network adapters to troubleshoot connectivity issues.'}, {'text': 'Reset Winsock', 'description': 'Resets Winsock settings. Requires a restart.', 'command': 'netsh winsock reset', 'success_message': 'Winsock reset successfully. Please restart your computer for changes to take effect.', 'long_description': 'Use this command to reset Winsock settings when you are experiencing network socket-related issues. A restart is required for changes to take effect.'}, {'text': 'Reset TCP/IP Stack (IPv4)', 'description': 'Resets the IPv4 TCP/IP stack. Requires a restart.', 'command': 'netsh int ip reset', 'success_message': 'IPv4 TCP/IP stack reset successfully. Please restart your computer for changes to take effect.', 'long_description': 'Use this command to reset the IPv4 TCP/IP stack when you are experiencing IPv4-related connectivity issues. A restart is required for changes to take effect.'}, {'text': 'Reset TCP/IP Stack (IPv6)', 'description': 'Resets the IPv6 TCP/IP stack. Requires a restart.', 'command': 'netsh int ipv6 reset', 'success_message': 'IPv6 TCP/IP stack reset successfully. Please restart your computer for changes to take effect.', 'long_description': 'Use this command to reset the IPv6 TCP/IP stack when you are experiencing IPv6-related connectivity issues. A restart is required for changes to take effect.'}, {'text': 'Restart DHCP and DNS Client Services', 'description': 'Restarts DHCP and DNS Client services.', 'command': 'net stop dhcp && net start dhcp && net stop dnscache && net start dnscache', 'success_message': 'DHCP and DNS Client services restarted.', 'long_description': 'Use this command to restart DHCP and DNS Client services when you are experiencing issues with obtaining an IP address or DNS resolution.'}, {'text': 'Restart Network Adapters', 'description': 'Restarts network adapters.', 'command': 'for /f "tokens=*" %%A in (\'netsh interface show interface ^| findstr /C:"Enabled"\') do (netsh interface set interface name="%%A" admin=disable && timeout /t 2 >nul && netsh interface set interface name="%%A" admin=enable)', 'success_message': 'Network adapters restarted.', 'long_description': 'Use this command to restart network adapters when you are experiencing connectivity issues.'}, {'text': 'Display Network Configuration', 'description': 'Displays the current network configuration.', 'command': 'ipconfig /all', 'success_message': 'Network configuration displayed.', 'long_description': 'Use this command to display the current network configuration to troubleshoot network settings and connectivity issues.'}, {'text': 'Check for Network Driver Updates', 'description': 'Checks for updates to network drivers.', 'command': 'wmic path win32_pnpentity where "DeviceID like \'%%PCI%%\'" get DeviceID, Name, Manufacturer, DriverVersion', 'success_message': 'Network driver updates check completed.', 'long_description': 'Use this command to check for updates to network drivers when you are experiencing driver-related issues.'}, {'text': 'Help', 'submenu': 'help_menu'}, {'text': 'Flush DNS, Clear ARP, and Test Connectivity', 'description': 'Flushes DNS, clears ARP, and tests connectivity.', 'commands': [{'command': 'ipconfig /flushdns', 'success_message': 'DNS cache flushed successfully.', 'long_description': 'Use this command to flush the DNS cache when you are experiencing DNS-related issues such as not being able to resolve domain names.'}, {'command': 'arp -d', 'success_message': 'ARP cache cleared successfully.', 'long_description': 'Use this command to clear the ARP cache when you are experiencing ARP-related issues such as incorrect IP address to MAC address mappings.'}, {'command': 'ping 8.8.8.8 -n 4', 'success_message': 'Ping to Google DNS complete.', 'long_description': 'Use this command to test network connectivity by pinging Google DNS.'}]}]
+2025-01-16 23:05:37,327 - DEBUG - Adding button: Flush DNS Cache
+2025-01-16 23:05:37,327 - DEBUG - Adding button: Clear ARP Cache
+2025-01-16 23:05:37,327 - DEBUG - Adding button: Test Connectivity
+2025-01-16 23:05:37,328 - DEBUG - Adding button: Display DNS Cache
+2025-01-16 23:05:37,328 - DEBUG - Adding button: Reset Network Settings
+2025-01-16 23:05:37,328 - DEBUG - Adding button: Release and Renew IP Address
+2025-01-16 23:05:37,328 - DEBUG - Adding button: Check Network Adapter Status
+2025-01-16 23:05:37,328 - DEBUG - Adding button: Reset Winsock
+2025-01-16 23:05:37,328 - DEBUG - Adding button: Reset TCP/IP Stack (IPv4)
+2025-01-16 23:05:37,329 - DEBUG - Adding button: Reset TCP/IP Stack (IPv6)
+2025-01-16 23:05:37,329 - DEBUG - Adding button: Restart DHCP and DNS Client Services
+2025-01-16 23:05:37,329 - DEBUG - Adding button: Restart Network Adapters
+2025-01-16 23:05:37,329 - DEBUG - Adding button: Display Network Configuration
+2025-01-16 23:05:37,329 - DEBUG - Adding button: Check for Network Driver Updates
+2025-01-16 23:05:37,330 - DEBUG - Adding button: Help
+2025-01-16 23:05:37,330 - DEBUG - Adding button: Flush DNS, Clear ARP, and Test Connectivity
+2025-01-16 23:06:38,031 - DEBUG - Button clicked: Flush DNS, Clear ARP, and Test Connectivity
+2025-01-16 23:06:38,111 - DEBUG - Executing sequence command: ipconfig /flushdns
+2025-01-16 23:06:38,112 - INFO - ================================================================================
+2025-01-16 23:06:38,112 - DEBUG - Executing command: ipconfig /flushdns
+2025-01-16 23:06:38,112 - INFO - Executing command: ipconfig /flushdns
+2025-01-16 23:06:38,186 - INFO - 
+
+2025-01-16 23:06:38,186 - INFO - Windows IP Configuration
+
+2025-01-16 23:06:38,186 - INFO - 
+
+2025-01-16 23:06:38,187 - INFO - Successfully flushed the DNS Resolver Cache.
+
+2025-01-16 23:06:38,190 - INFO - DNS cache flushed successfully.
+2025-01-16 23:06:38,190 - INFO - ================================================================================
+2025-01-16 23:06:38,190 - DEBUG - Executing sequence command: arp -d
+2025-01-16 23:06:38,191 - INFO - ================================================================================
+2025-01-16 23:06:38,191 - DEBUG - Executing command: arp -d
+2025-01-16 23:06:38,191 - INFO - Executing command: arp -d
+2025-01-16 23:06:38,261 - INFO - ARP cache cleared successfully.
+2025-01-16 23:06:38,262 - INFO - ================================================================================
+2025-01-16 23:06:38,262 - DEBUG - Executing sequence command: ping 8.8.8.8 -n 4
+2025-01-16 23:06:38,262 - INFO - ================================================================================
+2025-01-16 23:06:38,262 - DEBUG - Executing command: ping 8.8.8.8 -n 4
+2025-01-16 23:06:38,262 - INFO - Executing command: ping 8.8.8.8 -n 4
+2025-01-16 23:06:38,334 - INFO - 
+
+2025-01-16 23:06:38,335 - INFO - Pinging 8.8.8.8 with 32 bytes of data:
+
+2025-01-16 23:06:38,372 - INFO - Reply from 8.8.8.8: bytes=32 time=37ms TTL=57
+
+2025-01-16 23:06:39,385 - INFO - Reply from 8.8.8.8: bytes=32 time=37ms TTL=57
+
+2025-01-16 23:06:40,394 - INFO - Reply from 8.8.8.8: bytes=32 time=37ms TTL=57
+
+2025-01-16 23:06:41,407 - INFO - Reply from 8.8.8.8: bytes=32 time=37ms TTL=57
+
+2025-01-16 23:06:41,407 - INFO - 
+
+2025-01-16 23:06:41,407 - INFO - Ping statistics for 8.8.8.8:
+
+2025-01-16 23:06:41,407 - INFO -     Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+
+2025-01-16 23:06:41,407 - INFO - Approximate round trip times in milli-seconds:
+
+2025-01-16 23:06:41,407 - INFO -     Minimum = 37ms, Maximum = 37ms, Average = 37ms
+
+2025-01-16 23:06:41,409 - INFO - Ping to Google DNS complete.
+2025-01-16 23:06:41,410 - INFO - ================================================================================

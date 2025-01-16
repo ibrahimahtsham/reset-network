@@ -166,6 +166,7 @@ log_text.bind("<Return>", on_enter)
 # Bottom frame for command description and execution button
 bottom_frame = tk.Frame(root, bg="#2e2e2e", padx=10, pady=10)
 bottom_frame.pack(fill=tk.X, side=tk.BOTTOM, anchor="w")
+bottom_frame.pack_propagate(False)
 
 description_label = tk.Label(
     bottom_frame,
@@ -213,7 +214,7 @@ def add_buttons(buttons):
             wraplength=200,
             **style,
         )
-        btn.pack(pady=5, fill=tk.X, expand=True)
+        btn.pack(pady=5, fill=tk.X, anchor="n")
         btn.bind(
             "<Configure>",
             lambda event, btn=btn: btn.config(wraplength=btn.winfo_width() - 10),
@@ -221,9 +222,16 @@ def add_buttons(buttons):
         if "submenu" in item:
             btn.config(command=lambda submenu=item["submenu"]: show_submenu(submenu))
         elif "custom_input" in item:
-            btn.config(command=lambda: log_text.insert(tk.END, item["description"]))
+            btn.config(command=lambda: log_text.insert(tk.END, "Enter IP to ping: "))
         elif "commands" in item:
-            btn.config(command=lambda: execute_sequence(item["commands"]))
+            btn.config(
+                command=lambda: show_command_description(
+                    item["description"],
+                    "\n".join([cmd["command"] for cmd in item["commands"]]),
+                    "\n".join([cmd["success_message"] for cmd in item["commands"]]),
+                    item.get("long_description", ""),
+                )
+            )
         else:
             btn.config(
                 command=lambda item=item: show_command_description(
