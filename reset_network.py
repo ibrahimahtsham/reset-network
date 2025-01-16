@@ -124,7 +124,7 @@ def update_font_size(delta):
 
 def update_button_fonts(size):
     """Update button fonts."""
-    for widget in buttons_frame.winfo_children():
+    for widget in sidebar_frame.winfo_children():
         if isinstance(widget, tk.Button):
             widget.config(font=("Arial", size))
 
@@ -147,31 +147,8 @@ paned_window = tk.PanedWindow(root, orient=tk.HORIZONTAL, bg="#2e2e2e")
 paned_window.pack(fill=tk.BOTH, expand=True)
 
 # Sidebar frame
-sidebar_frame = tk.Frame(paned_window, bg="#2e2e2e", width=150)
+sidebar_frame = tk.Frame(paned_window, bg="#2e2e2e", width=200)
 paned_window.add(sidebar_frame)
-
-# Canvas for sidebar buttons
-sidebar_canvas = tk.Canvas(sidebar_frame, bg="#2e2e2e")
-sidebar_canvas.pack(side=tk.LEFT, fill=tk.Y, expand=True)
-
-# Scrollbar for sidebar
-sidebar_scrollbar = tk.Scrollbar(
-    sidebar_frame, orient=tk.VERTICAL, command=sidebar_canvas.yview
-)
-sidebar_scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
-sidebar_canvas.configure(yscrollcommand=sidebar_scrollbar.set)
-
-# Frame for buttons inside the canvas
-buttons_frame = tk.Frame(sidebar_canvas, bg="#2e2e2e")
-sidebar_canvas.create_window((0, 0), window=buttons_frame, anchor="nw")
-
-
-# Update scroll region
-def on_configure(event):
-    sidebar_canvas.configure(scrollregion=sidebar_canvas.bbox("all"))
-
-
-buttons_frame.bind("<Configure>", on_configure)
 
 # Text box for logging
 log_text = scrolledtext.ScrolledText(
@@ -207,7 +184,7 @@ execute_button = tk.Button(
 execute_button.pack(side=tk.RIGHT, padx=10, pady=10)
 
 # Menu title
-menu_title = tk.Label(buttons_frame, text="Main Menu", font=("Arial", 16), **style)
+menu_title = tk.Label(sidebar_frame, text="Main Menu", font=("Arial", 16), **style)
 menu_title.pack(pady=10)
 
 
@@ -220,7 +197,7 @@ def show_main_menu():
 def clear_buttons():
     """Clear all buttons except the menu title."""
     logging.debug("Clearing buttons")
-    for widget in buttons_frame.winfo_children():
+    for widget in sidebar_frame.winfo_children():
         if widget != menu_title:
             widget.destroy()
 
@@ -231,7 +208,7 @@ def add_buttons(buttons):
     for item in buttons:
         logging.debug(f"Adding button: {item['text']}")
         btn = tk.Button(
-            buttons_frame,
+            sidebar_frame,
             text=item["text"],
             wraplength=200,
             **style,
