@@ -1,0 +1,13 @@
+2025-01-16 17:30:06,591 - INFO - ================================================================================
+2025-01-16 17:30:06,592 - DEBUG - Executing command: ipconfig /flushdns
+2025-01-16 17:30:06,592 - INFO - Executing command: ipconfig /flushdns
+2025-01-16 17:30:06,659 - INFO - 
+
+2025-01-16 17:30:06,660 - INFO - Windows IP Configuration
+
+2025-01-16 17:30:06,660 - INFO - 
+
+2025-01-16 17:30:06,660 - INFO - Successfully flushed the DNS Resolver Cache.
+
+2025-01-16 17:30:06,664 - INFO - DNS cache flushed successfully.
+2025-01-16 17:30:06,664 - INFO - ================================================================================
