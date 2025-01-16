@@ -22,26 +22,32 @@ echo ==========================================
 echo Network Troubleshooting Menu
 echo ==========================================
 echo 1. Flush DNS Cache
-echo 2. Clear ARP Cache (Admin)
+echo 2. Clear ARP Cache (Fully Admin)
 echo 3. Display DNS Cache
 echo 4. Display ARP Cache
-echo 5. Release and Renew IP Address (Admin)
+echo 5. Release and Renew IP Address (Partially Admin) (Sequence of 3 commands) ("ipconfig" "/release" (Not Admin) , "netsh" "int ipv6 reset" (Partially Admin) and "netsh" "winsock reset" (Fully Admin))
 echo 6. Check Network Adapter Status
-echo 7. Reset Winsock (Admin)
-echo 8. Reset TCP/IP Stack (IPv4) (Admin)
-echo 9. Reset TCP/IP Stack (IPv6) (Admin)
-echo 10. Restart DHCP and DNS Client Services (Admin)
-echo 11. Restart Network Adapters (Admin)
-echo 12. Reset Network Settings (Admin)
-echo 13. Check Internet Connectivity
+echo 7. Reset Winsock (Fully Admin)
+echo 8. Reset TCP/IP Stack (IPv4) (Partially Admin)
+echo 9. Reset TCP/IP Stack (IPv6) (Partially Admin)
+echo 10. Restart DHCP and DNS Client Services (Partially Admin) (Sequence of 2 commands) ("netsh" "int ipv6 reset" (Partially Admin) and "netsh" "winsock reset" (Fully Admin))
+echo 11. Restart Network Adapters (Fully Admin)
+echo 12. Reset Network Settings (Partially Admin) (Sequence of 3 commands) ("netsh" "int ip reset" (Partially Admin), "netsh" "int ipv6 reset" (Partially Admin) and "netsh" "winsock reset" (Fully Admin))
+echo 13. Check Internet Connectivity (Renmove this)
 echo 14. Display Network Configuration
-echo 15. Check for Network Driver Updates
-echo 16. Run Multiple Commands
-echo 17. Run All Commands
+echo 15. Check for Network Driver Updates (Doesn't work, needs to be reworked and not removed)
+echo 16. Run Multiple Commands (The whole menu for this needs to be put back into this menu instead of a separate menu)
+echo 17. Run All Commands (Needs to be reworked with a flag that checks if its in run all mode)
 echo 18. Ping an IP
 echo 19. Exit
 echo ==========================================
+echo.
 set /p choice=Choose an option (1-19):
+
+echo. >> %logfile%
+echo ============================ >> %logfile%
+echo Choice number chosen: %choice% >> %logfile%
+echo ============================ >> %logfile%
 
 if "%choice%"=="1" goto flush_dns
 if "%choice%"=="2" goto clear_arp_cache
@@ -141,6 +147,7 @@ echo 2. Restart DHCP and DNS Client Services, Restart Network Adapters
 echo 3. Reset Network Settings, Check Internet Connectivity
 echo 4. Return to Main Menu
 echo ==========================================
+echo.
 set /p multi_choice=Choose an option (1-4):
 
 if "%multi_choice%"=="1" (
@@ -192,6 +199,7 @@ echo 3. Ping OpenDNS
 echo 4. Custom IP
 echo 5. Back to Main Menu
 echo ==========================================
+echo.
 set /p ping_choice=Choose an IP to ping (1-5):
 if "%ping_choice%"=="1" set ip=www.google.com
 if "%ping_choice%"=="2" set ip=1.1.1.1
@@ -220,35 +228,52 @@ goto ping_ip
 set command=%1
 set args=%2
 set description=%3
+echo. >> %logfile%
 echo ============================ >> %logfile%
 echo Command: %command% %args% >> %logfile%
 echo Description: %description% >> %logfile%
 echo ============================ >> %logfile%
+echo. >> %logfile%
+echo.
 echo ============================
 echo Command: %command% %args%
 echo Description: %description%
 echo ============================
-echo Type 'help' for more info on the command,
-echo Type 'run' to run the command,
-echo or 'skip' to skip the command:
-set /p run=
+echo.
+echo Type 'skip' to skip the command.
+echo Type 'help' for more info on the command.
+echo Type 'run' or press `Enter` to run the command.
+set /p run=input:
+echo. >> %logfile%
+echo.
 if /i "%run%"=="run" (
+    echo. >> %logfile%
     echo ============================ >> %logfile%
     echo Running command: %command% %args% >> %logfile%
     echo ============================ >> %logfile%
+    echo. >> %logfile%
+    echo.
     echo ============================
     echo Running command: %command% %args%
     echo ============================
-    powershell -Command "& { %command% %args% 2>&1 | Tee-Object -FilePath temp_log.txt -Append; Get-Content temp_log.txt | Out-File -FilePath %logfile% -Append -Encoding utf8 }"
+    echo.
+     powershell -Command "& { try { %command% %args% 2>&1 | Tee-Object -FilePath temp_log.txt -Append; Get-Content temp_log.txt | Out-File -FilePath %logfile% -Append -Encoding utf8 } catch { Write-Output $_.Exception.Message | Tee-Object -FilePath temp_log.txt -Append; Get-Content temp_log.txt | Out-File -FilePath %logfile% -Append -Encoding utf8 } }"
+    del temp_log.txt
+    echo. >> %logfile%
     echo =============== >> %logfile%
     echo End of execution. >> %logfile%
     echo =============== >> %logfile%
+    echo. >> %logfile%
+    echo.
     echo ===============
     echo End of execution.
     echo ===============
+    echo.
     pause
 ) else if /i "%run%"=="help" (
+    echo ============================ >> %logfile%
     %command% /? >> %logfile% 2>&1
+    echo ============================
     %command% /?
     pause
 ) else if /i "%run%"=="skip" (
