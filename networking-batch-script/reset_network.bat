@@ -19,27 +19,26 @@ pause
 :menu
 cls
 echo ==========================================
-echo Network Troubleshooting Menu
+echo Network Troubleshooting Menu | Partially Admin = PA, Fully Admin = FA
 echo ==========================================
-echo 1. Flush DNS Cache
-echo 2. Clear ARP Cache (Fully Admin)
-echo 3. Display DNS Cache
-echo 4. Display ARP Cache
-echo 5. Release and Renew IP Address (Partially Admin) (Sequence of 3 commands) ("ipconfig" "/release" (Not Admin) , "netsh" "int ipv6 reset" (Partially Admin) and "netsh" "winsock reset" (Fully Admin))
-echo 6. Check Network Adapter Status
-echo 7. Reset Winsock (Fully Admin)
-echo 8. Reset TCP/IP Stack (IPv4) (Partially Admin)
-echo 9. Reset TCP/IP Stack (IPv6) (Partially Admin)
-echo 10. Restart DHCP and DNS Client Services (Partially Admin) (Sequence of 2 commands) ("netsh" "int ipv6 reset" (Partially Admin) and "netsh" "winsock reset" (Fully Admin))
-echo 11. Restart Network Adapters (Fully Admin)
-echo 12. Reset Network Settings (Partially Admin) (Sequence of 3 commands) ("netsh" "int ip reset" (Partially Admin), "netsh" "int ipv6 reset" (Partially Admin) and "netsh" "winsock reset" (Fully Admin))
-echo 13. Check Internet Connectivity (Renmove this)
-echo 14. Display Network Configuration
-echo 15. Check for Network Driver Updates (Doesn't work, needs to be reworked and not removed)
-echo 16. Run Multiple Commands (The whole menu for this needs to be put back into this menu instead of a separate menu)
-echo 17. Run All Commands (Needs to be reworked with a flag that checks if its in run all mode)
-echo 18. Ping an IP
-echo 19. Exit
+echo 1. Flush DNS Cache [ipconfig /flushdns]
+echo 2. Clear ARP Cache (Fully Admin) [arp -d *]
+echo 3. Display DNS Cache [ipconfig /displaydns]
+echo 4. Display ARP Cache [arp -a]
+echo 5. Release and Renew IP Address (Partially Admin) [ipconfig /release (Not Admin), netsh int ipv6 reset (Partially Admin), netsh winsock reset (Fully Admin)]
+echo 6. Check Network Adapter Status [netsh interface show interface]
+echo 7. Reset Winsock (Fully Admin) [netsh winsock reset]
+echo 8. Reset TCP/IP Stack (IPv4) (Partially Admin) [netsh int ip reset]
+echo 9. Reset TCP/IP Stack (IPv6) (Partially Admin) [netsh int ipv6 reset]
+echo 10. Restart DHCP and DNS Client Services (Partially Admin) [netsh int ipv6 reset (Partially Admin), netsh winsock reset (Fully Admin)]
+echo 11. Restart Network Adapters (Fully Admin) [netsh interface set interface name="Ethernet" admin=disable, netsh interface set interface name="Ethernet" admin=enable]
+echo 12. Reset Network Settings (Partially Admin) [netsh int ip reset (Partially Admin), netsh int ipv6 reset (Partially Admin), netsh winsock reset (Fully Admin)]
+echo 13. Display Network Configuration [ipconfig /all]
+echo 14. Check for Network Driver Updates (Doesn't work, needs to be reworked and not removed) [wmic path win32_pnpentity get caption, driverversion]
+echo 15. Run Multiple Commands (The whole menu for this needs to be put back into this menu instead of a separate menu)
+echo 16. Run All Commands (Needs to be reworked with a flag that checks if its in run all mode) 
+echo 17. Ping an IP 
+echo 18. Exit
 echo ==========================================
 echo.
 set /p choice=Choose an option (1-19):
@@ -61,13 +60,12 @@ if "%choice%"=="9" goto reset_tcp_ipv6
 if "%choice%"=="10" goto restart_dhcp_dns
 if "%choice%"=="11" goto restart_adapters
 if "%choice%"=="12" goto reset_network_settings
-if "%choice%"=="13" goto check_internet_connectivity
-if "%choice%"=="14" goto display_network_config
-if "%choice%"=="15" goto check_driver_updates
-if "%choice%"=="16" goto run_multiple_commands
-if "%choice%"=="17" goto run_all_commands
-if "%choice%"=="18" goto ping_ip
-if "%choice%"=="19" goto exit_script
+if "%choice%"=="13" goto display_network_config
+if "%choice%"=="14" goto check_driver_updates
+if "%choice%"=="15" goto run_multiple_commands
+if "%choice%"=="16" goto run_all_commands
+if "%choice%"=="17" goto ping_ip
+if "%choice%"=="18" goto exit_script
 goto menu
 
 :flush_dns
@@ -125,10 +123,6 @@ call :log_command "netsh" "int ipv6 reset" "Resets TCP/IP stack (IPv6)."
 call :log_command "netsh" "winsock reset" "Resets Winsock."
 goto menu
 
-:check_internet_connectivity
-call :log_command "ping" "www.google.com" "Checks internet connectivity by pinging Google."
-goto menu
-
 :display_network_config
 call :log_command "ipconfig" "/all" "Displays the current network configuration."
 goto menu
@@ -144,11 +138,10 @@ echo Run Multiple Commands
 echo ==========================================
 echo 1. Flush DNS Cache, Reset Winsock, Reset TCP/IP Stack (IPv4), Clear ARP Cache
 echo 2. Restart DHCP and DNS Client Services, Restart Network Adapters
-echo 3. Reset Network Settings, Check Internet Connectivity
-echo 4. Return to Main Menu
+echo 2. Return to Main Menu
 echo ==========================================
 echo.
-set /p multi_choice=Choose an option (1-4):
+set /p multi_choice=Choose an option (1-3):
 
 if "%multi_choice%"=="1" (
     call :flush_dns
@@ -158,10 +151,7 @@ if "%multi_choice%"=="1" (
 ) else if "%multi_choice%"=="2" (
     call :restart_dhcp_dns
     call :restart_adapters
-) else if "%multi_choice%"=="3" (
-    call :reset_network_settings
-    call :check_internet_connectivity
-) else if "%multi_choice%"=="4" (
+)  else if "%multi_choice%"=="3" (
     goto menu
 ) else (
     echo Invalid choice. Please try again.
@@ -183,7 +173,6 @@ call :reset_tcp_ipv6
 call :restart_dhcp_dns
 call :restart_adapters
 call :reset_network_settings
-call :check_internet_connectivity
 call :display_network_config
 call :check_driver_updates
 goto menu
