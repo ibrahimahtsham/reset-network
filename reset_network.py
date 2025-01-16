@@ -4,6 +4,7 @@ from tkinter import scrolledtext
 import logging
 from datetime import datetime
 import os
+import menu_items
 
 # Create logs directory if it doesn't exist
 if not os.path.exists("logs"):
@@ -78,117 +79,22 @@ def on_enter(event):
         execute_command(user_input, "", clear_log=False)
 
 
-# Command functions
-def flush_dns():
-    show_command_description(
-        "Flushes the DNS cache to resolve DNS-related issues.",
-        "ipconfig /flushdns",
-        "DNS cache flushed successfully.",
-    )
+# Function to show command description and execution button
+def show_command_description(description, command, success_message):
+    logging.debug(f"Showing command: {description}, {command}, {success_message}")
+    description_label.config(text=description)
+    logging.debug(f"Updated description_label: {description}")
+    execute_button.config(command=lambda: execute_command(command, success_message))
+    logging.debug(f"Updated execute_button with command: {command}")
 
 
-def clear_arp():
-    show_command_description(
-        "Clears the ARP cache to resolve ARP-related issues.",
-        "arp -d",
-        "ARP cache cleared successfully.",
-    )
-
-
-def test_connectivity():
-    show_test_connectivity_menu()
-
-
-def display_dns():
-    show_command_description(
-        "Displays the current DNS cache entries.",
-        "ipconfig /displaydns",
-        "DNS cache displayed.",
-    )
-
-
-def reset_network():
-    show_command_description(
-        "Resets network settings to default.",
-        "netsh int ip reset",
-        "Network settings reset successfully.",
-    )
-
-
-def release_renew_ip():
-    show_command_description(
-        "Releases and renews the IP address.",
-        "ipconfig /release && ipconfig /renew",
-        "IP address released and renewed.",
-    )
-
-
-def check_adapter_status():
-    show_command_description(
-        "Displays the status of network adapters.",
-        "netsh interface show interface",
-        "Network adapter status displayed.",
-    )
-
-
-def reset_winsock():
-    show_command_description(
-        "Resets Winsock settings. Requires a restart.",
-        "netsh winsock reset",
-        "Winsock reset successfully. Please restart your computer for changes to take effect.",
-    )
-
-
-def reset_ipv4():
-    show_command_description(
-        "Resets the IPv4 TCP/IP stack. Requires a restart.",
-        "netsh int ip reset",
-        "IPv4 TCP/IP stack reset successfully. Please restart your computer for changes to take effect.",
-    )
-
-
-def reset_ipv6():
-    show_command_description(
-        "Resets the IPv6 TCP/IP stack. Requires a restart.",
-        "netsh int ipv6 reset",
-        "IPv6 TCP/IP stack reset successfully. Please restart your computer for changes to take effect.",
-    )
-
-
-def restart_services():
-    show_command_description(
-        "Restarts DHCP and DNS Client services.",
-        "net stop dhcp && net start dhcp && net stop dnscache && net start dnscache",
-        "DHCP and DNS Client services restarted.",
-    )
-
-
-def restart_adapters():
-    show_command_description(
-        "Restarts network adapters.",
-        'for /f "tokens=*" %%A in (\'netsh interface show interface ^| findstr /C:"Enabled"\') do (netsh interface set interface name="%%A" admin=disable && timeout /t 2 >nul && netsh interface set interface name="%%A" admin=enable)',
-        "Network adapters restarted.",
-    )
-
-
-def display_network_config():
-    show_command_description(
-        "Displays the current network configuration.",
-        "ipconfig /all",
-        "Network configuration displayed.",
-    )
-
-
-def check_driver_updates():
-    show_command_description(
-        "Checks for updates to network drivers.",
-        "wmic path win32_pnpentity where \"DeviceID like '%%PCI%%'\" get DeviceID, Name, Manufacturer, DriverVersion",
-        "Network driver updates check completed.",
-    )
-
-
-def show_help(command, description):
-    show_command_description(description, f"{command} /?", description)
+# Function to show a submenu
+def show_submenu(submenu_name):
+    logging.debug(f"Showing submenu: {submenu_name}")
+    clear_buttons()
+    log_text.delete(1.0, tk.END)  # Clear the screen
+    menu_title.config(text=submenu_name.replace("_", " ").title())
+    add_buttons(getattr(menu_items, submenu_name))
 
 
 # Function to increase font size
@@ -214,18 +120,6 @@ def update_button_fonts(size):
     for widget in buttons_frame.winfo_children():
         if isinstance(widget, tk.Button):
             widget.config(font=("Arial", size))
-
-
-# Function to execute a sequence of commands
-def execute_sequence(commands):
-    for command, success_message in commands:
-        execute_command(command, success_message)
-
-
-# Function to show command description and execution button
-def show_command_description(description, command, success_message):
-    description_label.config(text=description)
-    execute_button.config(command=lambda: execute_command(command, success_message))
 
 
 # GUI setup
@@ -309,30 +203,13 @@ menu_title.pack(pady=10)
 
 # Function to switch to the main menu
 def show_main_menu():
-    clear_buttons()
-    log_text.delete(1.0, tk.END)  # Clear the screen
-    menu_title.config(text="Main Menu")
-    add_buttons(main_menu_buttons)
-
-
-# Function to switch to the help menu
-def show_help_menu():
-    clear_buttons()
-    log_text.delete(1.0, tk.END)  # Clear the screen
-    menu_title.config(text="Help Menu")
-    add_buttons(help_menu_buttons)
-
-
-# Function to switch to the test connectivity menu
-def show_test_connectivity_menu():
-    clear_buttons()
-    log_text.delete(1.0, tk.END)  # Clear the screen
-    menu_title.config(text="Test Connectivity")
-    add_buttons(test_connectivity_buttons)
+    logging.debug("Showing main menu")
+    show_submenu("main_menu")
 
 
 # Function to clear all buttons except the menu title
 def clear_buttons():
+    logging.debug("Clearing buttons")
     for widget in buttons_frame.winfo_children():
         if widget != menu_title:
             widget.destroy()
@@ -340,132 +217,60 @@ def clear_buttons():
 
 # Function to add buttons to the sidebar
 def add_buttons(buttons):
-    for text, command in buttons:
-        btn = tk.Button(
-            buttons_frame, text=text, command=command, width=25, wraplength=200, **style
-        )
+    logging.debug(f"Adding buttons: {buttons}")
+    for item in buttons:
+        logging.debug(f"Adding button: {item['text']}")
+        if "submenu" in item:
+            btn = tk.Button(
+                buttons_frame,
+                text=item["text"],
+                command=lambda submenu=item["submenu"]: show_submenu(submenu),
+                width=25,
+                wraplength=200,
+                **style,
+            )
+        elif "custom_input" in item:
+            btn = tk.Button(
+                buttons_frame,
+                text=item["text"],
+                command=lambda: log_text.insert(tk.END, item["description"]),
+                width=25,
+                wraplength=200,
+                **style,
+            )
+        elif "commands" in item:
+            btn = tk.Button(
+                buttons_frame,
+                text=item["text"],
+                command=lambda: execute_sequence(item["commands"]),
+                width=25,
+                wraplength=200,
+                **style,
+            )
+        else:
+            btn = tk.Button(
+                buttons_frame,
+                text=item["text"],
+                command=lambda item=item: show_command_description(
+                    item["description"], item["command"], item["success_message"]
+                ),
+                width=25,
+                wraplength=200,
+                **style,
+            )
         btn.pack(pady=5, fill=tk.X, expand=True)
+        btn.bind(
+            "<Button-1>",
+            lambda event, item=item: logging.debug(f"Button clicked: {item['text']}"),
+        )
 
 
-# Main menu buttons
-main_menu_buttons = [
-    ("Flush DNS Cache", flush_dns),
-    ("Clear ARP Cache", clear_arp),
-    ("Test Connectivity", test_connectivity),
-    ("Display DNS Cache", display_dns),
-    ("Reset Network Settings", reset_network),
-    ("Release and Renew IP Address", release_renew_ip),
-    ("Check Network Adapter Status", check_adapter_status),
-    ("Reset Winsock", reset_winsock),
-    ("Reset TCP/IP Stack (IPv4)", reset_ipv4),
-    ("Reset TCP/IP Stack (IPv6)", reset_ipv6),
-    ("Restart DHCP and DNS Client Services", restart_services),
-    ("Restart Network Adapters", restart_adapters),
-    ("Display Network Configuration", display_network_config),
-    ("Check for Network Driver Updates", check_driver_updates),
-    ("Help", show_help_menu),
-    (
-        "Flush DNS, Clear ARP, and Test Connectivity",
-        lambda: show_command_description(
-            "Flushes DNS, clears ARP, and tests connectivity.",
-            "ipconfig /flushdns && arp -d && ping 8.8.8.8 -n 4",
-            "Sequence completed: DNS cache flushed, ARP cache cleared, and connectivity tested.",
-        ),
-    ),
-]
+# Function to execute a sequence of commands
+def execute_sequence(commands):
+    for command in commands:
+        logging.debug(f"Executing sequence command: {command['command']}")
+        execute_command(command["command"], command["success_message"])
 
-# Help menu buttons
-help_menu_buttons = [
-    ("Flush DNS", lambda: show_help("ipconfig /flushdns", "Flush DNS Cache")),
-    ("Clear ARP", lambda: show_help("arp -d", "Clear ARP Cache")),
-    ("Ping", lambda: show_help("ping", "Test Connectivity")),
-    ("Display DNS", lambda: show_help("ipconfig /displaydns", "Display DNS Cache")),
-    (
-        "Reset Network",
-        lambda: show_help("netsh int ip reset", "Reset Network Settings"),
-    ),
-    (
-        "Release/Renew IP",
-        lambda: show_help(
-            "ipconfig /release && ipconfig /renew", "Release and Renew IP Address"
-        ),
-    ),
-    (
-        "Check Adapter",
-        lambda: show_help(
-            "netsh interface show interface", "Check Network Adapter Status"
-        ),
-    ),
-    ("Reset Winsock", lambda: show_help("netsh winsock reset", "Reset Winsock")),
-    (
-        "Reset IPv4",
-        lambda: show_help("netsh int ip reset", "Reset TCP/IP Stack (IPv4)"),
-    ),
-    (
-        "Reset IPv6",
-        lambda: show_help("netsh int ipv6 reset", "Reset TCP/IP Stack (IPv6)"),
-    ),
-    (
-        "Restart Services",
-        lambda: show_help(
-            "net stop dhcp && net start dhcp && net stop dnscache && net start dnscache",
-            "Restart DHCP and DNS Client Services",
-        ),
-    ),
-    (
-        "Restart Adapters",
-        lambda: show_help(
-            'netsh interface set interface name="[Adapter Name]" admin=disable && netsh interface set interface name="[Adapter Name]" admin=enable',
-            "Restart Network Adapters",
-        ),
-    ),
-    (
-        "Check Internet",
-        lambda: show_help("ping www.google.com", "Check Internet Connectivity"),
-    ),
-    (
-        "Display Config",
-        lambda: show_help("ipconfig /all", "Display Network Configuration"),
-    ),
-    (
-        "Check Drivers",
-        lambda: show_help(
-            "wmic path win32_pnpentity where \"DeviceID like '%%PCI%%'\" get DeviceID, Name, Manufacturer, DriverVersion",
-            "Check for Network Driver Updates",
-        ),
-    ),
-    ("Back to Main Menu", show_main_menu),
-]
-
-# Test connectivity menu buttons
-test_connectivity_buttons = [
-    (
-        "Ping Google DNS (8.8.8.8)",
-        lambda: show_command_description(
-            "Pings Google DNS to test connectivity.",
-            "ping 8.8.8.8 -n 4",
-            "Ping to Google DNS complete.",
-        ),
-    ),
-    (
-        "Ping Cloudflare DNS (1.1.1.1)",
-        lambda: show_command_description(
-            "Pings Cloudflare DNS to test connectivity.",
-            "ping 1.1.1.1 -n 4",
-            "Ping to Cloudflare DNS complete.",
-        ),
-    ),
-    (
-        "Ping OpenDNS (208.67.222.222)",
-        lambda: show_command_description(
-            "Pings OpenDNS to test connectivity.",
-            "ping 208.67.222.222 -n 4",
-            "Ping to OpenDNS complete.",
-        ),
-    ),
-    ("Enter Custom IP", lambda: log_text.insert(tk.END, "Enter IP to ping: ")),
-    ("Back to Main Menu", show_main_menu),
-]
 
 # Show the main menu initially
 show_main_menu()
