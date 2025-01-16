@@ -1,0 +1,30 @@
+Logging started at 2025-01-17_02-41-19 
+============================ 
+Command: "ipconfig" "/flushdns" 
+Description: "Flushes and resets the contents of the DNS client resolver cache." 
+============================ 
+============================ 
+Running command: "ipconfig" "/flushdns" 
+============================ 
+
+Windows IP Configuration
+
+Successfully flushed the DNS Resolver Cache.
+=============== 
+End of execution. 
+=============== 
+============================ 
+Command: "ipconfig" "/flushdns" 
+Description: "Flushes and resets the contents of the DNS client resolver cache." 
+============================ 
+============================ 
+Running command: "ipconfig" "/flushdns" 
+============================ 
+
+Windows IP Configuration
+
+Successfully flushed the DNS Resolver Cache.
+=============== 
+End of execution. 
+=============== 
+Logging ended at 17-Jan-25  2:43:26.92 
