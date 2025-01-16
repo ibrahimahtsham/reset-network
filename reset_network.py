@@ -35,15 +35,12 @@ def execute_command(command, success_message, clear_log=False):
             text=True,
             shell=True,
         )
-        output = ""
-        for line in result.stdout:
-            output += line
-            log_output(line)
-        result.wait()
+        output, error = result.communicate()
+        log_output(output)
         if result.returncode == 0:
             log_output(success_message)
         else:
-            error_message = f"Command failed with error:\n{result.stderr.read()}"
+            error_message = f"Command failed with error:\n{error}"
             log_output(error_message)
             logging.error(error_message)
     except Exception as e:
@@ -122,9 +119,60 @@ def update_button_fonts(size):
             widget.config(font=("Arial", size))
 
 
+# Function to dynamically set the size of the buttons frame
+def update_buttons_frame_size():
+    buttons_frame.update_idletasks()
+    width = max(button.winfo_reqwidth() for button in buttons_frame.winfo_children())
+    height = sum(button.winfo_reqheight() for button in buttons_frame.winfo_children())
+    buttons_frame.config(width=width, height=height)
+    sidebar_canvas.config(scrollregion=sidebar_canvas.bbox("all"))
+
+
+# Function to clear all buttons except the menu title
+def clear_buttons():
+    logging.debug("Clearing buttons")
+    for widget in buttons_frame.winfo_children():
+        if widget != menu_title:
+            widget.destroy()
+
+
+# Function to add buttons to the sidebar
+def add_buttons(buttons):
+    logging.debug(f"Adding buttons: {buttons}")
+    for item in buttons:
+        logging.debug(f"Adding button: {item['text']}")
+        btn = tk.Button(
+            buttons_frame,
+            text=item["text"],
+            command=lambda item=item: (
+                show_command_description(
+                    item["description"], item["command"], item["success_message"]
+                )
+                if "command" in item
+                else lambda: show_submenu(item["submenu"])
+            ),
+            width=25,
+            wraplength=200,  # Enable text wrapping
+            **style,
+        )
+        btn.pack(pady=5, fill=tk.X, expand=True)
+        btn.bind(
+            "<Button-1>",
+            lambda event, item=item: logging.debug(f"Button clicked: {item['text']}"),
+        )
+    update_buttons_frame_size()
+
+
+# Function to execute a sequence of commands
+def execute_sequence(commands):
+    for command in commands:
+        logging.debug(f"Executing sequence command: {command['command']}")
+        execute_command(command["command"], command["success_message"])
+
+
 # GUI setup
 root = tk.Tk()
-root.title("Network Troubleshooting Menu")
+root.title("some network thing idk")
 root.geometry("1200x800")  # Landscape resolution
 
 # Apply dark mode
@@ -140,9 +188,11 @@ style = {
 paned_window = tk.PanedWindow(root, orient=tk.HORIZONTAL, bg="#2e2e2e")
 paned_window.pack(fill=tk.BOTH, expand=True)
 
-# Sidebar frame
-sidebar_frame = tk.Frame(paned_window, bg="#2e2e2e", width=150)
-paned_window.add(sidebar_frame)
+# Sidebar frame with scrollbar
+sidebar_frame = tk.Frame(
+    paned_window, bg="#ff0000", width=200
+)  # Red background for debugging
+paned_window.add(sidebar_frame, minsize=200)
 
 # Scrollbar for sidebar
 sidebar_scrollbar = tk.Scrollbar(sidebar_frame)
@@ -150,24 +200,24 @@ sidebar_scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 
 # Canvas for sidebar buttons
 sidebar_canvas = tk.Canvas(
-    sidebar_frame, bg="#2e2e2e", yscrollcommand=sidebar_scrollbar.set
+    sidebar_frame,
+    bg="#00ff00",
+    yscrollcommand=sidebar_scrollbar.set,  # Green background for debugging
 )
-sidebar_canvas.pack(side=tk.LEFT, fill=tk.Y, expand=True)
+sidebar_canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 
 # Frame for buttons inside the canvas
-buttons_frame = tk.Frame(sidebar_canvas, bg="#2e2e2e")
+buttons_frame = tk.Frame(sidebar_canvas, bg="#0000ff")  # Blue background for debugging
 sidebar_canvas.create_window((0, 0), window=buttons_frame, anchor="nw")
 
 # Configure scrollbar
 sidebar_scrollbar.config(command=sidebar_canvas.yview)
 
-
 # Update scroll region
-def on_configure(event):
-    sidebar_canvas.configure(scrollregion=sidebar_canvas.bbox("all"))
-
-
-buttons_frame.bind("<Configure>", on_configure)
+buttons_frame.bind(
+    "<Configure>",
+    lambda e: sidebar_canvas.configure(scrollregion=sidebar_canvas.bbox("all")),
+)
 
 # Text box for logging
 log_text = scrolledtext.ScrolledText(
@@ -205,71 +255,6 @@ menu_title.pack(pady=10)
 def show_main_menu():
     logging.debug("Showing main menu")
     show_submenu("main_menu")
-
-
-# Function to clear all buttons except the menu title
-def clear_buttons():
-    logging.debug("Clearing buttons")
-    for widget in buttons_frame.winfo_children():
-        if widget != menu_title:
-            widget.destroy()
-
-
-# Function to add buttons to the sidebar
-def add_buttons(buttons):
-    logging.debug(f"Adding buttons: {buttons}")
-    for item in buttons:
-        logging.debug(f"Adding button: {item['text']}")
-        if "submenu" in item:
-            btn = tk.Button(
-                buttons_frame,
-                text=item["text"],
-                command=lambda submenu=item["submenu"]: show_submenu(submenu),
-                width=25,
-                wraplength=200,
-                **style,
-            )
-        elif "custom_input" in item:
-            btn = tk.Button(
-                buttons_frame,
-                text=item["text"],
-                command=lambda: log_text.insert(tk.END, item["description"]),
-                width=25,
-                wraplength=200,
-                **style,
-            )
-        elif "commands" in item:
-            btn = tk.Button(
-                buttons_frame,
-                text=item["text"],
-                command=lambda: execute_sequence(item["commands"]),
-                width=25,
-                wraplength=200,
-                **style,
-            )
-        else:
-            btn = tk.Button(
-                buttons_frame,
-                text=item["text"],
-                command=lambda item=item: show_command_description(
-                    item["description"], item["command"], item["success_message"]
-                ),
-                width=25,
-                wraplength=200,
-                **style,
-            )
-        btn.pack(pady=5, fill=tk.X, expand=True)
-        btn.bind(
-            "<Button-1>",
-            lambda event, item=item: logging.debug(f"Button clicked: {item['text']}"),
-        )
-
-
-# Function to execute a sequence of commands
-def execute_sequence(commands):
-    for command in commands:
-        logging.debug(f"Executing sequence command: {command['command']}")
-        execute_command(command["command"], command["success_message"])
 
 
 # Show the main menu initially
