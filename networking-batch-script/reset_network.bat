@@ -18,9 +18,9 @@ pause
 
 :menu
 cls
-echo ==========================================
+echo ============================================================
 echo Network Troubleshooting Menu | Partially Admin = PA, Fully Admin = FA
-echo ==========================================
+echo ============================================================
 echo 1. Flush DNS Cache [ipconfig /flushdns]
 echo 2. Clear ARP Cache (Fully Admin) [arp -d *]
 echo 3. Display DNS Cache [ipconfig /displaydns]
@@ -39,14 +39,14 @@ echo 15. Run Multiple Commands (The whole menu for this needs to be put back int
 echo 16. Run All Commands (Needs to be reworked with a flag that checks if its in run all mode) 
 echo 17. Ping an IP 
 echo 18. Exit
-echo ==========================================
+echo ============================================================
 echo.
 set /p choice=Choose an option (1-19):
 
 echo. >> %logfile%
-echo ============================ >> %logfile%
+echo ============================================================ >> %logfile%
 echo Choice number chosen: %choice% >> %logfile%
-echo ============================ >> %logfile%
+echo ============================================================ >> %logfile%
 
 if "%choice%"=="1" goto flush_dns
 if "%choice%"=="2" goto clear_arp_cache
@@ -133,13 +133,13 @@ goto menu
 
 :run_multiple_commands
 cls
-echo ==========================================
+echo ============================================================
 echo Run Multiple Commands
-echo ==========================================
+echo ============================================================
 echo 1. Flush DNS Cache, Reset Winsock, Reset TCP/IP Stack (IPv4), Clear ARP Cache
 echo 2. Restart DHCP and DNS Client Services, Restart Network Adapters
 echo 2. Return to Main Menu
-echo ==========================================
+echo ============================================================
 echo.
 set /p multi_choice=Choose an option (1-3):
 
@@ -179,15 +179,15 @@ goto menu
 
 :ping_ip
 cls
-echo ==========================================
+echo ============================================================
 echo Ping an IP
-echo ==========================================
+echo ============================================================
 echo 1. Ping Google
 echo 2. Ping Cloudflare
 echo 3. Ping OpenDNS
 echo 4. Custom IP
 echo 5. Back to Main Menu
-echo ==========================================
+echo ============================================================
 echo.
 set /p ping_choice=Choose an IP to ping (1-5):
 if "%ping_choice%"=="1" set ip=www.google.com
@@ -218,16 +218,16 @@ set command=%1
 set args=%2
 set description=%3
 echo. >> %logfile%
-echo ============================ >> %logfile%
+echo ============================================================ >> %logfile%
 echo Command: %command% %args% >> %logfile%
 echo Description: %description% >> %logfile%
-echo ============================ >> %logfile%
+echo ============================================================ >> %logfile%
 echo. >> %logfile%
 echo.
-echo ============================
+echo ============================================================
 echo Command: %command% %args%
 echo Description: %description%
-echo ============================
+echo ============================================================
 echo.
 echo Type 'skip' to skip the command.
 echo Type 'help' for more info on the command.
@@ -237,32 +237,32 @@ echo. >> %logfile%
 echo.
 if /i "%run%"=="run" (
     echo. >> %logfile%
-    echo ============================ >> %logfile%
+    echo ============================================================ >> %logfile%
     echo Running command: %command% %args% >> %logfile%
-    echo ============================ >> %logfile%
+    echo ============================================================ >> %logfile%
     echo. >> %logfile%
     echo.
-    echo ============================
+    echo ============================================================
     echo Running command: %command% %args%
-    echo ============================
+    echo ============================================================
     echo.
      powershell -Command "& { try { %command% %args% 2>&1 | Tee-Object -FilePath temp_log.txt -Append; Get-Content temp_log.txt | Out-File -FilePath %logfile% -Append -Encoding utf8 } catch { Write-Output $_.Exception.Message | Tee-Object -FilePath temp_log.txt -Append; Get-Content temp_log.txt | Out-File -FilePath %logfile% -Append -Encoding utf8 } }"
     del temp_log.txt
     echo. >> %logfile%
-    echo =============== >> %logfile%
+    echo ============================================================ >> %logfile%
     echo End of execution. >> %logfile%
-    echo =============== >> %logfile%
+    echo ============================================================ >> %logfile%
     echo. >> %logfile%
     echo.
-    echo ===============
+    echo ============================================================
     echo End of execution.
-    echo ===============
+    echo ============================================================
     echo.
     pause
 ) else if /i "%run%"=="help" (
-    echo ============================ >> %logfile%
+    echo ============================================================ >> %logfile%
     %command% /? >> %logfile% 2>&1
-    echo ============================
+    echo ============================================================
     %command% /?
     pause
 ) else if /i "%run%"=="skip" (
