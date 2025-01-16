@@ -80,9 +80,11 @@ def on_enter(event):
 
 
 # Function to show command description and execution button
-def show_command_description(description, command, success_message):
-    logging.debug(f"Showing command: {description}, {command}, {success_message}")
-    description_label.config(text=description)
+def show_command_description(description, command, success_message, long_description):
+    logging.debug(
+        f"Showing command: {description}, {command}, {success_message}, {long_description}"
+    )
+    description_label.config(text=f"{description}\n\n{long_description}")
     logging.debug(f"Updated description_label: {description}")
     execute_button.config(command=lambda: execute_command(command, success_message))
     logging.debug(f"Updated execute_button with command: {command}")
@@ -99,17 +101,18 @@ def show_submenu(submenu_name):
 
 # Function to increase font size
 def increase_font_size(event):
-    current_size = log_text.cget("font").split()[1]
-    new_size = int(current_size) + 2
-    log_text.config(font=("Arial", new_size))
-    menu_title.config(font=("Arial", new_size))
-    update_button_fonts(new_size)
+    update_font_size(2)
 
 
 # Function to decrease font size
 def decrease_font_size(event):
-    current_size = log_text.cget("font").split()[1]
-    new_size = int(current_size) - 2
+    update_font_size(-2)
+
+
+# Function to update font size
+def update_font_size(delta):
+    current_size = int(log_text.cget("font").split()[1])
+    new_size = current_size + delta
     log_text.config(font=("Arial", new_size))
     menu_title.config(font=("Arial", new_size))
     update_button_fonts(new_size)
@@ -126,9 +129,8 @@ def update_button_fonts(size):
 root = tk.Tk()
 root.title("Network Troubleshooting Menu")
 root.geometry("1200x800")  # Landscape resolution
+root.configure(bg="#2e2e2e", padx=10, pady=10)  # Apply dark mode and padding
 
-# Apply dark mode
-root.configure(bg="#2e2e2e")
 style = {
     "bg": "#2e2e2e",
     "fg": "#ffffff",
@@ -144,14 +146,8 @@ paned_window.pack(fill=tk.BOTH, expand=True)
 sidebar_frame = tk.Frame(paned_window, bg="#2e2e2e", width=150)
 paned_window.add(sidebar_frame)
 
-# Scrollbar for sidebar
-sidebar_scrollbar = tk.Scrollbar(sidebar_frame)
-sidebar_scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
-
 # Canvas for sidebar buttons
-sidebar_canvas = tk.Canvas(
-    sidebar_frame, bg="#2e2e2e", yscrollcommand=sidebar_scrollbar.set
-)
+sidebar_canvas = tk.Canvas(sidebar_frame, bg="#2e2e2e")
 sidebar_canvas.pack(side=tk.LEFT, fill=tk.Y, expand=True)
 
 # Frame for buttons inside the canvas
@@ -159,7 +155,10 @@ buttons_frame = tk.Frame(sidebar_canvas, bg="#2e2e2e")
 sidebar_canvas.create_window((0, 0), window=buttons_frame, anchor="nw")
 
 # Configure scrollbar
-sidebar_scrollbar.config(command=sidebar_canvas.yview)
+sidebar_canvas.bind_all(
+    "<MouseWheel>",
+    lambda event: sidebar_canvas.yview_scroll(int(-1 * (event.delta / 120)), "units"),
+)
 
 
 # Update scroll region
@@ -183,7 +182,7 @@ paned_window.add(log_text)
 log_text.bind("<Return>", on_enter)
 
 # Bottom frame for command description and execution button
-bottom_frame = tk.Frame(root, bg="#2e2e2e")
+bottom_frame = tk.Frame(root, bg="#2e2e2e", padx=10, pady=10)
 bottom_frame.pack(fill=tk.X, side=tk.BOTTOM)
 
 description_label = tk.Label(
@@ -220,43 +219,27 @@ def add_buttons(buttons):
     logging.debug(f"Adding buttons: {buttons}")
     for item in buttons:
         logging.debug(f"Adding button: {item['text']}")
+        btn = tk.Button(
+            buttons_frame,
+            text=item["text"],
+            width=25,
+            wraplength=200,
+            **style,
+        )
         if "submenu" in item:
-            btn = tk.Button(
-                buttons_frame,
-                text=item["text"],
-                command=lambda submenu=item["submenu"]: show_submenu(submenu),
-                width=25,
-                wraplength=200,
-                **style,
-            )
+            btn.config(command=lambda submenu=item["submenu"]: show_submenu(submenu))
         elif "custom_input" in item:
-            btn = tk.Button(
-                buttons_frame,
-                text=item["text"],
-                command=lambda: log_text.insert(tk.END, item["description"]),
-                width=25,
-                wraplength=200,
-                **style,
-            )
+            btn.config(command=lambda: log_text.insert(tk.END, item["description"]))
         elif "commands" in item:
-            btn = tk.Button(
-                buttons_frame,
-                text=item["text"],
-                command=lambda: execute_sequence(item["commands"]),
-                width=25,
-                wraplength=200,
-                **style,
-            )
+            btn.config(command=lambda: execute_sequence(item["commands"]))
         else:
-            btn = tk.Button(
-                buttons_frame,
-                text=item["text"],
+            btn.config(
                 command=lambda item=item: show_command_description(
-                    item["description"], item["command"], item["success_message"]
-                ),
-                width=25,
-                wraplength=200,
-                **style,
+                    item["description"],
+                    item["command"],
+                    item["success_message"],
+                    item.get("long_description", ""),
+                )
             )
         btn.pack(pady=5, fill=tk.X, expand=True)
         btn.bind(
