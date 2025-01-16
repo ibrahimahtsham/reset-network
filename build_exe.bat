@@ -9,4 +9,12 @@ pyinstaller --onefile --windowed "%SCRIPT_NAME%"
 
 :: Notify the user
 echo Build complete! Your executable is located in the "dist" folder.
+
+:: Play a sound to notify the user
+powershell -c (New-Object Media.SoundPlayer "C:\Windows\Media\notify.wav").PlaySync();
+
+:: Execute the generated executable
+set EXE_NAME=%SCRIPT_NAME:~0,-3%.exe
+start "" "dist\%EXE_NAME%"
+
 pause

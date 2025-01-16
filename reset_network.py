@@ -21,6 +21,7 @@ logging.basicConfig(
 # Function to execute a command and show the output
 def execute_command(command, success_message, clear_log=False):
     logging.debug(f"Executing command: {command}")
+    log_output(f"Executing command: {command}")
     try:
         if clear_log:
             log_text.delete(1.0, tk.END)
@@ -158,6 +159,31 @@ def show_help(command, description):
     execute_command(f"{command} /?", description, clear_log=True)
 
 
+# Function to increase font size
+def increase_font_size(event):
+    current_size = log_text.cget("font").split()[1]
+    new_size = int(current_size) + 2
+    log_text.config(font=("Arial", new_size))
+    menu_title.config(font=("Arial", new_size))
+    update_button_fonts(new_size)
+
+
+# Function to decrease font size
+def decrease_font_size(event):
+    current_size = log_text.cget("font").split()[1]
+    new_size = int(current_size) - 2
+    log_text.config(font=("Arial", new_size))
+    menu_title.config(font=("Arial", new_size))
+    update_button_fonts(new_size)
+
+
+# Function to update button fonts
+def update_button_fonts(size):
+    for widget in buttons_frame.winfo_children():
+        if isinstance(widget, tk.Button):
+            widget.config(font=("Arial", size))
+
+
 # GUI setup
 root = tk.Tk()
 root.title("Network Troubleshooting Menu")
@@ -177,7 +203,7 @@ paned_window = tk.PanedWindow(root, orient=tk.HORIZONTAL, bg="#2e2e2e")
 paned_window.pack(fill=tk.BOTH, expand=True)
 
 # Sidebar frame
-sidebar_frame = tk.Frame(paned_window, bg="#2e2e2e", width=300)
+sidebar_frame = tk.Frame(paned_window, bg="#2e2e2e", width=200)
 paned_window.add(sidebar_frame)
 
 # Scrollbar for sidebar
@@ -254,7 +280,9 @@ def clear_buttons():
 # Function to add buttons to the sidebar
 def add_buttons(buttons):
     for text, command in buttons:
-        btn = tk.Button(buttons_frame, text=text, command=command, width=30, **style)
+        btn = tk.Button(
+            buttons_frame, text=text, command=command, width=30, wraplength=250, **style
+        )
         btn.pack(pady=5)
 
 
@@ -364,6 +392,10 @@ test_connectivity_buttons = [
 
 # Show the main menu initially
 show_main_menu()
+
+# Bind font size increase and decrease to Ctrl + and Ctrl -
+root.bind("<Control-=>", increase_font_size)
+root.bind("<Control-minus>", decrease_font_size)
 
 # Run the GUI loop
 root.mainloop()

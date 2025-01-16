@@ -1,0 +1,701 @@
+2025-01-16 16:51:41,160 - DEBUG - Executing command: ipconfig /flushdns
+2025-01-16 16:51:41,160 - INFO - Executing command: ipconfig /flushdns
+2025-01-16 16:51:41,234 - INFO - 
+
+2025-01-16 16:51:41,234 - INFO - Windows IP Configuration
+
+2025-01-16 16:51:41,234 - INFO - 
+
+2025-01-16 16:51:41,234 - INFO - Successfully flushed the DNS Resolver Cache.
+
+2025-01-16 16:51:41,237 - INFO - DNS cache flushed successfully.
+2025-01-16 16:51:43,055 - DEBUG - Executing command: arp -d
+2025-01-16 16:51:43,055 - INFO - Executing command: arp -d
+2025-01-16 16:51:43,138 - INFO - ARP cache cleared successfully.
+2025-01-16 16:51:49,200 - DEBUG - Executing command: ping 8.8.8.8 -n 4
+2025-01-16 16:51:49,201 - INFO - Executing command: ping 8.8.8.8 -n 4
+2025-01-16 16:51:49,288 - INFO - 
+
+2025-01-16 16:51:49,289 - INFO - Pinging 8.8.8.8 with 32 bytes of data:
+
+2025-01-16 16:51:53,298 - INFO - Request timed out.
+
+2025-01-16 16:51:54,349 - INFO - Reply from 8.8.8.8: bytes=32 time=37ms TTL=57
+
+2025-01-16 16:51:59,295 - INFO - Request timed out.
+
+2025-01-16 16:52:00,344 - INFO - Reply from 8.8.8.8: bytes=32 time=37ms TTL=57
+
+2025-01-16 16:52:00,345 - INFO - 
+
+2025-01-16 16:52:00,345 - INFO - Ping statistics for 8.8.8.8:
+
+2025-01-16 16:52:00,345 - INFO -     Packets: Sent = 4, Received = 2, Lost = 2 (50% loss),
+
+2025-01-16 16:52:00,345 - INFO - Approximate round trip times in milli-seconds:
+
+2025-01-16 16:52:00,345 - INFO -     Minimum = 37ms, Maximum = 37ms, Average = 37ms
+
+2025-01-16 16:52:00,349 - INFO - Ping to Google DNS complete.
+2025-01-16 16:52:10,227 - DEBUG - Extracted IP address: youtube.com
+2025-01-16 16:52:10,227 - DEBUG - Executing command: ping youtube.com -n 4
+2025-01-16 16:52:10,227 - INFO - Executing command: ping youtube.com -n 4
+2025-01-16 16:52:10,314 - INFO - 
+
+2025-01-16 16:52:10,314 - INFO - Pinging youtube.com [2404:6800:4002:825::200e] with 32 bytes of data:
+
+2025-01-16 16:52:10,654 - INFO - Reply from 2404:6800:4002:825::200e: time=339ms 
+
+2025-01-16 16:52:11,655 - INFO - Reply from 2404:6800:4002:825::200e: time=339ms 
+
+2025-01-16 16:52:12,667 - INFO - Reply from 2404:6800:4002:825::200e: time=340ms 
+
+2025-01-16 16:52:13,681 - INFO - Reply from 2404:6800:4002:825::200e: time=340ms 
+
+2025-01-16 16:52:13,682 - INFO - 
+
+2025-01-16 16:52:13,683 - INFO - Ping statistics for 2404:6800:4002:825::200e:
+
+2025-01-16 16:52:13,685 - INFO -     Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+
+2025-01-16 16:52:13,685 - INFO - Approximate round trip times in milli-seconds:
+
+2025-01-16 16:52:13,686 - INFO -     Minimum = 339ms, Maximum = 340ms, Average = 339ms
+
+2025-01-16 16:52:13,686 - INFO - Ping to youtube.com complete.
+2025-01-16 16:52:29,152 - DEBUG - Executing command: ipconfig /displaydns
+2025-01-16 16:52:29,152 - INFO - Executing command: ipconfig /displaydns
+2025-01-16 16:52:29,217 - INFO - 
+
+2025-01-16 16:52:29,218 - INFO - Windows IP Configuration
+
+2025-01-16 16:52:29,218 - INFO - 
+
+2025-01-16 16:52:29,219 - INFO -     1.80.28.172.in-addr.arpa
+
+2025-01-16 16:52:29,219 - INFO -     ----------------------------------------
+
+2025-01-16 16:52:29,220 - INFO -     Record Name . . . . . : 1.80.28.172.in-addr.arpa.
+
+2025-01-16 16:52:29,220 - INFO -     Record Type . . . . . : 12
+
+2025-01-16 16:52:29,221 - INFO -     Time To Live  . . . . : 504281
+
+2025-01-16 16:52:29,223 - INFO -     Data Length . . . . . : 8
+
+2025-01-16 16:52:29,224 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 16:52:29,224 - INFO -     PTR Record  . . . . . : DESKTOP-NRVEPHN.mshome.net
+
+2025-01-16 16:52:29,225 - INFO - 
+
+2025-01-16 16:52:29,225 - INFO - 
+
+2025-01-16 16:52:29,226 - INFO -     lunarclient.com
+
+2025-01-16 16:52:29,226 - INFO -     ----------------------------------------
+
+2025-01-16 16:52:29,227 - INFO -     No records of type AAAA
+
+2025-01-16 16:52:29,227 - INFO - 
+
+2025-01-16 16:52:29,227 - INFO - 
+
+2025-01-16 16:52:29,228 - INFO -     lunarclient.com
+
+2025-01-16 16:52:29,228 - INFO -     ----------------------------------------
+
+2025-01-16 16:52:29,229 - INFO -     Record Name . . . . . : lunarclient.com
+
+2025-01-16 16:52:29,229 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 16:52:29,230 - INFO -     Time To Live  . . . . : 261
+
+2025-01-16 16:52:29,230 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 16:52:29,230 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 16:52:29,231 - INFO -     A (Host) Record . . . : 104.18.12.46
+
+2025-01-16 16:52:29,232 - INFO - 
+
+2025-01-16 16:52:29,232 - INFO - 
+
+2025-01-16 16:52:29,233 - INFO -     Record Name . . . . . : lunarclient.com
+
+2025-01-16 16:52:29,233 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 16:52:29,233 - INFO -     Time To Live  . . . . : 261
+
+2025-01-16 16:52:29,234 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 16:52:29,234 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 16:52:29,235 - INFO -     A (Host) Record . . . : 104.18.13.46
+
+2025-01-16 16:52:29,235 - INFO - 
+
+2025-01-16 16:52:29,235 - INFO - 
+
+2025-01-16 16:52:29,236 - INFO -     soundcloud.com
+
+2025-01-16 16:52:29,236 - INFO -     ----------------------------------------
+
+2025-01-16 16:52:29,237 - INFO -     Record Name . . . . . : soundcloud.com
+
+2025-01-16 16:52:29,237 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 16:52:29,238 - INFO -     Time To Live  . . . . : 41
+
+2025-01-16 16:52:29,238 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 16:52:29,239 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 16:52:29,239 - INFO -     A (Host) Record . . . : 54.192.142.53
+
+2025-01-16 16:52:29,240 - INFO - 
+
+2025-01-16 16:52:29,240 - INFO - 
+
+2025-01-16 16:52:29,240 - INFO -     Record Name . . . . . : soundcloud.com
+
+2025-01-16 16:52:29,241 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 16:52:29,241 - INFO -     Time To Live  . . . . : 41
+
+2025-01-16 16:52:29,242 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 16:52:29,242 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 16:52:29,243 - INFO -     A (Host) Record . . . : 54.192.142.59
+
+2025-01-16 16:52:29,243 - INFO - 
+
+2025-01-16 16:52:29,243 - INFO - 
+
+2025-01-16 16:52:29,244 - INFO -     Record Name . . . . . : soundcloud.com
+
+2025-01-16 16:52:29,244 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 16:52:29,245 - INFO -     Time To Live  . . . . : 41
+
+2025-01-16 16:52:29,245 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 16:52:29,246 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 16:52:29,246 - INFO -     A (Host) Record . . . : 54.192.142.123
+
+2025-01-16 16:52:29,246 - INFO - 
+
+2025-01-16 16:52:29,248 - INFO - 
+
+2025-01-16 16:52:29,248 - INFO -     Record Name . . . . . : soundcloud.com
+
+2025-01-16 16:52:29,249 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 16:52:29,249 - INFO -     Time To Live  . . . . : 41
+
+2025-01-16 16:52:29,250 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 16:52:29,250 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 16:52:29,250 - INFO -     A (Host) Record . . . : 54.192.142.127
+
+2025-01-16 16:52:29,251 - INFO - 
+
+2025-01-16 16:52:29,251 - INFO - 
+
+2025-01-16 16:52:29,252 - INFO -     74.242.69.172.in-addr.arpa
+
+2025-01-16 16:52:29,252 - INFO -     ----------------------------------------
+
+2025-01-16 16:52:29,252 - INFO -     Name does not exist.
+
+2025-01-16 16:52:29,253 - INFO - 
+
+2025-01-16 16:52:29,253 - INFO - 
+
+2025-01-16 16:52:29,254 - INFO -     www.twitch.tv
+
+2025-01-16 16:52:29,254 - INFO -     ----------------------------------------
+
+2025-01-16 16:52:29,254 - INFO -     Record Name . . . . . : www.twitch.tv
+
+2025-01-16 16:52:29,255 - INFO -     Record Type . . . . . : 5
+
+2025-01-16 16:52:29,256 - INFO -     Time To Live  . . . . : 22
+
+2025-01-16 16:52:29,256 - INFO -     Data Length . . . . . : 8
+
+2025-01-16 16:52:29,257 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 16:52:29,257 - INFO -     CNAME Record  . . . . : h2.twitch.map.fastly.net
+
+2025-01-16 16:52:29,258 - INFO - 
+
+2025-01-16 16:52:29,258 - INFO - 
+
+2025-01-16 16:52:29,259 - INFO -     Record Name . . . . . : h2.twitch.map.fastly.net
+
+2025-01-16 16:52:29,259 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 16:52:29,260 - INFO -     Time To Live  . . . . : 22
+
+2025-01-16 16:52:29,260 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 16:52:29,260 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 16:52:29,261 - INFO -     A (Host) Record . . . : 151.101.194.214
+
+2025-01-16 16:52:29,261 - INFO - 
+
+2025-01-16 16:52:29,262 - INFO - 
+
+2025-01-16 16:52:29,262 - INFO -     Record Name . . . . . : h2.twitch.map.fastly.net
+
+2025-01-16 16:52:29,262 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 16:52:29,264 - INFO -     Time To Live  . . . . : 22
+
+2025-01-16 16:52:29,264 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 16:52:29,265 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 16:52:29,265 - INFO -     A (Host) Record . . . : 151.101.66.214
+
+2025-01-16 16:52:29,265 - INFO - 
+
+2025-01-16 16:52:29,266 - INFO - 
+
+2025-01-16 16:52:29,266 - INFO -     Record Name . . . . . : h2.twitch.map.fastly.net
+
+2025-01-16 16:52:29,267 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 16:52:29,267 - INFO -     Time To Live  . . . . : 22
+
+2025-01-16 16:52:29,268 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 16:52:29,268 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 16:52:29,268 - INFO -     A (Host) Record . . . : 151.101.130.214
+
+2025-01-16 16:52:29,269 - INFO - 
+
+2025-01-16 16:52:29,269 - INFO - 
+
+2025-01-16 16:52:29,270 - INFO -     Record Name . . . . . : h2.twitch.map.fastly.net
+
+2025-01-16 16:52:29,270 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 16:52:29,270 - INFO -     Time To Live  . . . . : 22
+
+2025-01-16 16:52:29,271 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 16:52:29,272 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 16:52:29,272 - INFO -     A (Host) Record . . . : 151.101.2.214
+
+2025-01-16 16:52:29,273 - INFO - 
+
+2025-01-16 16:52:29,273 - INFO - 
+
+2025-01-16 16:52:29,274 - INFO -     youtube.com
+
+2025-01-16 16:52:29,274 - INFO -     ----------------------------------------
+
+2025-01-16 16:52:29,274 - INFO -     Record Name . . . . . : youtube.com
+
+2025-01-16 16:52:29,275 - INFO -     Record Type . . . . . : 28
+
+2025-01-16 16:52:29,275 - INFO -     Time To Live  . . . . : 202
+
+2025-01-16 16:52:29,276 - INFO -     Data Length . . . . . : 16
+
+2025-01-16 16:52:29,276 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 16:52:29,277 - INFO -     AAAA Record . . . . . : 2404:6800:4002:825::200e
+
+2025-01-16 16:52:29,277 - INFO - 
+
+2025-01-16 16:52:29,278 - INFO - 
+
+2025-01-16 16:52:29,278 - INFO -     youtube.com
+
+2025-01-16 16:52:29,279 - INFO -     ----------------------------------------
+
+2025-01-16 16:52:29,280 - INFO -     Record Name . . . . . : youtube.com
+
+2025-01-16 16:52:29,280 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 16:52:29,281 - INFO -     Time To Live  . . . . : 146
+
+2025-01-16 16:52:29,281 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 16:52:29,282 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 16:52:29,282 - INFO -     A (Host) Record . . . : 142.250.194.238
+
+2025-01-16 16:52:29,282 - INFO - 
+
+2025-01-16 16:52:29,283 - INFO - 
+
+2025-01-16 16:52:29,283 - INFO -     1.48.20.172.in-addr.arpa
+
+2025-01-16 16:52:29,284 - INFO -     ----------------------------------------
+
+2025-01-16 16:52:29,284 - INFO -     Record Name . . . . . : 1.48.20.172.in-addr.arpa.
+
+2025-01-16 16:52:29,285 - INFO -     Record Type . . . . . : 12
+
+2025-01-16 16:52:29,285 - INFO -     Time To Live  . . . . : 504281
+
+2025-01-16 16:52:29,286 - INFO -     Data Length . . . . . : 8
+
+2025-01-16 16:52:29,286 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 16:52:29,287 - INFO -     PTR Record  . . . . . : DESKTOP-NRVEPHN.mshome.net
+
+2025-01-16 16:52:29,287 - INFO - 
+
+2025-01-16 16:52:29,288 - INFO - 
+
+2025-01-16 16:52:29,288 - INFO -     desktop-nrvephn.mshome.net
+
+2025-01-16 16:52:29,289 - INFO -     ----------------------------------------
+
+2025-01-16 16:52:29,289 - INFO -     No records of type AAAA
+
+2025-01-16 16:52:29,290 - INFO - 
+
+2025-01-16 16:52:29,290 - INFO - 
+
+2025-01-16 16:52:29,290 - INFO -     desktop-nrvephn.mshome.net
+
+2025-01-16 16:52:29,291 - INFO -     ----------------------------------------
+
+2025-01-16 16:52:29,291 - INFO -     Record Name . . . . . : DESKTOP-NRVEPHN.mshome.net
+
+2025-01-16 16:52:29,292 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 16:52:29,292 - INFO -     Time To Live  . . . . : 504281
+
+2025-01-16 16:52:29,293 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 16:52:29,293 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 16:52:29,293 - INFO -     A (Host) Record . . . : 172.28.80.1
+
+2025-01-16 16:52:29,294 - INFO - 
+
+2025-01-16 16:52:29,294 - INFO - 
+
+2025-01-16 16:52:29,296 - INFO -     Record Name . . . . . : DESKTOP-NRVEPHN.mshome.net
+
+2025-01-16 16:52:29,296 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 16:52:29,297 - INFO -     Time To Live  . . . . : 504281
+
+2025-01-16 16:52:29,297 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 16:52:29,298 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 16:52:29,298 - INFO -     A (Host) Record . . . : 172.20.48.1
+
+2025-01-16 16:52:29,299 - INFO - 
+
+2025-01-16 16:52:29,299 - INFO - 
+
+2025-01-16 16:52:29,300 - INFO - DNS cache displayed.
+2025-01-16 16:52:52,016 - DEBUG - Executing command: ipconfig /flushdns
+2025-01-16 16:52:52,017 - INFO - Executing command: ipconfig /flushdns
+2025-01-16 16:52:52,082 - INFO - 
+
+2025-01-16 16:52:52,083 - INFO - Windows IP Configuration
+
+2025-01-16 16:52:52,083 - INFO - 
+
+2025-01-16 16:52:52,084 - INFO - Successfully flushed the DNS Resolver Cache.
+
+2025-01-16 16:52:52,093 - INFO - DNS cache flushed successfully.
+2025-01-16 16:52:54,152 - DEBUG - Executing command: ipconfig /displaydns
+2025-01-16 16:52:54,154 - INFO - Executing command: ipconfig /displaydns
+2025-01-16 16:52:54,219 - INFO - 
+
+2025-01-16 16:52:54,220 - INFO - Windows IP Configuration
+
+2025-01-16 16:52:54,220 - INFO - 
+
+2025-01-16 16:52:54,221 - INFO -     71.242.69.172.in-addr.arpa
+
+2025-01-16 16:52:54,221 - INFO -     ----------------------------------------
+
+2025-01-16 16:52:54,222 - INFO -     Name does not exist.
+
+2025-01-16 16:52:54,224 - INFO - 
+
+2025-01-16 16:52:54,225 - INFO - 
+
+2025-01-16 16:52:54,225 - INFO -     1.80.28.172.in-addr.arpa
+
+2025-01-16 16:52:54,225 - INFO -     ----------------------------------------
+
+2025-01-16 16:52:54,226 - INFO -     Record Name . . . . . : 1.80.28.172.in-addr.arpa.
+
+2025-01-16 16:52:54,226 - INFO -     Record Type . . . . . : 12
+
+2025-01-16 16:52:54,227 - INFO -     Time To Live  . . . . : 504256
+
+2025-01-16 16:52:54,227 - INFO -     Data Length . . . . . : 8
+
+2025-01-16 16:52:54,228 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 16:52:54,228 - INFO -     PTR Record  . . . . . : DESKTOP-NRVEPHN.mshome.net
+
+2025-01-16 16:52:54,229 - INFO - 
+
+2025-01-16 16:52:54,229 - INFO - 
+
+2025-01-16 16:52:54,230 - INFO -     72.242.69.172.in-addr.arpa
+
+2025-01-16 16:52:54,230 - INFO -     ----------------------------------------
+
+2025-01-16 16:52:54,231 - INFO -     Name does not exist.
+
+2025-01-16 16:52:54,231 - INFO - 
+
+2025-01-16 16:52:54,232 - INFO - 
+
+2025-01-16 16:52:54,232 - INFO -     74.242.69.172.in-addr.arpa
+
+2025-01-16 16:52:54,232 - INFO -     ----------------------------------------
+
+2025-01-16 16:52:54,233 - INFO -     Name does not exist.
+
+2025-01-16 16:52:54,233 - INFO - 
+
+2025-01-16 16:52:54,234 - INFO - 
+
+2025-01-16 16:52:54,234 - INFO -     1.48.20.172.in-addr.arpa
+
+2025-01-16 16:52:54,234 - INFO -     ----------------------------------------
+
+2025-01-16 16:52:54,235 - INFO -     Record Name . . . . . : 1.48.20.172.in-addr.arpa.
+
+2025-01-16 16:52:54,235 - INFO -     Record Type . . . . . : 12
+
+2025-01-16 16:52:54,236 - INFO -     Time To Live  . . . . : 504256
+
+2025-01-16 16:52:54,236 - INFO -     Data Length . . . . . : 8
+
+2025-01-16 16:52:54,237 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 16:52:54,237 - INFO -     PTR Record  . . . . . : DESKTOP-NRVEPHN.mshome.net
+
+2025-01-16 16:52:54,238 - INFO - 
+
+2025-01-16 16:52:54,238 - INFO - 
+
+2025-01-16 16:52:54,239 - INFO -     desktop-nrvephn.mshome.net
+
+2025-01-16 16:52:54,239 - INFO -     ----------------------------------------
+
+2025-01-16 16:52:54,240 - INFO -     No records of type AAAA
+
+2025-01-16 16:52:54,240 - INFO - 
+
+2025-01-16 16:52:54,241 - INFO - 
+
+2025-01-16 16:52:54,241 - INFO -     desktop-nrvephn.mshome.net
+
+2025-01-16 16:52:54,242 - INFO -     ----------------------------------------
+
+2025-01-16 16:52:54,242 - INFO -     Record Name . . . . . : DESKTOP-NRVEPHN.mshome.net
+
+2025-01-16 16:52:54,242 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 16:52:54,243 - INFO -     Time To Live  . . . . : 504256
+
+2025-01-16 16:52:54,243 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 16:52:54,244 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 16:52:54,244 - INFO -     A (Host) Record . . . : 172.28.80.1
+
+2025-01-16 16:52:54,245 - INFO - 
+
+2025-01-16 16:52:54,245 - INFO - 
+
+2025-01-16 16:52:54,245 - INFO -     Record Name . . . . . : DESKTOP-NRVEPHN.mshome.net
+
+2025-01-16 16:52:54,246 - INFO -     Record Type . . . . . : 1
+
+2025-01-16 16:52:54,246 - INFO -     Time To Live  . . . . : 504256
+
+2025-01-16 16:52:54,247 - INFO -     Data Length . . . . . : 4
+
+2025-01-16 16:52:54,247 - INFO -     Section . . . . . . . : Answer
+
+2025-01-16 16:52:54,248 - INFO -     A (Host) Record . . . : 172.20.48.1
+
+2025-01-16 16:52:54,248 - INFO - 
+
+2025-01-16 16:52:54,249 - INFO - 
+
+2025-01-16 16:52:54,249 - INFO -     69.242.69.172.in-addr.arpa
+
+2025-01-16 16:52:54,250 - INFO -     ----------------------------------------
+
+2025-01-16 16:52:54,250 - INFO -     Name does not exist.
+
+2025-01-16 16:52:54,251 - INFO - 
+
+2025-01-16 16:52:54,251 - INFO - 
+
+2025-01-16 16:52:54,251 - INFO - DNS cache displayed.
+2025-01-16 16:53:14,160 - DEBUG - Executing command: netsh int ip reset
+2025-01-16 16:53:14,161 - INFO - Executing command: netsh int ip reset
+2025-01-16 16:53:14,290 - INFO - Resetting Compartment Forwarding, OK!
+
+2025-01-16 16:53:14,291 - INFO - Resetting Compartment, OK!
+
+2025-01-16 16:53:14,292 - INFO - Resetting Control Protocol, OK!
+
+2025-01-16 16:53:14,293 - INFO - Resetting Echo Sequence Request, OK!
+
+2025-01-16 16:53:14,293 - INFO - Resetting Global, OK!
+
+2025-01-16 16:53:14,294 - INFO - Resetting Interface, failed.
+
+2025-01-16 16:53:14,295 - INFO - The requested operation requires elevation (Run as administrator).
+
+2025-01-16 16:53:14,296 - INFO - Resetting Anycast Address, OK!
+
+2025-01-16 16:53:14,297 - INFO - Resetting Multicast Address, OK!
+
+2025-01-16 16:53:14,298 - INFO - Resetting Unicast Address, OK!
+
+2025-01-16 16:53:14,301 - INFO - Resetting Neighbor, OK!
+
+2025-01-16 16:53:14,302 - INFO - Resetting Path, OK!
+
+2025-01-16 16:53:14,303 - INFO - Resetting Potential, OK!
+
+2025-01-16 16:53:14,304 - INFO - Resetting Prefix Policy, OK!
+
+2025-01-16 16:53:14,305 - INFO - Resetting Proxy Neighbor, OK!
+
+2025-01-16 16:53:14,306 - INFO - Resetting Route, OK!
+
+2025-01-16 16:53:14,306 - INFO - Resetting Site Prefix, OK!
+
+2025-01-16 16:53:14,307 - INFO - Resetting Subinterface, OK!
+
+2025-01-16 16:53:14,308 - INFO - Resetting Wakeup Pattern, OK!
+
+2025-01-16 16:53:14,309 - INFO - Resetting Resolve Neighbor, OK!
+
+2025-01-16 16:53:14,310 - INFO - Resetting , OK!
+
+2025-01-16 16:53:14,312 - INFO - Resetting , OK!
+
+2025-01-16 16:53:14,315 - INFO - Resetting , OK!
+
+2025-01-16 16:53:14,318 - INFO - Resetting , OK!
+
+2025-01-16 16:53:14,319 - INFO - Resetting , failed.
+
+2025-01-16 16:53:14,323 - INFO - The requested operation requires elevation (Run as administrator).
+
+2025-01-16 16:53:14,324 - INFO - Resetting , OK!
+
+2025-01-16 16:53:14,325 - INFO - Resetting , OK!
+
+2025-01-16 16:53:14,325 - INFO - Resetting , OK!
+
+2025-01-16 16:53:14,326 - INFO - Resetting , failed.
+
+2025-01-16 16:53:14,327 - INFO - The requested operation requires elevation (Run as administrator).
+
+2025-01-16 16:53:14,327 - INFO - Resetting , OK!
+
+2025-01-16 16:53:14,328 - INFO - Resetting , OK!
+
+2025-01-16 16:53:14,329 - INFO - Resetting , OK!
+
+2025-01-16 16:53:14,330 - INFO - Resetting , OK!
+
+2025-01-16 16:53:14,331 - INFO - Restart the computer to complete this action.
+
+2025-01-16 16:53:14,332 - INFO - 
+
+2025-01-16 16:53:14,332 - INFO - Command failed with error:
+
+2025-01-16 16:53:14,333 - ERROR - Command failed with error:
+
+2025-01-16 16:53:22,649 - DEBUG - Executing command: ipconfig /release && ipconfig /renew
+2025-01-16 16:53:22,650 - INFO - Executing command: ipconfig /release && ipconfig /renew
+2025-01-16 16:53:22,717 - INFO - 
+
+2025-01-16 16:53:22,717 - INFO - Windows IP Configuration
+
+2025-01-16 16:53:22,718 - INFO - 
+
+2025-01-16 16:53:22,770 - INFO - 
+
+2025-01-16 16:53:22,771 - INFO - Ethernet adapter vEthernet (Ethernet):
+
+2025-01-16 16:53:22,772 - INFO - 
+
+2025-01-16 16:53:22,773 - INFO -    Connection-specific DNS Suffix  . : 
+
+2025-01-16 16:53:22,774 - INFO -    Link-local IPv6 Address . . . . . : fe80::a412:8cbc:57bb:5b81%17
+
+2025-01-16 16:53:22,774 - INFO -    Autoconfiguration IPv4 Address. . : 169.254.72.108
+
+2025-01-16 16:53:22,775 - INFO -    Subnet Mask . . . . . . . . . . . : 255.255.0.0
+
+2025-01-16 16:53:22,776 - INFO -    Default Gateway . . . . . . . . . : 
+
+2025-01-16 16:53:22,777 - INFO - 
+
+2025-01-16 16:53:22,777 - INFO - Ethernet adapter vEthernet (Default Switch):
+
+2025-01-16 16:53:22,778 - INFO - 
+
+2025-01-16 16:53:22,779 - INFO -    Connection-specific DNS Suffix  . : 
+
+2025-01-16 16:53:22,780 - INFO -    Link-local IPv6 Address . . . . . : fe80::fe95:3ddc:244:faf0%25
+
+2025-01-16 16:53:22,780 - INFO -    Autoconfiguration IPv4 Address. . : 169.254.248.171
+
+2025-01-16 16:53:22,781 - INFO -    Subnet Mask . . . . . . . . . . . : 255.255.0.0
+
+2025-01-16 16:53:22,782 - INFO -    Default Gateway . . . . . . . . . : 
+
+2025-01-16 16:53:22,783 - INFO - 
+
+2025-01-16 16:53:22,783 - INFO - Ethernet adapter Ethernet:
+
+2025-01-16 16:53:22,784 - INFO - 
+
+2025-01-16 16:53:22,785 - INFO -    Connection-specific DNS Suffix  . : 
+
+2025-01-16 16:53:22,785 - INFO -    IPv6 Address. . . . . . . . . . . : 2407:d000:b:aef1:eee9:529:26e3:4f14
+
+2025-01-16 16:53:22,786 - INFO -    Temporary IPv6 Address. . . . . . : 2407:d000:b:aef1:559a:7ed5:1ce9:1f6d
+
+2025-01-16 16:53:22,787 - INFO -    Link-local IPv6 Address . . . . . : fe80::3e26:40a:1668:a2b1%11
+
+2025-01-16 16:53:22,788 - INFO -    Default Gateway . . . . . . . . . : fe80::1%11
+
+2025-01-16 16:53:22,823 - INFO - 
+
+2025-01-16 16:53:22,824 - INFO - Windows IP Configuration
+
+2025-01-16 16:53:22,825 - INFO - 
+
+2025-01-16 16:53:22,870 - INFO - An error occurred while renewing interface Ethernet : The operation was canceled by the user.
+
+2025-01-16 16:53:22,871 - INFO -  
+
+2025-01-16 16:53:22,893 - INFO - IP address released and renewed.
