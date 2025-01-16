@@ -20,6 +20,7 @@ logging.basicConfig(
 
 # Function to execute a command and show the output
 def execute_command(command, success_message, clear_log=False):
+    log_output("=" * 80)  # Add thick horizontal line separator before command execution
     logging.debug(f"Executing command: {command}")
     log_output(f"Executing command: {command}")
     try:
@@ -48,6 +49,7 @@ def execute_command(command, success_message, clear_log=False):
         error_message = str(e)
         log_output(error_message)
         logging.error(error_message)
+    log_output("=" * 80)  # Add thick horizontal line separator after command execution
 
 
 # Function to log output to the text box and file
@@ -78,11 +80,19 @@ def on_enter(event):
 
 # Command functions
 def flush_dns():
-    execute_command("ipconfig /flushdns", "DNS cache flushed successfully.")
+    show_command_description(
+        "Flushes the DNS cache to resolve DNS-related issues.",
+        "ipconfig /flushdns",
+        "DNS cache flushed successfully.",
+    )
 
 
 def clear_arp():
-    execute_command("arp -d", "ARP cache cleared successfully.")
+    show_command_description(
+        "Clears the ARP cache to resolve ARP-related issues.",
+        "arp -d",
+        "ARP cache cleared successfully.",
+    )
 
 
 def test_connectivity():
@@ -90,73 +100,95 @@ def test_connectivity():
 
 
 def display_dns():
-    execute_command("ipconfig /displaydns", "DNS cache displayed.")
+    show_command_description(
+        "Displays the current DNS cache entries.",
+        "ipconfig /displaydns",
+        "DNS cache displayed.",
+    )
 
 
 def reset_network():
-    execute_command("netsh int ip reset", "Network settings reset successfully.")
+    show_command_description(
+        "Resets network settings to default.",
+        "netsh int ip reset",
+        "Network settings reset successfully.",
+    )
 
 
 def release_renew_ip():
-    execute_command(
-        "ipconfig /release && ipconfig /renew", "IP address released and renewed."
+    show_command_description(
+        "Releases and renews the IP address.",
+        "ipconfig /release && ipconfig /renew",
+        "IP address released and renewed.",
     )
 
 
 def check_adapter_status():
-    execute_command(
-        "netsh interface show interface", "Network adapter status displayed."
+    show_command_description(
+        "Displays the status of network adapters.",
+        "netsh interface show interface",
+        "Network adapter status displayed.",
     )
 
 
 def reset_winsock():
-    execute_command(
+    show_command_description(
+        "Resets Winsock settings. Requires a restart.",
         "netsh winsock reset",
         "Winsock reset successfully. Please restart your computer for changes to take effect.",
     )
 
 
 def reset_ipv4():
-    execute_command(
+    show_command_description(
+        "Resets the IPv4 TCP/IP stack. Requires a restart.",
         "netsh int ip reset",
         "IPv4 TCP/IP stack reset successfully. Please restart your computer for changes to take effect.",
     )
 
 
 def reset_ipv6():
-    execute_command(
+    show_command_description(
+        "Resets the IPv6 TCP/IP stack. Requires a restart.",
         "netsh int ipv6 reset",
         "IPv6 TCP/IP stack reset successfully. Please restart your computer for changes to take effect.",
     )
 
 
 def restart_services():
-    execute_command(
+    show_command_description(
+        "Restarts DHCP and DNS Client services.",
         "net stop dhcp && net start dhcp && net stop dnscache && net start dnscache",
         "DHCP and DNS Client services restarted.",
     )
 
 
 def restart_adapters():
-    execute_command(
+    show_command_description(
+        "Restarts network adapters.",
         'for /f "tokens=*" %%A in (\'netsh interface show interface ^| findstr /C:"Enabled"\') do (netsh interface set interface name="%%A" admin=disable && timeout /t 2 >nul && netsh interface set interface name="%%A" admin=enable)',
         "Network adapters restarted.",
     )
 
 
 def display_network_config():
-    execute_command("ipconfig /all", "Network configuration displayed.")
+    show_command_description(
+        "Displays the current network configuration.",
+        "ipconfig /all",
+        "Network configuration displayed.",
+    )
 
 
 def check_driver_updates():
-    execute_command(
+    show_command_description(
+        "Checks for updates to network drivers.",
         "wmic path win32_pnpentity where \"DeviceID like '%%PCI%%'\" get DeviceID, Name, Manufacturer, DriverVersion",
         "Network driver updates check completed.",
     )
 
 
 def show_help(command, description):
-    execute_command(f"{command} /?", description, clear_log=True)
+    show_command_description(description, f"{command} /?", description)
 
 
 # Function to increase font size
@@ -184,6 +216,18 @@ def update_button_fonts(size):
             widget.config(font=("Arial", size))
 
 
+# Function to execute a sequence of commands
+def execute_sequence(commands):
+    for command, success_message in commands:
+        execute_command(command, success_message)
+
+
+# Function to show command description and execution button
+def show_command_description(description, command, success_message):
+    description_label.config(text=description)
+    execute_button.config(command=lambda: execute_command(command, success_message))
+
+
 # GUI setup
 root = tk.Tk()
 root.title("Network Troubleshooting Menu")
@@ -203,7 +247,7 @@ paned_window = tk.PanedWindow(root, orient=tk.HORIZONTAL, bg="#2e2e2e")
 paned_window.pack(fill=tk.BOTH, expand=True)
 
 # Sidebar frame
-sidebar_frame = tk.Frame(paned_window, bg="#2e2e2e", width=200)
+sidebar_frame = tk.Frame(paned_window, bg="#2e2e2e", width=150)
 paned_window.add(sidebar_frame)
 
 # Scrollbar for sidebar
@@ -235,7 +279,7 @@ buttons_frame.bind("<Configure>", on_configure)
 log_text = scrolledtext.ScrolledText(
     paned_window,
     width=80,
-    height=40,
+    height=30,
     bg="#1e1e1e",
     fg="#ffffff",
     font=("Arial", 10),
@@ -243,6 +287,20 @@ log_text = scrolledtext.ScrolledText(
 )
 paned_window.add(log_text)
 log_text.bind("<Return>", on_enter)
+
+# Bottom frame for command description and execution button
+bottom_frame = tk.Frame(root, bg="#2e2e2e")
+bottom_frame.pack(fill=tk.X, side=tk.BOTTOM)
+
+description_label = tk.Label(
+    bottom_frame, text="", font=("Arial", 12), bg="#2e2e2e", fg="#ffffff"
+)
+description_label.pack(side=tk.LEFT, padx=10, pady=10)
+
+execute_button = tk.Button(
+    bottom_frame, text="Execute", font=("Arial", 12), bg="#1e1e1e", fg="#ffffff"
+)
+execute_button.pack(side=tk.RIGHT, padx=10, pady=10)
 
 # Menu title
 menu_title = tk.Label(buttons_frame, text="Main Menu", font=("Arial", 16), **style)
@@ -252,6 +310,7 @@ menu_title.pack(pady=10)
 # Function to switch to the main menu
 def show_main_menu():
     clear_buttons()
+    log_text.delete(1.0, tk.END)  # Clear the screen
     menu_title.config(text="Main Menu")
     add_buttons(main_menu_buttons)
 
@@ -259,6 +318,7 @@ def show_main_menu():
 # Function to switch to the help menu
 def show_help_menu():
     clear_buttons()
+    log_text.delete(1.0, tk.END)  # Clear the screen
     menu_title.config(text="Help Menu")
     add_buttons(help_menu_buttons)
 
@@ -266,6 +326,7 @@ def show_help_menu():
 # Function to switch to the test connectivity menu
 def show_test_connectivity_menu():
     clear_buttons()
+    log_text.delete(1.0, tk.END)  # Clear the screen
     menu_title.config(text="Test Connectivity")
     add_buttons(test_connectivity_buttons)
 
@@ -281,9 +342,9 @@ def clear_buttons():
 def add_buttons(buttons):
     for text, command in buttons:
         btn = tk.Button(
-            buttons_frame, text=text, command=command, width=30, wraplength=250, **style
+            buttons_frame, text=text, command=command, width=25, wraplength=200, **style
         )
-        btn.pack(pady=5)
+        btn.pack(pady=5, fill=tk.X, expand=True)
 
 
 # Main menu buttons
@@ -303,6 +364,14 @@ main_menu_buttons = [
     ("Display Network Configuration", display_network_config),
     ("Check for Network Driver Updates", check_driver_updates),
     ("Help", show_help_menu),
+    (
+        "Flush DNS, Clear ARP, and Test Connectivity",
+        lambda: show_command_description(
+            "Flushes DNS, clears ARP, and tests connectivity.",
+            "ipconfig /flushdns && arp -d && ping 8.8.8.8 -n 4",
+            "Sequence completed: DNS cache flushed, ARP cache cleared, and connectivity tested.",
+        ),
+    ),
 ]
 
 # Help menu buttons
@@ -372,18 +441,26 @@ help_menu_buttons = [
 test_connectivity_buttons = [
     (
         "Ping Google DNS (8.8.8.8)",
-        lambda: execute_command("ping 8.8.8.8 -n 4", "Ping to Google DNS complete."),
+        lambda: show_command_description(
+            "Pings Google DNS to test connectivity.",
+            "ping 8.8.8.8 -n 4",
+            "Ping to Google DNS complete.",
+        ),
     ),
     (
         "Ping Cloudflare DNS (1.1.1.1)",
-        lambda: execute_command(
-            "ping 1.1.1.1 -n 4", "Ping to Cloudflare DNS complete."
+        lambda: show_command_description(
+            "Pings Cloudflare DNS to test connectivity.",
+            "ping 1.1.1.1 -n 4",
+            "Ping to Cloudflare DNS complete.",
         ),
     ),
     (
         "Ping OpenDNS (208.67.222.222)",
-        lambda: execute_command(
-            "ping 208.67.222.222 -n 4", "Ping to OpenDNS complete."
+        lambda: show_command_description(
+            "Pings OpenDNS to test connectivity.",
+            "ping 208.67.222.222 -n 4",
+            "Ping to OpenDNS complete.",
         ),
     ),
     ("Enter Custom IP", lambda: log_text.insert(tk.END, "Enter IP to ping: ")),

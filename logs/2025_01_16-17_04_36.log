@@ -1,0 +1,14 @@
+2025-01-16 17:04:51,639 - DEBUG - Executing command: ipconfig /flushdns
+2025-01-16 17:04:51,639 - INFO - Executing command: ipconfig /flushdns
+2025-01-16 17:04:51,739 - INFO - 
+
+2025-01-16 17:04:51,739 - INFO - Windows IP Configuration
+
+2025-01-16 17:04:51,739 - INFO - 
+
+2025-01-16 17:04:51,739 - INFO - Successfully flushed the DNS Resolver Cache.
+
+2025-01-16 17:04:51,743 - INFO - DNS cache flushed successfully.
+2025-01-16 17:04:52,263 - DEBUG - Executing command: arp -d
+2025-01-16 17:04:52,264 - INFO - Executing command: arp -d
+2025-01-16 17:04:52,351 - INFO - ARP cache cleared successfully.
