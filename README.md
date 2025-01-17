@@ -6,7 +6,7 @@ A collection of all the common networking commands, organized into a simple menu
 
 ## How to Run
 
-1. **Download the Script**: Get the `reset_network.bat` file from the [releases page](LINK_GOES_HERE).  
+1. **Download the Script**: Get the `reset_network.bat` file from the [releases page](https://github.com/ibrahimahtsham/reset-network/releases/tag/v1.0).  
 2. **Run the Script**:  
    - **With Admin Mode**: Right-click the file and select "Run as Administrator" for full functionality.  
    - **Without Admin Mode**: Double-click the file for limited functionality.
