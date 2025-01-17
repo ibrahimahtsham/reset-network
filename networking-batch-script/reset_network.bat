@@ -32,18 +32,18 @@ echo 7. Release and Renew IP Address (NA) [ipconfig /release, ipconfig /renew]
 echo 8. Reset TCP/IP Stack (IPv4) (PA) [netsh int ip reset]
 echo 9. Reset TCP/IP Stack (IPv6) (PA) [netsh int ipv6 reset]
 echo 10. Reset Network Settings (PA) [netsh int ip reset, netsh int ipv6 reset, netsh winsock reset]
-echo 11. Restart DHCP and DNS Client Services (PA) [net stop dhcp, net start dhcp, net stop dnscache, net start dnscache]
+echo 11. Restart DHCP and DNS Client Services [net stop dhcp y, net start dhcp, net stop dnscache y, net start dnscache] (not implemented)
 echo 12. Clear ARP Cache (FA) [arp -d *]
 echo 13. Reset Winsock (FA) [netsh winsock reset]
 echo 14. Restart Network Adapters (FA) [netsh interface set interface name="Ethernet" admin=disable, netsh interface set interface name="Ethernet" admin=enable]
-echo 15. Flush DNS Cache, Reset Winsock, Reset TCP/IP Stack (IPv4), Clear ARP Cache (FA)
-echo 16. Restart DHCP and DNS Client Services, Restart Network Adapters (FA)
-echo 17. Check for Network Driver Updates (Needs rework, not removal) [wmic path win32_pnpentity get caption, driverversion]
+echo 15. Flush DNS Cache, Reset Winsock, Reset TCP/IP Stack (IPv4), Clear ARP Cache (PA) [ipconfig /flushdns, netsh winsock reset, netsh int ip reset, arp -d *]
+echo 16. Restart DHCP and DNS Client Services, Restart Network Adapters (FA) (not implemented)
+echo 17. Check for Network Driver Updates (NA) [powershell -Command Get-WmiObject Win32_PnPEntity | Select-Object Caption, DriverVersion]
 echo 18. Run All Commands (Needs rework with run-all mode flag)
 echo 19. Exit
 echo ============================================================
 echo.
-set /p choice=Choose an option (1-18):
+set /p choice=Choose an option (1-19):
 
 echo. >> %logfile%
 echo ============================================================ >> %logfile%
@@ -61,16 +61,19 @@ if "%choice%"=="6" goto ping_ip
 if "%choice%"=="7" goto release_renew_ip
 if "%choice%"=="8" goto reset_tcp_ipv4
 if "%choice%"=="9" goto reset_tcp_ipv6
-if "%choice%"=="10" goto restart_dhcp_dns
-if "%choice%"=="11" goto reset_network_settings
+if "%choice%"=="10" goto reset_network_settings
+if "%choice%"=="11" goto restart_dhcp_dns
 if "%choice%"=="12" goto clear_arp_cache
 if "%choice%"=="13" goto reset_winsock
 if "%choice%"=="14" goto restart_adapters
-if "%choice%"=="15" goto check_driver_updates
-if "%choice%"=="16" goto flush_dns_reset_winsock_reset_tcp_ipv4_clear_arp_cache
-if "%choice%"=="17" goto restart_dhcp_dns_restart_adapters
+if "%choice%"=="15" goto flush_dns_reset_winsock_reset_tcp_ipv4_clear_arp_cache
+if "%choice%"=="16" goto restart_dhcp_dns_restart_adapters
+if "%choice%"=="17" goto check_driver_updates
 if "%choice%"=="18" goto run_all_commands
 if "%choice%"=="19" goto exit_script
+
+echo Invalid choice. Please try again.
+pause
 goto menu
 
 :flush_dns
@@ -144,21 +147,24 @@ goto menu
 call :log_command "netsh" "int ipv6 reset" "Resets TCP/IP stack (IPv6)."
 goto menu
 
-:restart_dhcp_dns
-call :log_command "net stop" "dhcp" "Stops the DHCP client service."
-call :log_command "net start" "dhcp" "Starts the DHCP client service."
-call :log_command "net stop" "dnscache" "Stops the DNS client service."
-call :log_command "net start" "dnscache" "Starts the DNS client service."
-goto menu
-
 :reset_network_settings
 call :log_command "netsh" "int ip reset" "Resets TCP/IP stack (IPv4)."
 call :log_command "netsh" "int ipv6 reset" "Resets TCP/IP stack (IPv6)."
 call :log_command "netsh" "winsock reset" "Resets Winsock."
 goto menu
 
+:restart_dhcp_dns
+echo: This has not been implemented yet.
+echo: Please run the following commands manually:
+echo: net stop dhcp
+echo: net start dhcp
+echo: net stop dnscache
+echo: net start dnscache
+pause
+goto menu
+
 :clear_arp_cache
-call :log_command "arp" "-d *" "Clears the ARP cache."
+call :log_command_ps "arp -d *" "Clears the ARP cache. (this command does not produce any output don't worry if its blank it silently does it)"
 goto menu
 
 :reset_winsock
@@ -166,28 +172,37 @@ call :log_command "netsh" "winsock reset" "Resets Winsock."
 goto menu
 
 :restart_adapters
-call :log_command "netsh" "interface set interface name="Ethernet" admin=disable" "Disables the Ethernet adapter."
-call :log_command "netsh" "interface set interface name="Ethernet" admin=enable" "Enables the Ethernet adapter."
+call :log_command "netsh" "interface show interface" "Displays the status of network adapters."
+call :log_command "netsh" "interface set interface name="Ethernet" admin=disable" "Disables the Ethernet adapter. (this command does not produce any output don't worry if its blank it silently does it)"
+call :log_command "netsh" "interface show interface" "Displays the status of network adapters."
+call :log_command "netsh" "interface set interface name="Ethernet" admin=enable" "Enables the Ethernet adapter. (this command does not produce any output don't worry if its blank it silently does it)"
+call :log_command "netsh" "interface show interface" "Displays the status of network adapters."
 goto menu
 
 :check_driver_updates
-call :log_command "wmic" "path win32_pnpentity get caption, driverversion" "Checks for network driver updates."
+call :log_command_ps "Get-WmiObject Win32_PnPEntity | Select-Object Caption, DriverVersion" "Displays network driver information."
 goto menu
 
 :flush_dns_reset_winsock_reset_tcp_ipv4_clear_arp_cache
 call :log_command "ipconfig" "/flushdns" "Flushes and resets the contents of the DNS client resolver cache."
 call :log_command "netsh" "winsock reset" "Resets Winsock."
 call :log_command "netsh" "int ip reset" "Resets TCP/IP stack (IPv4)."
-call :log_command "arp" "-d *" "Clears the ARP cache."
+call :log_command_ps "arp -d *" "Clears the ARP cache. (this command does not produce any output don't worry if its blank it silently does it)"
 goto menu
 
 :restart_dhcp_dns_restart_adapters
-call :log_command "net stop" "dhcp" "Stops the DHCP client service."
-call :log_command "net start" "dhcp" "Starts the DHCP client service."
-call :log_command "net stop" "dnscache" "Stops the DNS client service."
-call :log_command "net start" "dnscache" "Starts the DNS client service."
-call :log_command "netsh" "interface set interface name="Ethernet" admin=disable" "Disables the Ethernet adapter."
-call :log_command "netsh" "interface set interface name="Ethernet" admin=enable" "Enables the Ethernet adapter."
+echo: This has not been implemented yet.
+echo: Please run the following commands manually:
+echo: net stop dhcp
+echo: net start dhcp
+echo: net stop dnscache
+echo: net start dnscache
+echo: netsh interface show interface
+echo: netsh interface set interface name="Ethernet" admin=disable
+echo: netsh interface show interface
+echo: netsh interface set interface name="Ethernet" admin=enable
+echo: netsh interface show interface
+pause
 goto menu
 
 :log_command
@@ -206,13 +221,14 @@ echo Command: %command% %args%
 echo Description: %description%
 echo ============================================================
 echo.
-echo Type 'skip' to skip the command.
-echo Type 'help' for more info on the command.
-echo Type 'run' or press `Enter` to run the command.
+echo Type 's' to skip the command.
+echo Type 'h' for more info on the command.
+echo Type 'r' or press `Enter` to run the command.
+echo ------------------------------------------------------------
 set /p run=input:
 echo. >> %logfile%
 echo.
-if /i "%run%"=="run" (
+if /i "%run%"=="r" (
     echo. >> %logfile%
     echo ============================================================ >> %logfile%
     echo Running command: %command% %args% >> %logfile%
@@ -223,8 +239,8 @@ if /i "%run%"=="run" (
     echo Running command: %command% %args%
     echo ============================================================
     echo.
-     powershell -Command "& { try { %command% %args% 2>&1 | Tee-Object -FilePath temp_log.txt -Append; Get-Content temp_log.txt | Out-File -FilePath %logfile% -Append -Encoding utf8 } catch { Write-Output $_.Exception.Message | Tee-Object -FilePath temp_log.txt -Append; Get-Content temp_log.txt | Out-File -FilePath %logfile% -Append -Encoding utf8 } }"
-    del temp_log.txt
+    powershell -Command "& { try { %command% %args% 2>&1 | Tee-Object -FilePath temp_log.txt -Append; Get-Content temp_log.txt | Out-File -FilePath %logfile% -Append -Encoding utf8 } catch { Write-Output $_.Exception.Message | Tee-Object -FilePath temp_log.txt -Append; Get-Content temp_log.txt | Out-File -FilePath %logfile% -Append -Encoding utf8 } }"
+    if exist temp_log.txt del temp_log.txt
     echo. >> %logfile%
     echo ============================================================ >> %logfile%
     echo End of execution. >> %logfile%
@@ -236,14 +252,76 @@ if /i "%run%"=="run" (
     echo ============================================================
     echo.
     pause
-) else if /i "%run%"=="help" (
+) else if /i "%run%"=="h" (
     echo ============================================================ >> %logfile%
     %command% /? >> %logfile% 2>&1
     echo ============================================================
     %command% /?
     pause
-) else if /i "%run%"=="skip" (
+) else if /i "%run%"=="s" (
     echo Skipping command: %command% %args% >> %logfile%
+    echo Command skipped. >> %logfile%
+    echo Command skipped.
+    pause
+) else (
+    echo Invalid input. Please try again.
+    pause
+)
+goto :eof
+
+:log_command_ps
+set command=%1
+set description=%2
+echo. >> %logfile%
+echo ============================================================ >> %logfile%
+echo Command: %command%  >> %logfile%
+echo Description: %description% >> %logfile%
+echo ============================================================ >> %logfile%
+echo. >> %logfile%
+echo.
+echo ============================================================
+echo Command: %command% 
+echo Description: %description%
+echo ============================================================
+echo.
+echo Type 's' to skip the command.
+echo Type 'h' for more info on the command.
+echo Type 'r' or press `Enter` to run the command.
+echo ------------------------------------------------------------
+set /p run=input:
+echo. >> %logfile%
+echo.
+if /i "%run%"=="r" (
+    echo. >> %logfile%
+    echo ============================================================ >> %logfile%
+    echo Running command in PowerShell: %command%  >> %logfile%
+    echo ============================================================ >> %logfile%
+    echo. >> %logfile%
+    echo.
+    echo ============================================================
+    echo Running command in PowerShell: %command% 
+    echo ============================================================
+    echo.
+    powershell -Command %command%
+    echo. >> %logfile%
+    echo ============================================================ >> %logfile%
+    echo End of execution. >> %logfile%
+    echo ============================================================ >> %logfile%
+    echo. >> %logfile%
+    echo.
+    echo ============================================================
+    echo End of execution.
+    echo ============================================================
+    echo.
+    pause
+) else if /i "%run%"=="h" (
+    echo ============================================================ >> %logfile%
+    %command% /? >> %logfile% 2>&1
+    echo ============================================================
+    %command% /?
+    pause
+) else if /i "%run%"=="s" (
+    echo Skipping command: %command% >> %logfile%
     echo Command skipped. >> %logfile%
     echo Command skipped.
     pause
