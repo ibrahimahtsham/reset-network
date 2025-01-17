@@ -27,19 +27,19 @@ echo 2. Display DNS Cache (NA) [ipconfig /displaydns]
 echo 3. Display ARP Cache (NA) [arp -a]
 echo 4. Check Network Adapter Status (NA) [netsh interface show interface]
 echo 5. Display Network Configuration (NA) [ipconfig /all]
-echo 6. Ping an IP (NA)
+echo 6. Check for Network Driver Updates (NA) [powershell -Command Get-WmiObject Win32_PnPEntity ^| Select-Object Caption, DriverVersion]
 echo 7. Release and Renew IP Address (NA) [ipconfig /release, ipconfig /renew]
 echo 8. Reset TCP/IP Stack (IPv4) (PA) [netsh int ip reset]
 echo 9. Reset TCP/IP Stack (IPv6) (PA) [netsh int ipv6 reset]
 echo 10. Reset Network Settings (PA) [netsh int ip reset, netsh int ipv6 reset, netsh winsock reset]
-echo 11. Restart DHCP and DNS Client Services [net stop dhcp y, net start dhcp, net stop dnscache y, net start dnscache] (not implemented)
+echo 11. Flush DNS Cache, Reset Winsock, Reset TCP/IP Stack (IPv4), Clear ARP Cache (PA) [ipconfig /flushdns, netsh winsock reset, netsh int ip reset, arp -d *]
 echo 12. Clear ARP Cache (FA) [arp -d *]
 echo 13. Reset Winsock (FA) [netsh winsock reset]
 echo 14. Restart Network Adapters (FA) [netsh interface set interface name="Ethernet" admin=disable, netsh interface set interface name="Ethernet" admin=enable]
-echo 15. Flush DNS Cache, Reset Winsock, Reset TCP/IP Stack (IPv4), Clear ARP Cache (PA) [ipconfig /flushdns, netsh winsock reset, netsh int ip reset, arp -d *]
-echo 16. Restart DHCP and DNS Client Services, Restart Network Adapters (FA) (not implemented)
-echo 17. Check for Network Driver Updates (NA) [powershell -Command Get-WmiObject Win32_PnPEntity | Select-Object Caption, DriverVersion]
-echo 18. Run All Commands (Needs rework with run-all mode flag)
+echo 15. Run All Commands
+echo 16. Restart DHCP and DNS Client Services [net stop dhcp y, net start dhcp, net stop dnscache y, net start dnscache] (not implemented)
+echo 17. Restart DHCP and DNS Client Services, Restart Network Adapters (FA) (not implemented)
+echo 18. Ping an IP
 echo 19. Exit
 echo ============================================================
 echo.
@@ -51,25 +51,24 @@ echo Choice number chosen: %choice% >> %logfile%
 echo ============================================================ >> %logfile%
 echo. >> %logfile%
 
-
 if "%choice%"=="1" goto flush_dns
 if "%choice%"=="2" goto display_dns_cache
 if "%choice%"=="3" goto display_arp_cache
 if "%choice%"=="4" goto check_adapter_status
 if "%choice%"=="5" goto display_network_config
-if "%choice%"=="6" goto ping_ip
+if "%choice%"=="6" goto check_driver_updates
 if "%choice%"=="7" goto release_renew_ip
 if "%choice%"=="8" goto reset_tcp_ipv4
 if "%choice%"=="9" goto reset_tcp_ipv6
 if "%choice%"=="10" goto reset_network_settings
-if "%choice%"=="11" goto restart_dhcp_dns
+if "%choice%"=="11" goto flush_dns_reset_winsock_reset_tcp_ipv4_clear_arp_cache
 if "%choice%"=="12" goto clear_arp_cache
 if "%choice%"=="13" goto reset_winsock
 if "%choice%"=="14" goto restart_adapters
-if "%choice%"=="15" goto flush_dns_reset_winsock_reset_tcp_ipv4_clear_arp_cache
-if "%choice%"=="16" goto restart_dhcp_dns_restart_adapters
-if "%choice%"=="17" goto check_driver_updates
-if "%choice%"=="18" goto run_all_commands
+if "%choice%"=="15" set RUN_ALL_MODE=true & goto run_all_commands
+if "%choice%"=="16" goto restart_dhcp_dns
+if "%choice%"=="17" goto restart_dhcp_dns_restart_adapters
+if "%choice%"=="18" goto ping_ip
 if "%choice%"=="19" goto exit_script
 
 echo Invalid choice. Please try again.
@@ -78,22 +77,112 @@ goto menu
 
 :flush_dns
 call :log_command "ipconfig" "/flushdns" "Flushes and resets the contents of the DNS client resolver cache."
-goto menu
+if not defined RUN_ALL_MODE goto menu
 
 :display_dns_cache
 call :log_command "ipconfig" "/displaydns" "Displays the contents of the DNS client resolver cache."
-goto menu
+if not defined RUN_ALL_MODE goto menu
 
 :display_arp_cache
 call :log_command "arp" "-a" "Displays the ARP cache."
-goto menu
+if not defined RUN_ALL_MODE goto menu
 
 :check_adapter_status
 call :log_command "netsh" "interface show interface" "Displays the status of network adapters."
-goto menu
+if not defined RUN_ALL_MODE goto menu
 
 :display_network_config
 call :log_command "ipconfig" "/all" "Displays the current network configuration."
+if not defined RUN_ALL_MODE goto menu
+
+:check_driver_updates
+call :log_command_ps "Get-WmiObject Win32_PnPEntity | Select-Object Caption, DriverVersion" "Displays network driver information."
+if not defined RUN_ALL_MODE goto menu
+
+:release_renew_ip
+call :log_command "ipconfig" "/release" "Releases the IP address."
+call :log_command "ipconfig" "/renew" "Renews the IP address."
+if not defined RUN_ALL_MODE goto menu
+
+:reset_tcp_ipv4
+call :log_command "netsh" "int ip reset" "Resets TCP/IP stack (IPv4)."
+if not defined RUN_ALL_MODE goto menu
+
+:reset_tcp_ipv6
+call :log_command "netsh" "int ipv6 reset" "Resets TCP/IP stack (IPv6)."
+if not defined RUN_ALL_MODE goto menu
+
+:reset_network_settings
+call :log_command "netsh" "int ip reset" "Resets TCP/IP stack (IPv4)."
+call :log_command "netsh" "int ipv6 reset" "Resets TCP/IP stack (IPv6)."
+call :log_command "netsh" "winsock reset" "Resets Winsock."
+if not defined RUN_ALL_MODE goto menu
+
+:flush_dns_reset_winsock_reset_tcp_ipv4_clear_arp_cache
+call :log_command "ipconfig" "/flushdns" "Flushes and resets the contents of the DNS client resolver cache."
+call :log_command "netsh" "winsock reset" "Resets Winsock."
+call :log_command "netsh" "int ip reset" "Resets TCP/IP stack (IPv4)."
+call :log_command_ps "arp -d *" "Clears the ARP cache. (this command does not produce any output don't worry if its blank it silently does it)"
+if not defined RUN_ALL_MODE goto menu
+
+:clear_arp_cache
+call :log_command_ps "arp -d *" "Clears the ARP cache. (this command does not produce any output don't worry if its blank it silently does it)"
+if not defined RUN_ALL_MODE goto menu
+
+:reset_winsock
+call :log_command "netsh" "winsock reset" "Resets Winsock."
+if not defined RUN_ALL_MODE goto menu
+
+:restart_adapters
+call :log_command "netsh" "interface show interface" "Displays the status of network adapters."
+call :log_command "netsh" "interface set interface name="Ethernet" admin=disable" "Disables the Ethernet adapter. (this command does not produce any output don't worry if its blank it silently does it)"
+call :log_command "netsh" "interface show interface" "Displays the status of network adapters."
+call :log_command "netsh" "interface set interface name="Ethernet" admin=enable" "Enables the Ethernet adapter. (this command does not produce any output don't worry if its blank it silently does it)"
+call :log_command "netsh" "interface show interface" "Displays the status of network adapters."
+if not defined RUN_ALL_MODE goto menu
+
+:run_all_commands
+set RUN_ALL_MODE=true
+goto flush_dns
+goto display_dns_cache
+goto display_arp_cache
+goto check_adapter_status
+goto display_network_config
+goto check_driver_updates
+goto release_renew_ip
+goto reset_tcp_ipv4
+goto reset_tcp_ipv6
+goto reset_network_settings
+goto flush_dns_reset_winsock_reset_tcp_ipv4_clear_arp_cache
+goto clear_arp_cache
+goto reset_winsock
+goto restart_adapters
+set RUN_ALL_MODE=
+goto menu
+
+:restart_dhcp_dns
+echo: This has not been implemented yet.
+echo: Please run the following commands manually:
+echo: net stop dhcp
+echo: net start dhcp
+echo: net stop dnscache
+echo: net start dnscache
+pause
+goto menu
+
+:restart_dhcp_dns_restart_adapters
+echo: This has not been implemented yet.
+echo: Please run the following commands manually:
+echo: net stop dhcp
+echo: net start dhcp
+echo: net stop dnscache
+echo: net start dnscache
+echo: netsh interface show interface
+echo: netsh interface set interface name="Ethernet" admin=disable
+echo: netsh interface show interface
+echo: netsh interface set interface name="Ethernet" admin=enable
+echo: netsh interface show interface
+pause
 goto menu
 
 :ping_ip
@@ -132,78 +221,14 @@ goto ping_ip
 
 :ping_ip_execute
 call :log_command "ping" "%ip%" "Pings the specified IP or domain."
-goto ping_ip
-
-:release_renew_ip
-call :log_command "ipconfig" "/release" "Releases the IP address."
-call :log_command "ipconfig" "/renew" "Renews the IP address."
 goto menu
 
-:reset_tcp_ipv4
-call :log_command "netsh" "int ip reset" "Resets TCP/IP stack (IPv4)."
-goto menu
-
-:reset_tcp_ipv6
-call :log_command "netsh" "int ipv6 reset" "Resets TCP/IP stack (IPv6)."
-goto menu
-
-:reset_network_settings
-call :log_command "netsh" "int ip reset" "Resets TCP/IP stack (IPv4)."
-call :log_command "netsh" "int ipv6 reset" "Resets TCP/IP stack (IPv6)."
-call :log_command "netsh" "winsock reset" "Resets Winsock."
-goto menu
-
-:restart_dhcp_dns
-echo: This has not been implemented yet.
-echo: Please run the following commands manually:
-echo: net stop dhcp
-echo: net start dhcp
-echo: net stop dnscache
-echo: net start dnscache
+:exit_script
+echo Logging ended at %date% %time% >> %logfile%
+echo Logging ended at %date% %time%
 pause
-goto menu
-
-:clear_arp_cache
-call :log_command_ps "arp -d *" "Clears the ARP cache. (this command does not produce any output don't worry if its blank it silently does it)"
-goto menu
-
-:reset_winsock
-call :log_command "netsh" "winsock reset" "Resets Winsock."
-goto menu
-
-:restart_adapters
-call :log_command "netsh" "interface show interface" "Displays the status of network adapters."
-call :log_command "netsh" "interface set interface name="Ethernet" admin=disable" "Disables the Ethernet adapter. (this command does not produce any output don't worry if its blank it silently does it)"
-call :log_command "netsh" "interface show interface" "Displays the status of network adapters."
-call :log_command "netsh" "interface set interface name="Ethernet" admin=enable" "Enables the Ethernet adapter. (this command does not produce any output don't worry if its blank it silently does it)"
-call :log_command "netsh" "interface show interface" "Displays the status of network adapters."
-goto menu
-
-:check_driver_updates
-call :log_command_ps "Get-WmiObject Win32_PnPEntity | Select-Object Caption, DriverVersion" "Displays network driver information."
-goto menu
-
-:flush_dns_reset_winsock_reset_tcp_ipv4_clear_arp_cache
-call :log_command "ipconfig" "/flushdns" "Flushes and resets the contents of the DNS client resolver cache."
-call :log_command "netsh" "winsock reset" "Resets Winsock."
-call :log_command "netsh" "int ip reset" "Resets TCP/IP stack (IPv4)."
-call :log_command_ps "arp -d *" "Clears the ARP cache. (this command does not produce any output don't worry if its blank it silently does it)"
-goto menu
-
-:restart_dhcp_dns_restart_adapters
-echo: This has not been implemented yet.
-echo: Please run the following commands manually:
-echo: net stop dhcp
-echo: net start dhcp
-echo: net stop dnscache
-echo: net start dnscache
-echo: netsh interface show interface
-echo: netsh interface set interface name="Ethernet" admin=disable
-echo: netsh interface show interface
-echo: netsh interface set interface name="Ethernet" admin=enable
-echo: netsh interface show interface
-pause
-goto menu
+endlocal
+exit /b
 
 :log_command
 set command=%1
@@ -330,10 +355,3 @@ if /i "%run%"=="r" (
     pause
 )
 goto :eof
-
-:exit_script
-echo Logging ended at %date% %time% >> %logfile%
-echo Logging ended at %date% %time%
-pause
-endlocal
-exit /b
