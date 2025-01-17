@@ -76,46 +76,46 @@ pause
 goto menu
 
 :flush_dns
-call :log_command "ipconfig" "/flushdns" "Flushes and resets the contents of the DNS client resolver cache."
+call :log_command "ipconfig" "/flushdns" "Flushes and resets the contents of the DNS client resolver cache. Use this if you are experiencing issues with websites not loading properly or if you have recently changed your DNS settings and want to ensure the changes take effect immediately."
 if not defined RUN_ALL_MODE goto menu
 
 :display_dns_cache
-call :log_command "ipconfig" "/displaydns" "Displays the contents of the DNS client resolver cache."
+call :log_command "ipconfig" "/displaydns" "Displays the contents of the DNS client resolver cache. This can be useful if you want to see which DNS entries are currently cached on your system, which can help diagnose issues with website loading."
 if not defined RUN_ALL_MODE goto menu
 
 :display_arp_cache
-call :log_command "arp" "-a" "Displays the ARP cache."
+call :log_command "arp" "-a" "Displays the ARP cache. Use this to view the current ARP entries, which can help diagnose network connectivity issues, especially if you are having trouble connecting to other devices on your local network."
 if not defined RUN_ALL_MODE goto menu
 
 :check_adapter_status
-call :log_command "netsh" "interface show interface" "Displays the status of network adapters."
+call :log_command "netsh" "interface show interface" "Displays the status of network adapters. This is useful to check if your network adapters are enabled and functioning correctly, which can help diagnose connectivity issues."
 if not defined RUN_ALL_MODE goto menu
 
 :display_network_config
-call :log_command "ipconfig" "/all" "Displays the current network configuration."
+call :log_command "ipconfig" "/all" "Displays the current network configuration. Use this to view detailed information about your network settings, including IP addresses, DNS servers, and adapter statuses, which can help diagnose network issues."
 if not defined RUN_ALL_MODE goto menu
 
 :check_driver_updates
-call :log_command_ps "Get-WmiObject Win32_PnPEntity | Select-Object Caption, DriverVersion" "Displays network driver information."
+call :log_command_ps "Get-WmiObject Win32_PnPEntity | Select-Object Caption, DriverVersion" "Displays network driver information. This can help you determine if your network drivers are up to date, which is important for maintaining optimal network performance."
 if not defined RUN_ALL_MODE goto menu
 
 :release_renew_ip
-call :log_command "ipconfig" "/release" "Releases the IP address."
-call :log_command "ipconfig" "/renew" "Renews the IP address."
+call :log_command "ipconfig" "/release" "Releases the IP address. Use this if you are experiencing IP address conflicts or connectivity issues."
+call :log_command "ipconfig" "/renew" "Renews the IP address. This can help resolve issues with obtaining a new IP address from your router or ISP."
 if not defined RUN_ALL_MODE goto menu
 
 :reset_tcp_ipv4
-call :log_command "netsh" "int ip reset" "Resets TCP/IP stack (IPv4)."
+call :log_command "netsh" "int ip reset" "Resets TCP/IP stack (IPv4). Use this if you are experiencing connectivity issues that may be related to corrupted TCP/IP settings."
 if not defined RUN_ALL_MODE goto menu
 
 :reset_tcp_ipv6
-call :log_command "netsh" "int ipv6 reset" "Resets TCP/IP stack (IPv6)."
+call :log_command "netsh" "int ipv6 reset" "Resets TCP/IP stack (IPv6). This is useful if you are having issues with IPv6 connectivity, which is becoming more common as more networks adopt IPv6."
 if not defined RUN_ALL_MODE goto menu
 
 :reset_network_settings
 call :log_command "netsh" "int ip reset" "Resets TCP/IP stack (IPv4)."
 call :log_command "netsh" "int ipv6 reset" "Resets TCP/IP stack (IPv6)."
-call :log_command "netsh" "winsock reset" "Resets Winsock."
+call :log_command "netsh" "winsock reset" "Resets Winsock. Use this combination of commands to reset all network settings to their default state, which can help resolve a wide range of network issues."
 if not defined RUN_ALL_MODE goto menu
 
 :flush_dns_reset_winsock_reset_tcp_ipv4_clear_arp_cache
@@ -126,18 +126,18 @@ call :log_command_ps "arp -d *" "Clears the ARP cache. (this command does not pr
 if not defined RUN_ALL_MODE goto menu
 
 :clear_arp_cache
-call :log_command_ps "arp -d *" "Clears the ARP cache. (this command does not produce any output don't worry if its blank it silently does it)"
+call :log_command_ps "arp -d *" "Clears the ARP cache. (this command does not produce any output don't worry if its blank it silently does it) Use this if you are experiencing issues with local network connectivity, such as being unable to connect to other devices on your network."
 if not defined RUN_ALL_MODE goto menu
 
 :reset_winsock
-call :log_command "netsh" "winsock reset" "Resets Winsock."
+call :log_command "netsh" "winsock reset" "Resets Winsock. Use this if you are experiencing issues with network applications not working correctly, as Winsock settings can sometimes become corrupted."
 if not defined RUN_ALL_MODE goto menu
 
 :restart_adapters
 call :log_command "netsh" "interface show interface" "Displays the status of network adapters."
 call :log_command "netsh" "interface set interface name="Ethernet" admin=disable" "Disables the Ethernet adapter. (this command does not produce any output don't worry if its blank it silently does it)"
 call :log_command "netsh" "interface show interface" "Displays the status of network adapters."
-call :log_command "netsh" "interface set interface name="Ethernet" admin=enable" "Enables the Ethernet adapter. (this command does not produce any output don't worry if its blank it silently does it)"
+call :log_command "netsh" "interface set interface name="Ethernet" admin=enable" "Enables the Ethernet adapter. (this command does not produce any output don't worry if its blank it silently does it) Use this to restart your network adapters, which can help resolve connectivity issues."
 call :log_command "netsh" "interface show interface" "Displays the status of network adapters."
 if not defined RUN_ALL_MODE goto menu
 
@@ -220,7 +220,7 @@ pause
 goto ping_ip
 
 :ping_ip_execute
-call :log_command "ping" "%ip%" "Pings the specified IP or domain."
+call :log_command "ping" "%ip%" "Pings the specified IP or domain. Use this to check if a specific website or server is reachable, which can help diagnose connectivity issues."
 goto menu
 
 :exit_script
