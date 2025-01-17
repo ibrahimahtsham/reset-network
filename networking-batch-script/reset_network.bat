@@ -28,10 +28,10 @@ echo 3. Display ARP Cache (NA) [arp -a]
 echo 4. Check Network Adapter Status (NA) [netsh interface show interface]
 echo 5. Display Network Configuration (NA) [ipconfig /all]
 echo 6. Check for Network Driver Updates (NA) [powershell -Command Get-WmiObject Win32_PnPEntity ^| Select-Object Caption, DriverVersion]
-echo 7. Release and Renew IP Address (NA) [ipconfig /release, ipconfig /renew]
+echo 7. Release and Renew IP Address (NA) [ipconfig /release, ipconfig /renew] (useful in most cases)
 echo 8. Reset TCP/IP Stack (IPv4) (PA) [netsh int ip reset]
 echo 9. Reset TCP/IP Stack (IPv6) (PA) [netsh int ipv6 reset]
-echo 10. Reset Network Settings (PA) [netsh int ip reset, netsh int ipv6 reset, netsh winsock reset]
+echo 10. Reset Network Settings (PA) [netsh int ip reset, netsh int ipv6 reset, netsh winsock reset] (useful in most cases)
 echo 11. Flush DNS Cache, Reset Winsock, Reset TCP/IP Stack (IPv4), Clear ARP Cache (PA) [ipconfig /flushdns, netsh winsock reset, netsh int ip reset, arp -d *]
 echo 12. Clear ARP Cache (FA) [arp -d *]
 echo 13. Reset Winsock (FA) [netsh winsock reset]
@@ -84,7 +84,7 @@ call :log_command "ipconfig" "/displaydns" "Displays the contents of the DNS cli
 if not defined RUN_ALL_MODE goto menu
 
 :display_arp_cache
-call :log_command "arp" "-a" "Displays the ARP cache. Use this to view the current ARP entries, which can help diagnose network connectivity issues, especially if you are having trouble connecting to other devices on your local network."
+call :log_command "arp" "-a" "Displays the ARP cache (Address Resolution Protocol entries). Use this to view the current ARP entries, which can help diagnose network connectivity issues, especially if you are having trouble connecting to other devices on your local network."
 if not defined RUN_ALL_MODE goto menu
 
 :check_adapter_status
@@ -113,15 +113,15 @@ call :log_command "netsh" "int ipv6 reset" "Resets TCP/IP stack (IPv6). This is 
 if not defined RUN_ALL_MODE goto menu
 
 :reset_network_settings
-call :log_command "netsh" "int ip reset" "Resets TCP/IP stack (IPv4)."
-call :log_command "netsh" "int ipv6 reset" "Resets TCP/IP stack (IPv6)."
+call :log_command "netsh" "int ip reset" "Resets TCP/IP stack (IPv4).  Use this if you are experiencing connectivity issues that may be related to corrupted TCP/IP settings."
+call :log_command "netsh" "int ipv6 reset" "Resets TCP/IP stack (IPv6). This is useful if you are having issues with IPv6 connectivity, which is becoming more common as more networks adopt IPv6."
 call :log_command "netsh" "winsock reset" "Resets Winsock. Use this combination of commands to reset all network settings to their default state, which can help resolve a wide range of network issues."
 if not defined RUN_ALL_MODE goto menu
 
 :flush_dns_reset_winsock_reset_tcp_ipv4_clear_arp_cache
-call :log_command "ipconfig" "/flushdns" "Flushes and resets the contents of the DNS client resolver cache."
+call :log_command "ipconfig" "/flushdns" "Flushes and resets the contents of the DNS client resolver cache. Use this if you are experiencing issues with websites not loading properly or if you have recently changed your DNS settings and want to ensure the changes take effect immediately."
 call :log_command "netsh" "winsock reset" "Resets Winsock."
-call :log_command "netsh" "int ip reset" "Resets TCP/IP stack (IPv4)."
+call :log_command "netsh" "int ip reset" "Resets TCP/IP stack (IPv4). Use this if you are experiencing connectivity issues that may be related to corrupted TCP/IP settings."
 call :log_command_ps "arp -d *" "Clears the ARP cache. (this command does not produce any output don't worry if its blank it silently does it)"
 if not defined RUN_ALL_MODE goto menu
 

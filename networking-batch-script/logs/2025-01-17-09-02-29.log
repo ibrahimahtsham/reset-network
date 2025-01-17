@@ -1,0 +1,172 @@
+Logging started at 2025-01-17-09-02-29 
+ 
+============================================================ 
+Choice number chosen: 1 
+============================================================ 
+ 
+ 
+============================================================ 
+Command: "ipconfig" "/flushdns" 
+Description: "Flushes and resets the contents of the DNS client resolver cache. Use this if you are experiencing issues with websites not loading properly or if you have recently changed your DNS settings and want to ensure the changes take effect immediately." 
+============================================================ 
+ 
+ 
+Skipping command: "ipconfig" "/flushdns" 
+Command skipped. 
+ 
+============================================================ 
+Choice number chosen: 15 
+============================================================ 
+ 
+ 
+============================================================ 
+Command: "ipconfig" "/flushdns" 
+Description: "Flushes and resets the contents of the DNS client resolver cache. Use this if you are experiencing issues with websites not loading properly or if you have recently changed your DNS settings and want to ensure the changes take effect immediately." 
+============================================================ 
+ 
+ 
+Skipping command: "ipconfig" "/flushdns" 
+Command skipped. 
+ 
+============================================================ 
+Command: "ipconfig" "/displaydns" 
+Description: "Displays the contents of the DNS client resolver cache. This can be useful if you want to see which DNS entries are currently cached on your system, which can help diagnose issues with website loading." 
+============================================================ 
+ 
+ 
+Skipping command: "ipconfig" "/displaydns" 
+Command skipped. 
+ 
+============================================================ 
+Command: "arp" "-a" 
+Description: "Displays the ARP cache. Use this to view the current ARP entries, which can help diagnose network connectivity issues, especially if you are having trouble connecting to other devices on your local network." 
+============================================================ 
+ 
+ 
+Skipping command: "arp" "-a" 
+Command skipped. 
+ 
+============================================================ 
+Command: "netsh" "interface show interface" 
+Description: "Displays the status of network adapters. This is useful to check if your network adapters are enabled and functioning correctly, which can help diagnose connectivity issues." 
+============================================================ 
+ 
+ 
+Skipping command: "netsh" "interface show interface" 
+Command skipped. 
+ 
+============================================================ 
+Command: "ipconfig" "/all" 
+Description: "Displays the current network configuration. Use this to view detailed information about your network settings, including IP addresses, DNS servers, and adapter statuses, which can help diagnose network issues." 
+============================================================ 
+ 
+ 
+Skipping command: "ipconfig" "/all" 
+Command skipped. 
+ 
+============================================================ 
+Command: "Get-WmiObject Win32_PnPEntity | Select-Object Caption, DriverVersion"  
+Description: "Displays network driver information. This can help you determine if your network drivers are up to date, which is important for maintaining optimal network performance." 
+============================================================ 
+ 
+ 
+Skipping command: "Get-WmiObject Win32_PnPEntity | Select-Object Caption, DriverVersion" 
+Command skipped. 
+ 
+============================================================ 
+Command: "ipconfig" "/release" 
+Description: "Releases the IP address. Use this if you are experiencing IP address conflicts or connectivity issues." 
+============================================================ 
+ 
+ 
+Skipping command: "ipconfig" "/release" 
+Command skipped. 
+ 
+============================================================ 
+Command: "ipconfig" "/renew" 
+Description: "Renews the IP address. This can help resolve issues with obtaining a new IP address from your router or ISP." 
+============================================================ 
+ 
+ 
+Skipping command: "ipconfig" "/renew" 
+Command skipped. 
+ 
+============================================================ 
+Command: "netsh" "int ip reset" 
+Description: "Resets TCP/IP stack (IPv4). Use this if you are experiencing connectivity issues that may be related to corrupted TCP/IP settings." 
+============================================================ 
+ 
+ 
+Skipping command: "netsh" "int ip reset" 
+Command skipped. 
+ 
+============================================================ 
+Command: "netsh" "int ipv6 reset" 
+Description: "Resets TCP/IP stack (IPv6). This is useful if you are having issues with IPv6 connectivity, which is becoming more common as more networks adopt IPv6." 
+============================================================ 
+ 
+ 
+Skipping command: "netsh" "int ipv6 reset" 
+Command skipped. 
+ 
+============================================================ 
+Command: "netsh" "int ip reset" 
+Description: "Resets TCP/IP stack (IPv4)." 
+============================================================ 
+ 
+ 
+Skipping command: "netsh" "int ip reset" 
+Command skipped. 
+ 
+============================================================ 
+Command: "netsh" "int ipv6 reset" 
+Description: "Resets TCP/IP stack (IPv6)." 
+============================================================ 
+ 
+ 
+Skipping command: "netsh" "int ipv6 reset" 
+Command skipped. 
+ 
+============================================================ 
+Command: "netsh" "winsock reset" 
+Description: "Resets Winsock. Use this combination of commands to reset all network settings to their default state, which can help resolve a wide range of network issues." 
+============================================================ 
+ 
+ 
+Skipping command: "netsh" "winsock reset" 
+Command skipped. 
+Skipping command: "netsh" "winsock reset" 
+Command skipped. 
+ 
+============================================================ 
+Command: "netsh" "winsock reset" 
+Description: "Resets Winsock. Use this combination of commands to reset all network settings to their default state, which can help resolve a wide range of network issues." 
+============================================================ 
+ 
+ 
+Skipping command: "netsh" "winsock reset" 
+Command skipped. 
+ 
+============================================================ 
+Command: "ipconfig" "/flushdns" 
+Description: "Flushes and resets the contents of the DNS client resolver cache." 
+============================================================ 
+ 
+ 
+Skipping command: "ipconfig" "/flushdns" 
+Command skipped. 
+ 
+============================================================ 
+Command: "netsh" "winsock reset" 
+Description: "Resets Winsock." 
+============================================================ 
+ 
+ 
+Skipping command: "netsh" "winsock reset" 
+Command skipped. 
+ 
+============================================================ 
+Command: "netsh" "int ip reset" 
+Description: "Resets TCP/IP stack (IPv4)." 
+============================================================ 
+ 
