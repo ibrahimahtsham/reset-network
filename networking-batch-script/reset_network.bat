@@ -12,30 +12,30 @@ set logfile=logs\%datetime%.log
 :: Initialize the log file
 echo Logging started at %datetime% >> %logfile%
 
-echo WARNING: For full functionality, please run this script as an Administrator.
-echo Some functions may be limited without administrative privileges.
+echo [31mWARNING: For full functionality, please run this script as an Administrator.[0m
+echo [33mSome functions may be limited without administrative privileges.[0m
 pause
 
 :menu
 cls
 echo ============================================================
-echo Network Troubleshooting Menu ^| Partially Admin = PA, Fully Admin = FA, Non Admin = NA
+echo Network Troubleshooting Menu ^| [32mNon Admin = NA[0m,  [33mPartially Admin = PA[0m, [31mFully Admin = FA[0m
 echo ============================================================
 echo.
-echo 1. Flush DNS Cache (NA) [ipconfig /flushdns]
-echo 2. Display DNS Cache (NA) [ipconfig /displaydns]
-echo 3. Display ARP Cache (NA) [arp -a]
-echo 4. Check Network Adapter Status (NA) [netsh interface show interface]
-echo 5. Display Network Configuration (NA) [ipconfig /all]
-echo 6. Check for Network Driver Updates (NA) [powershell -Command Get-WmiObject Win32_PnPEntity ^| Select-Object Caption, DriverVersion]
-echo 7. Release and Renew IP Address (NA) [ipconfig /release, ipconfig /renew] (useful in most cases)
-echo 8. Reset TCP/IP Stack (IPv4) (PA) [netsh int ip reset]
-echo 9. Reset TCP/IP Stack (IPv6) (PA) [netsh int ipv6 reset]
-echo 10. Reset Network Settings (PA) [netsh int ip reset, netsh int ipv6 reset, netsh winsock reset] (useful in most cases)
-echo 11. Flush DNS Cache, Reset Winsock, Reset TCP/IP Stack (IPv4), Clear ARP Cache (PA) [ipconfig /flushdns, netsh winsock reset, netsh int ip reset, arp -d *]
-echo 12. Clear ARP Cache (FA) [arp -d *]
-echo 13. Reset Winsock (FA) [netsh winsock reset]
-echo 14. Restart Network Adapters (FA) [netsh interface set interface name="Ethernet" admin=disable, netsh interface set interface name="Ethernet" admin=enable]
+echo [32m1. Flush DNS Cache (NA)[0m [ipconfig /flushdns]
+echo [32m2. Display DNS Cache (NA)[0m [ipconfig /displaydns]
+echo [32m3. Display ARP Cache (NA)[0m [arp -a]
+echo [32m4. Check Network Adapter Status (NA)[0m [netsh interface show interface]
+echo [32m5. Display Network Configuration (NA)[0m [ipconfig /all]
+echo [32m6. Check for Network Driver Updates (NA)[0m [powershell -Command Get-WmiObject Win32_PnPEntity ^| Select-Object Caption, DriverVersion]
+echo [32m7. Release and Renew IP Address (NA)[0m [ipconfig /release, ipconfig /renew] [36m(useful in most cases)[0m
+echo [33m8. Reset TCP/IP Stack (IPv4) (PA)[0m [netsh int ip reset]
+echo [33m9. Reset TCP/IP Stack (IPv6) (PA)[0m [netsh int ipv6 reset]
+echo [33m10. Reset Network Settings (PA)[0m [netsh int ip reset, netsh int ipv6 reset, netsh winsock reset] [36m(useful in most cases)[0m
+echo [33m11. Flush DNS Cache, Reset Winsock, Reset TCP/IP Stack (IPv4), Clear ARP Cache (PA)[0m [ipconfig /flushdns, netsh winsock reset, netsh int ip reset, arp -d *]
+echo [31m12. Clear ARP Cache (FA)[0m [arp -d *]
+echo [31m13. Reset Winsock (FA)[0m [netsh winsock reset]
+echo [31m14. Restart Network Adapters (FA)[0m [netsh interface set interface name="Ethernet" admin=disable, netsh interface set interface name="Ethernet" admin=enable]
 echo 15. Run All Commands
 echo 16. Restart DHCP and DNS Client Services [net stop dhcp y, net start dhcp, net stop dnscache y, net start dnscache] (not implemented)
 echo 17. Restart DHCP and DNS Client Services, Restart Network Adapters (FA) (not implemented)
@@ -246,9 +246,9 @@ echo Command: %command% %args%
 echo Description: %description%
 echo ============================================================
 echo.
-echo Type 's' to skip the command.
-echo Type 'h' for more info on the command.
-echo Type 'r' or press `Enter` to run the command.
+echo [33mType 's' to skip the command.[0m
+echo [33mType 'h' for more info on the command.[0m
+echo [33mType 'r' or press `Enter` to run the command.[0m
 echo ------------------------------------------------------------
 set /p run=input:
 echo. >> %logfile%
@@ -309,9 +309,9 @@ echo Command: %command%
 echo Description: %description%
 echo ============================================================
 echo.
-echo Type 's' to skip the command.
-echo Type 'h' for more info on the command.
-echo Type 'r' or press `Enter` to run the command.
+echo [33mType 's' to skip the command.[0m
+echo [33mType 'h' for more info on the command.[0m
+echo [33mType 'r' or press `Enter` to run the command.[0m
 echo ------------------------------------------------------------
 set /p run=input:
 echo. >> %logfile%
