@@ -1,0 +1,497 @@
+Logging started at 2025-01-17-05-41-37 
+ 
+============================================================ 
+Choice number chosen: 8 
+============================================================ 
+ 
+============================================================ 
+Command: "netsh" "int ip reset" 
+Description: "Resets TCP/IP stack (IPv4)." 
+============================================================ 
+ 
+ 
+ 
+============================================================ 
+Running command: "netsh" "int ip reset" 
+============================================================ 
+ 
+Resetting Compartment Forwarding, OK!
+Resetting Compartment, OK!
+Resetting Control Protocol, OK!
+Resetting Echo Sequence Request, OK!
+Resetting Global, OK!
+Resetting Interface, failed.
+The requested operation requires elevation (Run as administrator).
+Resetting Anycast Address, OK!
+Resetting Multicast Address, OK!
+Resetting Unicast Address, OK!
+Resetting Neighbor, OK!
+Resetting Path, OK!
+Resetting Potential, OK!
+Resetting Prefix Policy, OK!
+Resetting Proxy Neighbor, OK!
+Resetting Route, OK!
+Resetting Site Prefix, OK!
+Resetting Subinterface, OK!
+Resetting Wakeup Pattern, OK!
+Resetting Resolve Neighbor, OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , failed.
+The requested operation requires elevation (Run as administrator).
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , failed.
+The requested operation requires elevation (Run as administrator).
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Restart the computer to complete this action.
+
+ 
+============================================================ 
+End of execution. 
+============================================================ 
+ 
+ 
+============================================================ 
+Choice number chosen: 9 
+============================================================ 
+ 
+============================================================ 
+Command: "netsh" "int ipv6 reset" 
+Description: "Resets TCP/IP stack (IPv6)." 
+============================================================ 
+ 
+ 
+ 
+============================================================ 
+Running command: "netsh" "int ipv6 reset" 
+============================================================ 
+ 
+Resetting Compartment Forwarding, OK!
+Resetting Compartment, OK!
+Resetting Control Protocol, OK!
+Resetting Echo Sequence Request, OK!
+Resetting Global, OK!
+Resetting Interface, OK!
+Resetting Anycast Address, OK!
+Resetting Multicast Address, OK!
+Resetting Unicast Address, OK!
+Resetting Neighbor, OK!
+Resetting Path, OK!
+Resetting Potential, OK!
+Resetting Prefix Policy, OK!
+Resetting Proxy Neighbor, OK!
+Resetting Route, OK!
+Resetting Site Prefix, OK!
+Resetting Subinterface, OK!
+Resetting Wakeup Pattern, OK!
+Resetting Resolve Neighbor, OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , failed.
+The requested operation requires elevation (Run as administrator).
+Resetting , OK!
+Resetting , failed.
+The requested operation requires elevation (Run as administrator).
+Resetting , OK!
+Resetting , failed.
+The requested operation requires elevation (Run as administrator).
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Restart the computer to complete this action.
+
+ 
+============================================================ 
+End of execution. 
+============================================================ 
+ 
+ 
+============================================================ 
+Choice number chosen: 10 
+============================================================ 
+ 
+============================================================ 
+Command: "net stop" "dhcp" 
+Description: "Stops the DHCP client service." 
+============================================================ 
+ 
+ 
+ 
+============================================================ 
+Running command: "net stop" "dhcp" 
+============================================================ 
+ 
+The following services are dependent on the DHCP Client service.
+Stopping the DHCP Client service will also stop these services.
+
+   WinHTTP Web Proxy Auto-Discovery Service
+   Network List Service
+   Network Location Awareness
+
+Do you want to continue this operation? (Y/N) [N]: 
+ 
+============================================================ 
+End of execution. 
+============================================================ 
+ 
+ 
+============================================================ 
+Command: "net start" "dhcp" 
+Description: "Starts the DHCP client service." 
+============================================================ 
+ 
+ 
+ 
+============================================================ 
+Running command: "net start" "dhcp" 
+============================================================ 
+ 
+net : The requested service has already been started.
+At line:1 char:11
++ & { try { net start dhcp 2>&1 | Tee-Object -FilePath temp_log.txt -Ap ...
++           ~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (The requested s...y been started.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+More help is available by typing NET HELPMSG 2182.
+
+ 
+============================================================ 
+End of execution. 
+============================================================ 
+ 
+ 
+============================================================ 
+Command: "net stop" "dnscache" 
+Description: "Stops the DNS client service." 
+============================================================ 
+ 
+ 
+ 
+============================================================ 
+Running command: "net stop" "dnscache" 
+============================================================ 
+ 
+net : The requested pause, continue, or stop is not valid for this service.
+At line:1 char:11
++ & { try { net stop dnscache 2>&1 | Tee-Object -FilePath temp_log.txt  ...
++           ~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (The requested p...r this service.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+More help is available by typing NET HELPMSG 2191.
+
+ 
+============================================================ 
+End of execution. 
+============================================================ 
+ 
+ 
+============================================================ 
+Command: "net start" "dnscache" 
+Description: "Starts the DNS client service." 
+============================================================ 
+ 
+ 
+ 
+============================================================ 
+Running command: "net start" "dnscache" 
+============================================================ 
+ 
+net : The requested service has already been started.
+At line:1 char:11
++ & { try { net start dnscache 2>&1 | Tee-Object -FilePath temp_log.txt ...
++           ~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (The requested s...y been started.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+More help is available by typing NET HELPMSG 2182.
+
+ 
+============================================================ 
+End of execution. 
+============================================================ 
+ 
+ 
+============================================================ 
+Choice number chosen: 11 
+============================================================ 
+ 
+============================================================ 
+Command: "netsh" "int ip reset" 
+Description: "Resets TCP/IP stack (IPv4)." 
+============================================================ 
+ 
+ 
+ 
+============================================================ 
+Running command: "netsh" "int ip reset" 
+============================================================ 
+ 
+Resetting Compartment Forwarding, OK!
+Resetting Compartment, OK!
+Resetting Control Protocol, OK!
+Resetting Echo Sequence Request, OK!
+Resetting Global, OK!
+Resetting Interface, failed.
+The requested operation requires elevation (Run as administrator).
+Resetting Anycast Address, OK!
+Resetting Multicast Address, OK!
+Resetting Unicast Address, OK!
+Resetting Neighbor, OK!
+Resetting Path, OK!
+Resetting Potential, OK!
+Resetting Prefix Policy, OK!
+Resetting Proxy Neighbor, OK!
+Resetting Route, OK!
+Resetting Site Prefix, OK!
+Resetting Subinterface, OK!
+Resetting Wakeup Pattern, OK!
+Resetting Resolve Neighbor, OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , failed.
+The requested operation requires elevation (Run as administrator).
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , failed.
+The requested operation requires elevation (Run as administrator).
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Restart the computer to complete this action.
+
+ 
+============================================================ 
+End of execution. 
+============================================================ 
+ 
+ 
+============================================================ 
+Command: "netsh" "int ipv6 reset" 
+Description: "Resets TCP/IP stack (IPv6)." 
+============================================================ 
+ 
+ 
+ 
+============================================================ 
+Running command: "netsh" "int ipv6 reset" 
+============================================================ 
+ 
+Resetting Compartment Forwarding, OK!
+Resetting Compartment, OK!
+Resetting Control Protocol, OK!
+Resetting Echo Sequence Request, OK!
+Resetting Global, OK!
+Resetting Interface, OK!
+Resetting Anycast Address, OK!
+Resetting Multicast Address, OK!
+Resetting Unicast Address, OK!
+Resetting Neighbor, OK!
+Resetting Path, OK!
+Resetting Potential, OK!
+Resetting Prefix Policy, OK!
+Resetting Proxy Neighbor, OK!
+Resetting Route, OK!
+Resetting Site Prefix, OK!
+Resetting Subinterface, OK!
+Resetting Wakeup Pattern, OK!
+Resetting Resolve Neighbor, OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , failed.
+The requested operation requires elevation (Run as administrator).
+Resetting , OK!
+Resetting , failed.
+The requested operation requires elevation (Run as administrator).
+Resetting , OK!
+Resetting , failed.
+The requested operation requires elevation (Run as administrator).
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Resetting , OK!
+Restart the computer to complete this action.
+
+ 
+============================================================ 
+End of execution. 
+============================================================ 
+ 
+ 
+============================================================ 
+Command: "netsh" "winsock reset" 
+Description: "Resets Winsock." 
+============================================================ 
+ 
+ 
+ 
+============================================================ 
+Running command: "netsh" "winsock reset" 
+============================================================ 
+ 
+The requested operation requires elevation (Run as administrator).
+
+ 
+============================================================ 
+End of execution. 
+============================================================ 
+ 
+ 
+============================================================ 
+Choice number chosen: 12 
+============================================================ 
+ 
+============================================================ 
+Command: "arp" "-d *" 
+Description: "Clears the ARP cache." 
+============================================================ 
+ 
+ 
+ 
+============================================================ 
+Running command: "arp" "-d *" 
+============================================================ 
+ 
+arp : The ARP entry deletion failed: The requested operation requires elevation.
+At line:1 char:11
++ & { try { arp -d * 2>&1 | Tee-Object -FilePath temp_log.txt -Append;  ...
++           ~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (The ARP entry d...ires elevation.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+ 
+============================================================ 
+End of execution. 
+============================================================ 
+ 
+ 
+============================================================ 
+Choice number chosen: 13 
+============================================================ 
+ 
+============================================================ 
+Command: "netsh" "winsock reset" 
+Description: "Resets Winsock." 
+============================================================ 
+ 
+ 
+ 
+============================================================ 
+Running command: "netsh" "winsock reset" 
+============================================================ 
+ 
+The requested operation requires elevation (Run as administrator).
+
+ 
+============================================================ 
+End of execution. 
+============================================================ 
+ 
+ 
+============================================================ 
+Choice number chosen: 14 
+============================================================ 
+ 
+============================================================ 
+Command: "netsh" "interface set interface name="Ethernet" admin=disable" 
+Description: "Disables the Ethernet adapter." 
+============================================================ 
+ 
+ 
+ 
+============================================================ 
+Running command: "netsh" "interface set interface name="Ethernet" admin=disable" 
+============================================================ 
+ 
+The requested operation requires elevation (Run as administrator).
+
+ 
+============================================================ 
+End of execution. 
+============================================================ 
+ 
+ 
+============================================================ 
+Command: "netsh" "interface set interface name="Ethernet" admin=enable" 
+Description: "Enables the Ethernet adapter." 
+============================================================ 
+ 
+ 
+ 
+============================================================ 
+Running command: "netsh" "interface set interface name="Ethernet" admin=enable" 
+============================================================ 
+ 
+The requested operation requires elevation (Run as administrator).
+
+ 
+============================================================ 
+End of execution. 
+============================================================ 
+ 
+ 
+============================================================ 
+Choice number chosen: 15 
+============================================================ 
+ 
+============================================================ 
+Command: "wmic" "path win32_pnpentity get caption, driverversion" 
+Description: "Checks for network driver updates." 
+============================================================ 
+ 
+ 
+ 
+============================================================ 
+Running command: "wmic" "path win32_pnpentity get caption, driverversion" 
+============================================================ 
+ 
+wmic : Invalid GET Expression.
+At line:1 char:11
++ & { try { wmic path win32_pnpentity get caption, driverversion 2>&1 | ...
++           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Invalid GET Expression.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+ 
+============================================================ 
+End of execution. 
+============================================================ 
+ 
+ 
+============================================================ 
+Choice number chosen: 8 
+============================================================ 
+ 
+============================================================ 
+Command: "netsh" "int ip reset" 
+Description: "Resets TCP/IP stack (IPv4)." 
+============================================================ 
+ 
+ 
+ 
+============================================================ 
+Choice number chosen: 18 
+============================================================ 
+Logging ended at 17-Jan-25  5:48:05.55 

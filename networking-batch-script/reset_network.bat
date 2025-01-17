@@ -19,26 +19,28 @@ pause
 :menu
 cls
 echo ============================================================
-echo Network Troubleshooting Menu | Partially Admin = PA, Fully Admin = FA, Not Admin = NA
+echo Network Troubleshooting Menu ^| Partially Admin = PA, Fully Admin = FA, Non Admin = NA
 echo ============================================================
+echo.
 echo 1. Flush DNS Cache (NA) [ipconfig /flushdns]
 echo 2. Display DNS Cache (NA) [ipconfig /displaydns]
 echo 3. Display ARP Cache (NA) [arp -a]
 echo 4. Check Network Adapter Status (NA) [netsh interface show interface]
 echo 5. Display Network Configuration (NA) [ipconfig /all]
 echo 6. Ping an IP (NA)
-echo 7. Release and Renew IP Address (PA) [ipconfig /release (NA), netsh int ipv6 reset (PA), netsh winsock reset (FA)]
+echo 7. Release and Renew IP Address (NA) [ipconfig /release, ipconfig /renew]
 echo 8. Reset TCP/IP Stack (IPv4) (PA) [netsh int ip reset]
 echo 9. Reset TCP/IP Stack (IPv6) (PA) [netsh int ipv6 reset]
-echo 10. Restart DHCP and DNS Client Services (PA) [netsh int ipv6 reset (PA), netsh winsock reset (FA)]
-echo 11. Reset Network Settings (Partially Admin) [netsh int ip reset (PA), netsh int ipv6 reset (PA), netsh winsock reset (FA)]
+echo 10. Reset Network Settings (PA) [netsh int ip reset, netsh int ipv6 reset, netsh winsock reset]
+echo 11. Restart DHCP and DNS Client Services (PA) [net stop dhcp, net start dhcp, net stop dnscache, net start dnscache]
 echo 12. Clear ARP Cache (FA) [arp -d *]
 echo 13. Reset Winsock (FA) [netsh winsock reset]
 echo 14. Restart Network Adapters (FA) [netsh interface set interface name="Ethernet" admin=disable, netsh interface set interface name="Ethernet" admin=enable]
-echo 15. Check for Network Driver Updates (Doesn't work, needs to be reworked and not removed) [wmic path win32_pnpentity get caption, driverversion]
-echo 16. Run Multiple Commands
-echo 17. Run All Commands (Needs to be reworked with a flag that checks if its in run all mode) 
-echo 18. Exit
+echo 15. Flush DNS Cache, Reset Winsock, Reset TCP/IP Stack (IPv4), Clear ARP Cache (FA)
+echo 16. Restart DHCP and DNS Client Services, Restart Network Adapters (FA)
+echo 17. Check for Network Driver Updates (Needs rework, not removal) [wmic path win32_pnpentity get caption, driverversion]
+echo 18. Run All Commands (Needs rework with run-all mode flag)
+echo 19. Exit
 echo ============================================================
 echo.
 set /p choice=Choose an option (1-18):
@@ -47,6 +49,8 @@ echo. >> %logfile%
 echo ============================================================ >> %logfile%
 echo Choice number chosen: %choice% >> %logfile%
 echo ============================================================ >> %logfile%
+echo. >> %logfile%
+
 
 if "%choice%"=="1" goto flush_dns
 if "%choice%"=="2" goto display_dns_cache
@@ -63,9 +67,10 @@ if "%choice%"=="12" goto clear_arp_cache
 if "%choice%"=="13" goto reset_winsock
 if "%choice%"=="14" goto restart_adapters
 if "%choice%"=="15" goto check_driver_updates
-if "%choice%"=="16" goto run_multiple_commands
-if "%choice%"=="17" goto run_all_commands
-if "%choice%"=="18" goto exit_script
+if "%choice%"=="16" goto flush_dns_reset_winsock_reset_tcp_ipv4_clear_arp_cache
+if "%choice%"=="17" goto restart_dhcp_dns_restart_adapters
+if "%choice%"=="18" goto run_all_commands
+if "%choice%"=="19" goto exit_script
 goto menu
 
 :flush_dns
@@ -93,6 +98,7 @@ cls
 echo ============================================================
 echo Ping an IP
 echo ============================================================
+echo.
 echo 1. Ping Google
 echo 2. Ping Cloudflare
 echo 3. Ping OpenDNS
@@ -105,6 +111,7 @@ if "%ping_choice%"=="1" set ip=www.google.com
 if "%ping_choice%"=="2" set ip=1.1.1.1
 if "%ping_choice%"=="3" set ip=208.67.222.222
 if "%ping_choice%"=="4" (
+    echo.
     set /p ip=Enter the IP or domain to ping:
 )
 if "%ping_choice%"=="5" goto menu
@@ -167,50 +174,20 @@ goto menu
 call :log_command "wmic" "path win32_pnpentity get caption, driverversion" "Checks for network driver updates."
 goto menu
 
-:run_multiple_commands
-cls
-echo ============================================================
-echo Run Multiple Commands
-echo ============================================================
-echo 1. Flush DNS Cache, Reset Winsock, Reset TCP/IP Stack (IPv4), Clear ARP Cache
-echo 2. Restart DHCP and DNS Client Services, Restart Network Adapters
-echo 3. Return to Main Menu
-echo ============================================================
-echo.
-set /p multi_choice=Choose an option (1-3):
-
-if "%multi_choice%"=="1" (
-    call :flush_dns
-    call :reset_winsock
-    call :reset_tcp_ipv4
-    call :clear_arp_cache
-) else if "%multi_choice%"=="2" (
-    call :restart_dhcp_dns
-    call :restart_adapters
-) else if "%multi_choice%"=="3" (
-    goto menu
-) else (
-    echo Invalid choice. Please try again.
-    pause
-    goto run_multiple_commands
-)
+:flush_dns_reset_winsock_reset_tcp_ipv4_clear_arp_cache
+call :log_command "ipconfig" "/flushdns" "Flushes and resets the contents of the DNS client resolver cache."
+call :log_command "netsh" "winsock reset" "Resets Winsock."
+call :log_command "netsh" "int ip reset" "Resets TCP/IP stack (IPv4)."
+call :log_command "arp" "-d *" "Clears the ARP cache."
 goto menu
 
-:run_all_commands
-call :flush_dns
-call :clear_arp_cache
-call :display_dns_cache
-call :display_arp_cache
-call :release_renew_ip
-call :check_adapter_status
-call :reset_winsock
-call :reset_tcp_ipv4
-call :reset_tcp_ipv6
-call :restart_dhcp_dns
-call :restart_adapters
-call :reset_network_settings
-call :display_network_config
-call :check_driver_updates
+:restart_dhcp_dns_restart_adapters
+call :log_command "net stop" "dhcp" "Stops the DHCP client service."
+call :log_command "net start" "dhcp" "Starts the DHCP client service."
+call :log_command "net stop" "dnscache" "Stops the DNS client service."
+call :log_command "net start" "dnscache" "Starts the DNS client service."
+call :log_command "netsh" "interface set interface name="Ethernet" admin=disable" "Disables the Ethernet adapter."
+call :log_command "netsh" "interface set interface name="Ethernet" admin=enable" "Enables the Ethernet adapter."
 goto menu
 
 :log_command
